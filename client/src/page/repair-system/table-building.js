@@ -305,14 +305,14 @@ export default function TableBuilding(props) {
               } catch (error) {
                 if (error?.response?.status == 401) {
                   if (error.response.status == 401) {
-                    Swal.fire({
-                      title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
-                      confirmButtonText: 'OK'
-                    }).then((result) => {
-                      if (result.isConfirmed) {
+                    // Swal.fire({
+                    //   title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
+                    //   confirmButtonText: 'OK'
+                    // }).then((result) => {
+                      // if (result.isConfirmed) {
                         window.location.href = '/login'
-                      }
-                    })
+                      // }
+                    // })
                   }
                 } else {
                   console.log(error)
