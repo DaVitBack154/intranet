@@ -205,7 +205,7 @@ export default function HomePage() {
       render: (_, record) => (
         <Profileim>
           {/* <div className="img-pro"></div> */}
-          <img className="img-pro" alt="example" src={"http://localhost:4000/public/image/employee/" + record.image} />
+          <img className="img-pro" alt="example" src={process.env.REACT_APP_SERVER_ENDPOINT + "/public/image/employee/" + record.image} />
         </Profileim>
       )
     },
@@ -232,7 +232,7 @@ export default function HomePage() {
       }
 
       let employeeResp = await axios.get(
-        "http://localhost:4000/api/user/employee",
+        process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/employee",
         {
           params: params,
           withCredentials: true,
