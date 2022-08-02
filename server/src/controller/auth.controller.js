@@ -1,6 +1,5 @@
 const authModel = require("../model/auth.model");
 const Validator = require("validatorjs");
-const bcrypt = require("bcrypt");
 
 module.exports.login = async (req, res) => {
   let body = req.body;

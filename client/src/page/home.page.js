@@ -6,6 +6,7 @@ import { FaPhoneSquareAlt } from 'react-icons/fa'
 import SideBarComponent from "../components/sidebar.components";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import { Table } from 'antd';
 
 const HomepageComponent = styled.div`
   display: flex;
@@ -26,11 +27,9 @@ const Contentportal = styled.div`
 
     .img-brand{
       width: 100%;
-      height: 250px;
+      height: 360px;
     }
 
-   
-    
   }
   .content-group-button {
     display: flex;
@@ -68,9 +67,10 @@ const Contentportal = styled.div`
      }
      
      .back-group-team{
-      background-color: #F2F6F6;
+      background-color: #F2F2F2;
       padding-top: 20px;
-      padding-bottom: 50px;
+      padding-bottom: 10px;
+      /* border: 1px solid #015352; */
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
      
 
@@ -104,19 +104,24 @@ const Contentportal = styled.div`
       }
 
       .department-team{
-        margin-top: 20px;
-        display: grid;
-        grid-template-columns: repeat(4, 24%);
-        grid-row-gap: 30px;
-        .ant-card{
-          margin: 0 auto;
+        padding: 20px;
+       
+        .table-team{
+          padding: 10px;
+        
+        
         }
+        .ant-table-thead > tr > th {
+          font-weight: bold;
+          background-color: #1d41a9;
+          color: #ffff;
+          white-space: nowrap;
+        }
+        
       }
 
      }
      
-    
-
      hr{
       border: 1px solid red;
       background-color: red;
@@ -157,96 +162,32 @@ const Contentportal = styled.div`
   
 `;
 
-const CarouselComponent = styled(Carousel)`
-  width: 100%;
-  .slick-dots {
-    visibility: hidden;
-  }
-  .slick-slide > div > div > img{
-  object-fit: cover;
-  width: 100%;
-  height: 300px;
-  }
-`
+
 
 
 const HeadCard = styled.div`
-  padding-left: 30px;
-  display: flex;
-  justify-content: space-evenly;
-
-  
-     .group-card-head{
-      position: relative;
-      top: -50px;
-      transition: 0.25s ease;
-      box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
-      &:hover{
-        transform: scale(1.2);
-        z-index: 999;
-      }
+  .group-card-flex{
+    display: flex;
+    justify-content: space-evenly;
       
-          .img-head,.detail-head{
-            width: 220px;
-            padding: 5px;
-           
-            
-            .img-card{
-              border-radius: 5px;
-            }
-          }
-          
-      }
+  }
+  
 `
 
-const CardUser = styled.div`
-  padding-left: 90px;
-  transition: 0.25s ease;
-  &:hover{
-    transform: scale(1.1);
-    z-index: 999;
+
+
+const Profileim = styled.div`
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  width:80px;
+  height: 80px;
+  margin-left: 10px;
+
+  .img-pro{
+    border-radius: 50px;
   }
-
-  .border-team{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    border-radius: 5px;
-  
-
-      .img-head{
-        border: 1px;
-      }
-
-      .img-team{
-        width: 230px;
-        border-radius: 5px;
-      }
-      .detail-team{
-        margin-left:5px;
-        padding: 3px;
-      }
-  }
-
-  // @media only screen and (min-width: 1600px) {
-  //   .border-team{
-
-  //     .img-head{
-  //       display: flex;
-  //       justify-content: center;
-  //     }
-
-  //     margin: 0 auto;
-  //     .img-team{
-  //       width: 230px;
-  //     }
-  //   }
-  // }
-  // @media only screen and (min-width: 1900px) {
-  //   .border-team{
-  //     .img-team{
-  //       width: 310px;
-  //     }
-  //   }
-  // }
+   
 `
 
 
@@ -255,6 +196,35 @@ export default function HomePage() {
   const [userData, setUserData] = useState([]);
   const [dep_id, setdep_id] = useState(1)
 
+  const columns = [
+    {
+      title: 'Profile',
+      dataIndex: 'image',
+      width: 150,
+      align: 'center',
+      render: (_, record) => (
+        <Profileim>
+          {/* <div className="img-pro"></div> */}
+          <img className="img-pro" alt="example" src={"http://localhost:4000/public/image/employee/" + record.image} />
+        </Profileim>
+      )
+    },
+    {
+      title: 'Name-Surname',
+      dataIndex: 'TUserName',
+    },
+    {
+      title: 'Position',
+      dataIndex: 'Position',
+    },
+    {
+      title: 'Telephone',
+      dataIndex: 'ExtNo',
+      width: 200,
+      align: 'center',
+    },
+  ]
+
   useEffect(() => {
     const init = async () => {
       let params = {
@@ -262,7 +232,7 @@ export default function HomePage() {
       }
 
       let employeeResp = await axios.get(
-        process.env.REACT_APP_SERVER_ENDPOINT+"/api/user/employee",
+        "http://localhost:4000/api/user/employee",
         {
           params: params,
           withCredentials: true,
@@ -283,11 +253,10 @@ export default function HomePage() {
       <div className="content">
         <Contentportal className="content-portal">
 
-          {/* <div className="img-top">
-            <img src="https://www.chase.co.th/storage/page/service/F5M7O0kzmSJgbUMobl3V1E17RTnypi7stMG3R8NV.jpg" alt="" className="img-brand" />
-
-          </div> */}
-          <CarouselComponent className={'landing-carousel'} autoplay>
+          <div className="img-top">
+            <img src="/backgroud1.png" className="img-brand"></img>
+          </div>
+          {/* <CarouselComponent className={'landing-carousel'} autoplay>
             <div>
               <img src="https://www.chase.co.th/storage/page/service/F5M7O0kzmSJgbUMobl3V1E17RTnypi7stMG3R8NV.jpg" alt="" className="img-brand" />
             </div>
@@ -297,11 +266,32 @@ export default function HomePage() {
             <div>
               <img src="https://www.chase.co.th/storage/banner/MRiPHna98lyBPVSE91xVINa4JLdlJFDPf0yAMeS2.png" alt="" className="img-brand" />
             </div>
-          </CarouselComponent>
+          </CarouselComponent> */}
 
 
           <HeadCard>
-            <div className="group-card-head">
+            {/* <div className="group-card-flex">
+              <div className="card-1">
+                <div className="cricle-img">
+                  img
+                </div>
+                <div className="detail">
+                  <div>Walkter While</div>
+                  <div>Walkter While</div>
+                </div>
+              </div>
+
+              <div className="card-2">
+                <div className="cricle-img">
+                  img
+                </div>
+                <div className="detail">
+                  <div>Walkter While</div>
+                  <div>Walkter While</div>
+                </div>
+              </div>
+            </div> */}
+            {/* <div className="group-card-head">
               <div className="img-head">
                 <img alt="example" src="/4.jpg" height={290} width={210} className="img-card" />
               </div>
@@ -336,32 +326,34 @@ export default function HomePage() {
                 <div className="name-card">K. Suthida Chaisuwan</div>
                 <div className="position">Chief Legal Officer</div>
               </div>
-            </div>
+            </div> */}
           </HeadCard>
-          <hr />
+          {/* <hr /> */}
 
           <div className="back-group-team">
 
             <div className="head-member">
-              <div>EMPLOYEE CHASE-ASIA</div>
+              <div>CONTRACT WITH EMPLOYEE</div>
+              <hr />
             </div>
 
             <div className="button-group">
               <div className={'item ' + (dep_id == 1 ? 'group' : '')} onClick={() => { setdep_id(1) }}><span>IT-Support</span></div>
-              <div className={'item ' + (dep_id == 2 ? 'group' : '')} onClick={() => { setdep_id(2) }}><span>Account</span></div>
-              <div className={'item ' + (dep_id == 3 ? 'group' : '')} onClick={() => { setdep_id(3) }}><span>Marketting</span></div>
+              <div className={'item ' + (dep_id == 2 ? 'group' : '')} onClick={() => { setdep_id(2) }}><span>Accounting</span></div>
+              <div className={'item ' + (dep_id == 3 ? 'group' : '')} onClick={() => { setdep_id(3) }}><span>Procurement</span></div>
               <div className={'item ' + (dep_id == 4 ? 'group' : '')} onClick={() => { setdep_id(4) }}><span>Messenger</span></div>
               <div className={'item ' + (dep_id == 5 ? 'group' : '')} onClick={() => { setdep_id(5) }}><span>Other</span></div>
             </div>
             <br />
 
             <div className="department-team">
-              {userData.map((item, index) => {
+              <Table className="table-team" columns={columns} dataSource={userData} />;
+              {/* {userData.map((item, index) => {
                 return (
                   <CardUser className="group-team" key={index}>
                     <div className="border-team">
                       <div className="img-head">
-                        <img alt="example" className="img-team" src={process.env.REACT_APP_SERVER_ENDPOINT+"/public/image/employee/" + item.image} />
+                        <img alt="example" className="img-team" src={"http://localhost:4000/public/image/employee/" + item.image} />
                       </div>
                       <div className="detail-team">
                         <div className="name-card">K. {item.TUserName}</div>
@@ -371,7 +363,7 @@ export default function HomePage() {
                     </div>
                   </CardUser>
                 )
-              })}
+              })} */}
             </div>
 
           </div>
