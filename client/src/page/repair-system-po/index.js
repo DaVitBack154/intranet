@@ -11,7 +11,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import Swal from "sweetalert2";
-import TableIt from "./table-building";
+import TableIt from "./table-it";
 
 const { TabPane } = Tabs;
 

@@ -54,6 +54,7 @@ export default function TableIt(props) {
         {
           title: 'เลขที่แจ้งซ่อม',
           dataIndex: 'ticket_no',
+          width: 120,
           sorter: (a, b) => {
             a = a.ticket_no || ''
             b = b.ticket_no || ''
@@ -62,7 +63,7 @@ export default function TableIt(props) {
         },
         {
           title: 'วันที่แจ้งซ่อม',
-          dataIndex: 'create_date'
+          dataIndex: 'create_date',
         },
         {
           title: 'ผู้แจ้งซ่อม',
@@ -161,7 +162,7 @@ export default function TableIt(props) {
         let excelColumn = [
           {
             title: 'เลขที่แจ้งซ่อม',
-            dataIndex: 'ticket_no'
+            dataIndex: 'ticket_no',
           },
           {
             title: 'วันที่แจ้งซ่อม',

@@ -32,7 +32,7 @@ const ButtonGroup_it = styled.div`
     }  
 `
 
-export default function TableIt(props) {
+export default function TableBuilding(props) {
   const [columns, setColumns] = useState(null);
 
   useEffect(() => {
@@ -54,6 +54,7 @@ export default function TableIt(props) {
         {
           title: "เลขที่แจ้งซ่อม",
           dataIndex: "ticket_no",
+          width: 120,
           sorter: (a, b) => {
             a = a.ticket_no || "";
             b = b.ticket_no || "";
