@@ -6,7 +6,8 @@ import { FaPhoneSquareAlt } from 'react-icons/fa'
 import SideBarComponent from "../components/sidebar.components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import { Table } from 'antd';
+// import { Table } from 'antd';
+import Table from '../components/table'
 
 const HomepageComponent = styled.div`
   display: flex;
