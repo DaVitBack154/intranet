@@ -73,7 +73,7 @@ export default function RepairSystem() {
   useEffect(() => {
     const init = async () => {
       try {
-        let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT+"/api/user/profile", {
+        let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/profile", {
           withCredentials: true,
         });
         if (resp?.data?.status) {
@@ -81,14 +81,14 @@ export default function RepairSystem() {
         }
 
         let itResp = await axios.get(
-          process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list/it",
+          process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list/it",
           { withCredentials: true }
         );
         if (itResp?.data?.status) {
           setItData(itResp.data.data);
         }
         let buildingtResp = await axios.get(
-          process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list/building",
+          process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list/building",
           { withCredentials: true }
         );
         if (buildingtResp?.data?.status) {
@@ -100,9 +100,9 @@ export default function RepairSystem() {
           //   title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
           //   confirmButtonText: 'OK',
           // }).then((result) => {
-            // if (result.isConfirmed) {
-              window.location.href = "/login"
-            // }
+          // if (result.isConfirmed) {
+          window.location.href = "/login"
+          // }
           // })
         }
       }
@@ -187,6 +187,7 @@ export default function RepairSystem() {
           </Tabs>
         </div>
       </div>
+
     </RepairSystemComponent>
   );
 }

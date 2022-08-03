@@ -64,41 +64,48 @@ export default function TableIt(props) {
         {
           title: 'วันที่แจ้งซ่อม',
           dataIndex: 'create_date',
+          width: 130,
         },
         {
           title: 'ผู้แจ้งซ่อม',
-          width: 140,
+          width: 150,
           dataIndex: 'TUserName'
         },
         {
           title: 'เบอร์ต่อ',
-          dataIndex: 'ExtNo'
+          dataIndex: 'ExtNo',
+          width: 70,
         },
         {
           title: 'ปัญหาที่เกิดขึ้น',
-          dataIndex: 'description'
+          dataIndex: 'description',
+          width: 170,
         },
         {
           title: 'ผู้ตรวจรับงาน',
-          dataIndex: 'admin_name'
+          dataIndex: 'admin_name',
+          width: 120,
         },
         {
           title: 'Ref/No.1',
           dataIndex: 'img_repair',
+          width: 70,
           render: (_, record) =>
             record.img_repair && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_repair} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_repair} target="__blank">
                 รูป
               </a>
             )
         },
         {
           title: 'หมายเหตุ',
-          dataIndex: 'remark'
+          dataIndex: 'remark',
+          width: 120,
         },
         {
           title: 'Approve',
           dataIndex: 'po_approve',
+          width: 120,
           render: (_, record) => {
             let status = null
             if (!record?.po_approve || record?.po_approve === 0) status = 'not-approve'
@@ -107,7 +114,7 @@ export default function TableIt(props) {
 
             return (
               <div div className="table-button-group">
-                <button className={'button-detail status-' + status} onClick={() => {}}>
+                <button className={'button-detail status-' + status} onClick={() => { }}>
                   <b>{status}</b>
                 </button>
               </div>
@@ -116,22 +123,26 @@ export default function TableIt(props) {
         },
         {
           title: 'ผู้ดำนเนินการ',
-          dataIndex: 'po_name'
+          dataIndex: 'po_name',
+          width: 100,
         },
         {
           title: 'PO-Number',
-          dataIndex: 'po_number'
+          dataIndex: 'po_number',
+          width: 100,
         },
         {
           title: 'PO-Date',
-          dataIndex: 'po_date'
+          dataIndex: 'po_date',
+          width: 100,
         },
         {
           title: 'PO-Img',
           dataIndex: 'img_po',
+          width: 100,
           render: (_, record) =>
             record.img_po && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_po} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_po} target="__blank">
                 รูป
               </a>
             )
@@ -139,9 +150,10 @@ export default function TableIt(props) {
         {
           title: 'INVOICE-Img',
           dataIndex: 'img_inv',
+          width: 100,
           render: (_, record) =>
             record.img_inv && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_inv} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_inv} target="__blank">
                 รูป
               </a>
             )
