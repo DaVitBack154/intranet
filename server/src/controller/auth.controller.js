@@ -3,6 +3,7 @@ const Validator = require("validatorjs");
 
 module.exports.login = async (req, res) => {
   let body = req.body;
+  const upperCasePassword = body.EPassword.toUpperCase();
 
   let users = await authModel.getUserByUsername(body.EUsername);
   if (users.length < 1) {
@@ -10,13 +11,17 @@ module.exports.login = async (req, res) => {
   }
   let user = users[0];
 
-  if (user.EPassword != body.EPassword) {
+  if (user.EPassword != upperCasePassword) {
     return res.json({ status: false, message: "user or password is invalid" });
   }
 
   req.session.isLogin = true;
   req.session.userid = user.id;
   req.session.role_id = user.role;
+  req.session.hr_acc = user.hr_acc;
+
+  // console.log(req.session.isLogin)
+
   // return res.json({ status: true, message: "login successfully", user });
   return res.json({ status: true, message: "login successfully", data: { role: user.role } });
 };

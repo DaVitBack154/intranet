@@ -6,7 +6,7 @@ module.exports.getProfileByID = async (id) => {
         { name: "id", sqltype: mssql.Int, value: id },
     ]
     let user = await query(`
-        SELECT EUserName, TUserName, Position, ExtNo, role
+        SELECT EUserName, TUserName, Position, ExtNo, role, hr_acc
         FROM tb_users 
         WHERE id=@id
     `, parameters)
@@ -42,9 +42,10 @@ module.exports.getEmployeeByID = async (type_dep) => {
         { name: "type_dep", sqltype: mssql.Int, value: type_dep },
     ]
     let user = await query(`
-        SELECT TUserName, Position, ExtNo, image
+        SELECT id, TUserName, Position, ExtNo, image, nickname, sort
         FROM tb_users
         WHERE type_dep = @type_dep
+		ORDER BY sort ASC
     `, parameters)
     return user;
 }

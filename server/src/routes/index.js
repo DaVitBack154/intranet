@@ -9,6 +9,7 @@ const repair_it_list_acc = require("./repair_list_acc.routes");
 const masterRoutes = require("./master.routes");
 const ticketRoutes = require("./ticket.routes");
 const reportRoutes = require("./report.routes");
+const hr_route = require("./hr/hr_route")
 
 const uploadController = require("../controller/upload.controller");
 const upload = require("../../middleware/multerRepair.middleware");
@@ -24,6 +25,7 @@ router.use("/api/repair_list_fin", repair_it_list_fin);
 router.use("/api/repair_list_acc", repair_it_list_acc);
 router.use("/api/ticket", ticketRoutes);
 router.use("/api/report", reportRoutes);
+router.use("/api/hr", hr_route)
 
 router.post(
   "/api/upload/repair",

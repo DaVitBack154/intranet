@@ -1,5 +1,5 @@
 
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, Popover } from 'antd';
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import { GiHamburgerMenu } from 'react-icons/gi'
@@ -9,8 +9,11 @@ import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
 import { GoInbox } from 'react-icons/go'
 import { MdLogout } from 'react-icons/md'
+import { BsFillPeopleFill } from 'react-icons/bs'
+
 import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
+import MenuItem from 'antd/lib/menu/MenuItem';
 
 const { Sider } = Layout;
 
@@ -103,23 +106,72 @@ const SideBarComponent = styled(Sider)`
     
 `
 
+const Popuphover = styled.div`
+    width: 200px;
+    background-color: red;
+    
+    .button-1{
+        width: 100px;
+        background-color: green;
+        a{
+            color: #FFFF;
+        }
+    }
+`
+
 export default function SideBar(props) {
 
     const [collapsed, setCollapsed] = useState(false);
     const history = useNavigate()
     const { pathname } = useLocation();
     const [data, setData] = useState(null);
+    const [menus, setMenus] = useState([])
+
+    const HomePopup = (
+        <Popuphover>
+            <button className='button-1'><a href='.#table-team'>Table</a></button>
+            <p>PPP</p>
+            <p>PPP</p>
+        </Popuphover>
+    )
 
     useEffect(() => {
         const init = async () => {
+            let menusItem = [{
+                key: '',
+                icon: <FaHome className='icon-sli' />,
+                label: <Popover placement="right" title={''} content={HomePopup} trigger="click">
+                    <p>TL</p>
+                </Popover>,
+            },
+            {
+                key: 'repair',
+                icon: <GoTools className='icon-sli' />,
+                label: 'Help-Desk',
+            },
+            {
+                key: 'hr',
+                icon: <BsFillPeopleFill className='icon-sli' />,
+                label: 'Hr-Management',
+            },]
+
             if (!props.disableUserProfile) {
                 try {
                     let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/user/profile', { withCredentials: true })
+
                     if (resp?.data?.status) {
                         setData(resp.data.data)
+                        console.log(resp.data.data)
+                        if (pathname === '/hr' && !resp.data.data.hr_acc) {
+                            Swal.fire('คุณไม่มีสิทธิ์เข้าใช้งาน')
+                            history('/')
+                        }
+
+                        if (resp.data.data.role == 5 || resp.data.data.role == 4 || resp.data.data.role == 6) {
+                            menusItem = []
+                        }
+
                     }
-
-
                 } catch (error) {
                     if (error.response.status == 401) {
                         if (error.response.status == 401) {
@@ -128,14 +180,17 @@ export default function SideBar(props) {
                             //     confirmButtonText: 'OK',
                             // }).then((result) => {
                             //     if (result.isConfirmed) {
-                                    window.location.href = "/login"
+                            window.location.href = "/login"
                             //     }
                             // })
                         }
                     }
                 }
             }
+
+            setMenus(menusItem)
         }
+
         init()
     }, [pathname]);
 
@@ -171,23 +226,7 @@ export default function SideBar(props) {
                     theme="dark"
                     mode="inline"
                     defaultSelectedKeys={[pathname.replace('/', '')]}
-                    items={[
-                        {
-                            key: '',
-                            icon: <FaHome className='icon-sli' />,
-                            label: 'Home',
-                        },
-                        {
-                            key: 'repair',
-                            icon: <GoTools className='icon-sli' />,
-                            label: 'Help-Desk',
-                        },
-                        {
-                            key: 'stock',
-                            icon: <GoInbox className='icon-sli' />,
-                            label: 'Stock',
-                        },
-                    ]}
+                    items={menus}
                     onClick={(item) => { history('/' + item.key) }}
                 />
             </div>

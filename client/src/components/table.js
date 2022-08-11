@@ -12,7 +12,10 @@ const TableComponent = styled(AntdTable)`
   .ant-table-tbody > tr > td,
   .ant-table-thead > tr > th {
     /* border: 1px solid gray; */
-    font-size: 10px;
+    font-size: 14px;
+    color: gray;
+    /* font-weight: bold; */
+    
   }
 
   .ant-table-tbody > tr > td{
@@ -76,7 +79,7 @@ export default function Table(props) {
 
   return (
     <>
-      <div className="Search" style={{ width: '100%', display: "flex", justifyContent: 'space-between', minHeight: '20px' }}>
+      <div className="Search" id={props.id} style={{ width: '100%', display: "flex", justifyContent: 'space-between', minHeight: '20px' }}>
         {props.topLeftButton ? props.topLeftButton : <></>}
         <InputSerach
           className={'table-search-input'}
@@ -95,6 +98,13 @@ export default function Table(props) {
         dataSource={filterWord ? filterData : props.dataSource}
         scroll={{ x: 400 }}
         columns={props.columns}
+        pagination={
+          {
+            defaultPageSize: 20,
+            showSizeChanger: true,
+            pageSizeOptions: ['20', '30', '40', '50', '100']
+          }
+        }
         bordered
       />
       {/* <TabletotalRows className={'table-total-rows'}>รายการทั้งหมด : {props.dataSource.length} Row</TabletotalRows> */}

@@ -7,7 +7,8 @@ import FormItAdmin from './page/form-it-admin'
 import FromBuilding from './page/form-building'
 import FromBuildingAdmin from './page/form-building-admin'
 import ReportProcess from './page/report-process'
-import StockSystem from './page/stock'
+import Hr from './page/hr'
+import FromHr_a from './page/hr/from/index'
 import RepairSystemPO from './page/repair-system-po'
 import FormPO from './page/form-po'
 import RepairSystemFin from './page/repair-system-fin'
@@ -26,7 +27,8 @@ const App = () => {
     { path: '/form-building/:id', element: <FromBuildingAdmin /> },
     { path: '/report-process/:type', element: <ReportProcess /> },
 
-    { path: '/stock', element: <StockSystem /> },
+    { path: '/hr', element: <Hr /> },
+    { path: '/form-hr-a', element: <FromHr_a /> },
 
     { path: '/repair-po', element: <RepairSystemPO /> },
     { path: '/form-po/:id', element: <FormPO /> },

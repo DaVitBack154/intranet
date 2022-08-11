@@ -1,12 +1,9 @@
 import styled from "styled-components"
 import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Carousel } from 'antd';
-import { MdEmail } from 'react-icons/md'
-import { FaPhoneSquareAlt } from 'react-icons/fa'
 import SideBarComponent from "../components/sidebar.components";
 import { useEffect, useState } from "react";
 import axios from "axios";
-// import { Table } from 'antd';
 import Table from '../components/table'
 
 const HomepageComponent = styled.div`
@@ -23,15 +20,6 @@ const HomepageComponent = styled.div`
 const Contentportal = styled.div`
   background-color: transparent;
 
-  .img-top{
-    width: 100%;
-
-    .img-brand{
-      width: 100%;
-      height: 360px;
-    }
-
-  }
   .content-group-button {
     display: flex;
     width: 100%;
@@ -69,8 +57,8 @@ const Contentportal = styled.div`
      
      .back-group-team{
       background-color: #F2F2F2;
-      padding-top: 20px;
-      padding-bottom: 10px;
+      padding-top: 10px;
+     
       /* border: 1px solid #015352; */
       box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
      
@@ -105,7 +93,7 @@ const Contentportal = styled.div`
       }
 
       .department-team{
-        padding: 20px;
+        padding: 15px;
        
         .table-team{
           padding: 10px;
@@ -160,10 +148,12 @@ const Contentportal = styled.div`
             }
         }
      }
-  
+     .img-brand{
+      width: 100%;
+      height: 280px;
+      color: '#fff',
+     }
 `;
-
-
 
 
 const HeadCard = styled.div`
@@ -175,14 +165,12 @@ const HeadCard = styled.div`
   
 `
 
-
-
 const Profileim = styled.div`
   border-radius: 50px;
   display: flex;
   justify-content: center;
   width:80px;
-  height: 80px;
+  height: 60px;
   margin-left: 10px;
 
   .img-pro{
@@ -190,7 +178,6 @@ const Profileim = styled.div`
   }
    
 `
-
 
 export default function HomePage() {
 
@@ -213,6 +200,11 @@ export default function HomePage() {
     {
       title: 'Name-Surname',
       dataIndex: 'TUserName',
+    },
+    {
+      title: 'Nick-Name',
+      dataIndex: 'nickname',
+      align: 'center',
     },
     {
       title: 'Position',
@@ -254,20 +246,21 @@ export default function HomePage() {
       <div className="content">
         <Contentportal className="content-portal">
 
-          <div className="img-top">
+          {/* <div className="img-top">
             <img src="/backgroud1.png" className="img-brand"></img>
-          </div>
-          {/* <CarouselComponent className={'landing-carousel'} autoplay>
+          </div> */}
+
+          <Carousel autoplay>
             <div>
-              <img src="https://www.chase.co.th/storage/page/service/F5M7O0kzmSJgbUMobl3V1E17RTnypi7stMG3R8NV.jpg" alt="" className="img-brand" />
+              <img src="/g1.png" className="img-brand"></img>
             </div>
             <div>
-              <img src="https://www.chase.co.th/storage/page/home-hr/YKplPFVAbL5vkkFf0XBOL6RsHiBtCQenkRREMgJn.jpg" alt="" className="img-brand" />
+              <img src="/g2.jpg" className="img-brand"></img>
             </div>
             <div>
-              <img src="https://www.chase.co.th/storage/banner/MRiPHna98lyBPVSE91xVINa4JLdlJFDPf0yAMeS2.png" alt="" className="img-brand" />
+              <img src="/g3.jpg" className="img-brand"></img>
             </div>
-          </CarouselComponent> */}
+          </Carousel>
 
 
           <HeadCard>
@@ -348,23 +341,7 @@ export default function HomePage() {
             <br />
 
             <div className="department-team">
-              <Table className="table-team" columns={columns} dataSource={userData} />;
-              {/* {userData.map((item, index) => {
-                return (
-                  <CardUser className="group-team" key={index}>
-                    <div className="border-team">
-                      <div className="img-head">
-                        <img alt="example" className="img-team" src={"http://localhost:4000/public/image/employee/" + item.image} />
-                      </div>
-                      <div className="detail-team">
-                        <div className="name-card">K. {item.TUserName}</div>
-                        <div className="position">{item.Position}</div>
-                        <div className="phone"><div>EXT-{item.ExtNo}</div></div>
-                      </div>
-                    </div>
-                  </CardUser>
-                )
-              })} */}
+              <Table className="table-team" id={'table-team'} columns={columns} dataSource={userData} />
             </div>
 
           </div>
@@ -379,7 +356,7 @@ export default function HomePage() {
               <div className="detail-step">
                 <p className="lag">มาตรฐานการจัดขั้นตอนการปฏิบัติงาน</p>
                 <p>&nbsp;</p>
-                <p>&nbsp;&nbsp;&nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด มีมาตรฐานการจัด ขั้นตอนการปฏิบัติงานให้กับพนักงาน อย่างเป็นระบบ เพื่อช่วยให้พนักงานเข้าใจวิธีการทำงานและมีวิสัยทัศน์ไป ในทิศทางเดียวกัน เพื่อก่อให้เกิดประสิทธิภาพสูงสุด ในการทำงาน ตลอดจนการลดข้อผิดพลาดในการ ปฏิบัติหน้าที่ของพนักงานด้วย</p>
+                <p>&nbsp;&nbsp;&nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด (มหาชน) มีมาตรฐานการจัด ขั้นตอนการปฏิบัติงานให้กับพนักงาน อย่างเป็นระบบ เพื่อช่วยให้พนักงานเข้าใจวิธีการทำงานและมีวิสัยทัศน์ไป ในทิศทางเดียวกัน เพื่อก่อให้เกิดประสิทธิภาพสูงสุด ในการทำงาน ตลอดจนการลดข้อผิดพลาดในการ ปฏิบัติหน้าที่ของพนักงานด้วย</p>
                 <p>
                   &nbsp;</p>
                 <p>&nbsp;&nbsp;&nbsp;บริษัทฯ จะนำข้อมูลใหม่ที่ได้รับจากลูกค้าเข้าสู่ ระบบ และระบบจะพิมพ์หนังสือทวงถามส่งให้กับลูกหนี้ ภายใน 24 ชั่วโมงหลังจากรับข้อมูลมาจากลูกค้าและ บัญชีลูกค้าทุกรายจะถูกส่งให้กับพนักงานทวงถาม ซึ่งทำหน้าที่ติดต่อกับลูกค้า โดยระบบจะจัดการส่งข้อมูล ไปโดยอัตโนมัติตามเงื่อนไขที่ได้กำหนดไว้ก่อนแล้ว สำหรับลูกค้าที่ไม่มีข้อมูล ที่อยู่ปัจจุบันหรือหมายเลข โทรศัพท์ บริษัทฯ จะจัดส่งผู้ชำนาญการไปทำการสืบหา ข้อมูล ที่อยู่ เพื่อให้สามารถติดต่อลูกหนี้ได้</p>
