@@ -6,51 +6,92 @@ import { useEffect, useState } from 'react'
 import axios from "axios";
 import { NavLink, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
+import { FaEdit } from "react-icons/fa";
+import { RiFileExcel2Fill } from "react-icons/ri";
+
+
 
 const HrComponent = styled.div`
   width: 100%;
-  height: 100%;
 
   .content{
-    height: 100%;
-
       .group-hr{
-      background-color: red;
-      height: 100%;
-      display: flex;
-      justify-content: center;
-      align-items: center;
+      
+        .table-hr{
+          padding: 30px;
+        }
+      
     }
   }
-
 `;
-
-const BorderHr = styled.div`
-    background-color: blue;
-    height: 70vh;
-    width: 80%;
-
-  .ant-table{
-      height: 500px !important;
-      overflow-y: scroll;
-    }
-`
 
 const ButtonGroup = styled.div`
   display: flex;
   padding:5px;
-  button{
-    background-color: green;
+
+  .button-create-building, .btn-excel{
+      font-size: 25px;
+      border: none;
+      background-color: #015352;
+      color: #FFFF;
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .button-create-building{
+      margin-right: 10px;
+    }
+ 
+`
+
+const TableComponent = styled(Table)`
+  .ant-table-tbody > tr > td
+   {
+    font-size: 12px;
+    color: gray;
   }
+ 
 `
 
 const ButtonComponent = styled.div`
 
-  background-color: green;
-
-  &.button-status-pending{
+  &.button-status-Pending{
     background-color: red;
+    color: #FFFF;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
   }
+
+  &.button-status-Confirm{
+    background-color: green;
+    color: #FFFF;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+  }
+`
+const BtnEdit = styled.div`
+
+      .btn-edit-hr{
+        font-size: 20px;
+        color: #FFFF;
+        background-color: red;
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
 `
 
 export default function Hr() {
@@ -58,9 +99,6 @@ export default function Hr() {
   const [hr_emp, setHr_emp] = useState(null)
   const [userprofile, setUserprofile] = useState(null)
   const [columns, setcolumns] = useState(null)
-
-
-
 
   useEffect(() => {
     const init = async () => {
@@ -71,7 +109,8 @@ export default function Hr() {
         });
         if (resp?.data?.status) {
           setUserprofile(resp.data.data);
-          const columns = [
+
+          let columns = [
             {
               title: 'Fullname-th',
               dataIndex: 'name_th'
@@ -92,68 +131,61 @@ export default function Hr() {
               title: 'Department',
               dataIndex: 'nick_name'
             },
-            {
-              title: 'Create-date',
-              dataIndex: 'create_date'
-            },
+            { title: 'Start_Work', dataIndex: 'start_date_work' },
 
-            {
-              title: 'Agent',
-              dataIndex: 'TUserName'
-            },
             {
               title: 'Note',
               dataIndex: 'note'
             },
-            {
+          ]
+
+          if (resp.data.data.role == 20) {
+            let comumnsRole1 = [{
               title: 'Status',
               dataIndex: 'status_hr',
-              render: (_, record) => (
-                // <div className="table-button-group">
-                //   <button className={'button-detail status-' + record.status} onClick={() => { }}>
-                //     <b>{record.status || '-'}</b>
-                //   </button>
-                // </div>
+              render: (_, record) => record.status_hr ? (
                 <ButtonComponent className={"button-status-" + record.status_hr}>
-                  <button>{record.status_hr}</button>
+                  <div>{record.status_hr}</div>
                 </ButtonComponent>
-              )
-            },
-            {
-              title: 'test session1',
-              dataIndex: 'note'
-            },
-          ]
+              ) : <></>
+            },]
 
-          if (resp.data.data?.role === 20) {
-            columns.push({
-              title: 'test session1',
-              dataIndex: '',
-              width: 40,
-              render: (_, record) => (
-                <button>TEST</button>
-                // <NavLink to={'/form-it/' + record.id + '?type_id=2'}>
-                //   <button className={'button-edit'}>
-                //     <AiTwotoneEdit />
-                //   </button>
-                // </NavLink>
-              )
-            })
+            columns = [...columns, ...comumnsRole1]
           }
 
-          const columnsIt = [
-            {
-              title: 'Fullname-th',
-              dataIndex: 'name_th'
-            },
-          ]
 
-          if (resp.data.data?.role === 2) {
-            setcolumns(columnsIt)
+          if (resp.data.data.role == 2) {
+            const columns2 = [
+              { title: 'เลขบัตรประชาชน', dataIndex: 'idcard_no' },
+              { title: 'วัน/เดือน/ปี', dataIndex: 'bird_day' },
+              { title: 'ประกันสังคม', dataIndex: 'social_security' },
+              { title: 'ชื่อโรงพยาบาล', dataIndex: 'name_hospital' },
+              { title: 'บัญชีธนาคาร', dataIndex: 'acc_no' },
+              // { title: 'start_date_work', dataIndex: 'start_date_work' },
+              { title: 'สังกัด', dataIndex: 'branch' },
+              { title: 'เบอร์โทรศัพท์', dataIndex: 'phone' },
+            ]
 
-          } else {
-            setcolumns(columns)
+            if (resp.data.data.role == 2) {
+              columns.unshift({
+                title: '',
+                dataIndex: '',
+                width: 20,
+                render: (_, record) => (
+                  <NavLink to={'/form-hr-full/' + record.id}>
+                    <BtnEdit>
+                      <div className="btn-edit-hr">
+                        <FaEdit />
+                      </div>
+                    </BtnEdit>
+                  </NavLink>
+                )
+              })
+            }
+            columns = [...columns, ...columns2]
           }
+
+          setcolumns(columns)
         }
 
         let hrResp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
@@ -177,24 +209,25 @@ export default function Hr() {
       <div className="content">
         <Navbar />
         <div className="group-hr">
-          <BorderHr className="border-hr">
-            <div className="head-hr">
-            </div>
-            <div className="table-hr">
+          <div className="head-hr">
+          </div>
+          <div className="table-hr">
 
-              <Table columns={columns} dataSource={hr_emp} topLeftButton={<ButtonGroup className="">
+            <TableComponent columns={columns} dataSource={hr_emp} topLeftButton={<ButtonGroup className="">
+              {userprofile?.role === 20 ? (
                 <NavLink to={"/form-hr-a"}>
                   <button className="button-create-building">
                     <IoMdAddCircle className="icon-add" />
-                    เพิ่มข้อมูลพนักงาน
+
                   </button>
                 </NavLink>
-                <button>
-                  Export-excel
-                </button>
-              </ButtonGroup>}></Table>
-            </div>
-          </BorderHr>
+              ) : ("")}
+
+              <button className="btn-excel">
+                <RiFileExcel2Fill />
+              </button>
+            </ButtonGroup>} />
+          </div>
         </div>
       </div>
     </HrComponent>

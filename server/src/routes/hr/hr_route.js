@@ -4,6 +4,9 @@ const hr_controller = require('../../controller/hr_controller/hr_controller')
 
 router.post('/create-profile', hr_controller.CreateProfile)
 router.get('/get-profile', hr_controller.GetProfile)
-router.put('/minput-profile', hr_controller.MinputProfile)
+router.put('/put-fullprofile/:id', hr_controller.UpdateFullProfile)
+
+router.get('/get-fullprofile/:id', hr_controller.GetFullProfile)
+
 
 module.exports = router

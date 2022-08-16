@@ -1,4 +1,5 @@
 const repair_listModel = require("../model/repair_list.model");
+const Mailer = require('../Utils/Mailer')
 
 module.exports.getRepairItList = async (req, res) => {
   // let userid = 9
@@ -92,6 +93,12 @@ module.exports.updateRepairList = async (req, res) => {
   if (update == false) {
     return res.json({ status: false, message: "UPDATE FAILED" });
   } else {
+
+    // เชคการส่ง อีเมล ในค่า value 
+    if ([2, 3, 4].includes(body.expence_id)) {
+      Mailer.sendAfterCreateProfile('waruen.css@gmail.com', body)
+    }
+
     updateData = update[0];
     updateData.close_date = body.close_date;
     await repair_listModel.createRepairLogs(updateData);

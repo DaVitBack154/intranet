@@ -19,7 +19,7 @@ const TableComponent = styled(AntdTable)`
   }
 
   .ant-table-tbody > tr > td{
-    word-break: break-all;
+    /* word-break: break-all; */
   }
 
   .ant-table-thead > tr > th {
@@ -93,10 +93,10 @@ export default function Table(props) {
       </div>
 
       <TableComponent
-        className="table"
+        className={'table ' + (props.className ? props.className : '')}
         rowKey={"id"}
         dataSource={filterWord ? filterData : props.dataSource}
-        scroll={{ x: 400 }}
+        scroll={{ x: true }}
         columns={props.columns}
         pagination={
           {

@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react'
-import { Form, Input, Select } from 'antd';
+import { Form, Input, Select, DatePicker } from 'antd';
 import { useNavigate } from 'react-router'
 import Navbar from '../../../components/navbar.compoenets';
 import styled from 'styled-components';
 import axios from 'axios';
 import swal from 'sweetalert2'
+import moment from 'moment'
 
 const FormHr_a = styled.div`
     border: 1px solid #e2e0e0;
@@ -116,6 +117,8 @@ export default function FromHr_a() {
   const history = useNavigate();
 
   const onFinish = async (values) => {
+    // values.start_date_work = moment(values.start_date_work).format('YYYY-MM-DD')
+
     try {
       let result = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/create-profile', values, { withCredentials: true })
 
@@ -161,15 +164,19 @@ export default function FromHr_a() {
             </Form.Item>
 
             <Form.Item
-              className='form-item-tamneng'
+              className='form-item-tusername'
               name={'nick_name'}
               label={'Nick-Name'}
             >
               <Input placeholder="ระบุชื่อเล่น" />
             </Form.Item>
 
+            <Form.Item className="form-item-tusername" name={'start_date_work'} label={'Start-Work'}>
+              <DatePicker />
+            </Form.Item>
+
             <Form.Item
-              className='form-item-tamneng'
+              className='form-item-tusername'
               name={'position'}
               label={'Position'}
             >
@@ -178,7 +185,7 @@ export default function FromHr_a() {
 
             <Form.Item
               name={'department'}
-              className='form-item-tamneng'
+              className='form-item-tusername'
               label={'Department'}
             >
               <Input placeholder="ระบุแผนก" />

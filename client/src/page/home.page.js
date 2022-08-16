@@ -5,6 +5,9 @@ import SideBarComponent from "../components/sidebar.components";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import Table from '../components/table'
+import { MdEmail } from 'react-icons/md'
+
+
 
 const HomepageComponent = styled.div`
   display: flex;
@@ -102,7 +105,7 @@ const Contentportal = styled.div`
         }
         .ant-table-thead > tr > th {
           font-weight: bold;
-          background-color: #1d41a9;
+          background-color: #001529;
           color: #ffff;
           white-space: nowrap;
         }
@@ -115,7 +118,7 @@ const Contentportal = styled.div`
       border: 1px solid red;
       background-color: red;
       height: 2px;
-      width: 80px;
+      width: 60px;
       position: relative;
       top: -13px;
      }
@@ -157,11 +160,101 @@ const Contentportal = styled.div`
 
 
 const HeadCard = styled.div`
-  .group-card-flex{
-    display: flex;
-    justify-content: space-evenly;
+  margin-top: 30px;
+  .border-agent{
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    background-color: #FFFF;
+
+    .head-agent{
+
+        .executive{
+          font-size: 30px;
+          font-weight: bold;
+          color: #015352;
+          text-align: center;
+          padding: 15px 10px;
+        }
+    }
+    
+
+    .body-agent{
+      .box1-agent-flex,.box2-agent-flex{
+        display: flex;
+
+          .box1, .box2, .box3, .box4{
+          width: 50%;
+          display: flex;
+          height: 300px;
+          padding: 10px;
+          border: 1px solid #e2e0e0;
+          
+
+            .img{
+             
+              width: 37%;
+              display: flex;
+              justify-content: center;
+              
+                .img-card{
+                  width:220px;
+                  height: 290px;
+                  border-radius: 50%;
+                  padding: 10px 10px;
+  
+                }
+            }
+            .text{
+              width: 60%;
+              padding: 15px;
+             
+              .border-text{
+                
+              }
+              
+              .name-agen{
+                font-weight: bold;
+                color: #2C4964;
+              }
+              .name-agen-k{
+                font-weight: bold;
+                color: #2C4964;
+                font-size: 25px;
+              }
+              .position-agen{
+                color: #FD7D00;
+                position: relative;
+                top: -15px;
+              }
+              .card-agent{
+                width: 25px;
+                background-color: #2C4964;
+                border: none;
+                position: relative;
+                left: -165px;
+                top: -40;
+              }
+              .email{
+                display: flex;
+                .icon-mail{
+                  font-size: 30px;
+                }
+                .name-mail{
+                  font-size: 20px;
+                  position: relative;
+                  top: 1px;
+                  margin-left: 20px;
+                }
+                
+              }
+
+              
+            }
+          }
+      }
       
+    }
   }
+  
   
 `
 
@@ -263,65 +356,7 @@ export default function HomePage() {
           </Carousel>
 
 
-          <HeadCard>
-            {/* <div className="group-card-flex">
-              <div className="card-1">
-                <div className="cricle-img">
-                  img
-                </div>
-                <div className="detail">
-                  <div>Walkter While</div>
-                  <div>Walkter While</div>
-                </div>
-              </div>
 
-              <div className="card-2">
-                <div className="cricle-img">
-                  img
-                </div>
-                <div className="detail">
-                  <div>Walkter While</div>
-                  <div>Walkter While</div>
-                </div>
-              </div>
-            </div> */}
-            {/* <div className="group-card-head">
-              <div className="img-head">
-                <img alt="example" src="/4.jpg" height={290} width={210} className="img-card" />
-              </div>
-              <div className="detail-head">
-                <div className="name-card">K. Pracha Chaisuwan</div>
-                <div className="position">Chief Executive Officer</div>
-              </div>
-            </div>
-            <div className="group-card-head">
-              <div className="img-head">
-                <img alt="example" src="/3.jpg" height={290} width={210} className="img-card" />
-              </div>
-              <div className="detail-head">
-                <div className="name-card">K. Hathairat Kaewsaenmuang</div>
-                <div className="position">Chief Operating Officer</div>
-              </div>
-            </div>
-            <div className="group-card-head">
-              <div className="img-head">
-                <img alt="example" src="/6.jpg" height={290} width={210} className="img-card" />
-              </div>
-              <div className="detail-head">
-                <div className="name-card">K. Waraluck Chaisuwan</div>
-                <div className="position">Chief Finance Officer</div>
-              </div>
-            </div>
-            <div className="group-card-head">
-              <div className="img-head">
-                <img alt="example" src="/7.jpg" height={290} width={210} className="img-card" />
-              </div>
-              <div className="detail-head">
-                <div className="name-card">K. Suthida Chaisuwan</div>
-                <div className="position">Chief Legal Officer</div>
-              </div>
-            </div> */}
-          </HeadCard>
           {/* <hr /> */}
 
           <div className="back-group-team">
@@ -346,7 +381,7 @@ export default function HomePage() {
 
           </div>
           {/* {เพิ่มข้อมูลเข้าไปใหม่} */}
-          <div className="border-step">
+          <div className="border-step" id={'wisaitas'}>
             <div className="flex-step">
 
               <div className="img-step">
@@ -366,6 +401,98 @@ export default function HomePage() {
 
           </div>
           {/* {เพิ่มข้อมูลเข้าไปใหม่} */}
+
+          <HeadCard >
+            <div className="border-agent" id={"executive"}>
+              <div className="head-agent">
+                <div className="executive">
+                  Executive
+                </div>
+                <hr />
+              </div>
+
+              <div className="body-agent">
+                <div className="box1-agent-flex">
+                  <div className="box1">
+                    <div className="img">
+                      <img alt="example" src="/4.jpg" className="img-card" />
+                    </div>
+                    <div className="text">
+                      <br /><br />
+                      <div className="border-text">
+                        <h1 className="name-agen">K. Pracha Chaisuwan</h1>
+                        <h2 className="position-agen">Chief Executive Officer</h2>
+                        <hr className="card-agent" />
+                        <div className="email">
+                          <div className="icon-mail"><MdEmail></MdEmail></div>
+                          <div className="name-mail">pracha@chase.co.th</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box2">
+                    <div className="img">
+                      <img alt="example" src="/3.jpg" className="img-card" />
+                    </div>
+                    <div className="text">
+                      <br /><br />
+                      <div className="border-text">
+                        <h1 className="name-agen-k">K. Hathairat Kaewsaenmuang</h1>
+                        <h2 className="position-agen">Chief Operating Officer</h2>
+                        <hr className="card-agent" />
+                        <div className="email">
+                          <div className="icon-mail"><MdEmail></MdEmail></div>
+                          <div className="name-mail">hathairat@chase.co.th</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="box2-agent-flex">
+                  <div className="box3">
+                    <div className="img">
+                      <img alt="example" src="/6.jpg" className="img-card" />
+                    </div>
+                    <div className="text">
+                      <br /><br />
+                      <div className="border-text">
+                        <h1 className="name-agen">K. Waraluck Chaisuwan</h1>
+                        <h2 className="position-agen">Chief Finance Officer</h2>
+                        <hr className="card-agent" />
+                        <div className="email">
+                          <div className="icon-mail"><MdEmail></MdEmail></div>
+                          <div className="name-mail">waraluck@chase.co.th</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="box4">
+                    <div className="img">
+                      <img alt="example" src="/7.jpg" className="img-card" />
+                    </div>
+                    <div className="text">
+                      <br /><br />
+                      <div className="border-text">
+                        <h1 className="name-agen">K. Suthida Chaisuwan</h1>
+                        <h2 className="position-agen">Chief Legal Officer</h2>
+                        <hr className="card-agent" />
+                        <div className="email">
+                          <div className="icon-mail"><MdEmail></MdEmail></div>
+                          <div className="name-mail">suthida@chase.co.th</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+
+            </div>
+          </HeadCard>
 
         </Contentportal>
       </div>

@@ -64,6 +64,7 @@ export default function TableBuilding(props) {
         {
           title: "วันที่แจ้งซ่อม",
           dataIndex: "create_date",
+          width: 100,
         },
         {
           title: "ผู้แจ้งซ่อม",
@@ -81,12 +82,13 @@ export default function TableBuilding(props) {
         {
           title: "ผู้ตรวจรับงาน",
           dataIndex: "admin_name",
+          width: 140,
         },
         {
           title: "Ref/No.1",
           dataIndex: "img_repair",
           render: (_, record) => record.img_repair && (
-            <a href={process.env.REACT_APP_SERVER_ENDPOINT+"/public/image/repair/" + record.img_repair} target='__blank'>รูป</a>
+            <a href={process.env.REACT_APP_SERVER_ENDPOINT + "/public/image/repair/" + record.img_repair} target='__blank'>รูป</a>
           )
         },
         {
@@ -130,14 +132,14 @@ export default function TableBuilding(props) {
           title: "PO-Img",
           dataIndex: "img_po",
           render: (_, record) => record.img_po && (
-            <a href={process.env.REACT_APP_SERVER_ENDPOINT+"/public/image/repair/" + record.img_po} target='__blank'>รูป</a>
+            <a href={process.env.REACT_APP_SERVER_ENDPOINT + "/public/image/repair/" + record.img_po} target='__blank'>รูป</a>
           )
         },
         {
           title: "INVOICE-Img",
           dataIndex: "img_inv",
           render: (_, record) => record.img_inv && (
-            <a href={process.env.REACT_APP_SERVER_ENDPOINT+"/public/image/repair/" + record.img_inv} target='__blank'>รูป</a>
+            <a href={process.env.REACT_APP_SERVER_ENDPOINT + "/public/image/repair/" + record.img_inv} target='__blank'>รูป</a>
           )
         },
       ];
@@ -151,7 +153,7 @@ export default function TableBuilding(props) {
   const handleClick = async () => {
     try {
       let repairLogsData = await axios.get(
-        process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list/it-logs",
+        process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list/it-logs",
         { withCredentials: true }
       );
 

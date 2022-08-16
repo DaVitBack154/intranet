@@ -7,8 +7,11 @@ import FormItAdmin from './page/form-it-admin'
 import FromBuilding from './page/form-building'
 import FromBuildingAdmin from './page/form-building-admin'
 import ReportProcess from './page/report-process'
+
 import Hr from './page/hr'
 import FromHr_a from './page/hr/from/index'
+import Full_em from './page/hr/from/full_em'
+
 import RepairSystemPO from './page/repair-system-po'
 import FormPO from './page/form-po'
 import RepairSystemFin from './page/repair-system-fin'
@@ -29,6 +32,7 @@ const App = () => {
 
     { path: '/hr', element: <Hr /> },
     { path: '/form-hr-a', element: <FromHr_a /> },
+    { path: '/form-hr-full/:id', element: <Full_em /> },
 
     { path: '/repair-po', element: <RepairSystemPO /> },
     { path: '/form-po/:id', element: <FormPO /> },

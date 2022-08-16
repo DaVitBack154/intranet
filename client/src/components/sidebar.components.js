@@ -103,18 +103,28 @@ const SideBarComponent = styled(Sider)`
         margin-top: 5px;
         text-align: center;
     }
+
+    /* .ant-menu-title-content{
+        margin-top: 15px;
+    } */
     
 `
 
 const Popuphover = styled.div`
-    width: 200px;
-    background-color: red;
+    width: 300px;
+    
     
     .button-1{
-        width: 100px;
-        background-color: green;
+        width: 100%;
+        background-color: #113D3D;
+        display: flex;
+        justify-content: center;
+        padding: 10px;
+        margin-bottom: 10px;
+        border: none;
         a{
             color: #FFFF;
+            text-align: center;
         }
     }
 `
@@ -129,9 +139,9 @@ export default function SideBar(props) {
 
     const HomePopup = (
         <Popuphover>
-            <button className='button-1'><a href='.#table-team'>Table</a></button>
-            <p>PPP</p>
-            <p>PPP</p>
+            <button className='button-1'><a href='.#table-team'>ข้อมูลพนักงาน</a></button>
+            <button className='button-1'><a href='.#wisaitas'>วิสัยทัศน์ขององค์กร</a></button>
+            <button className='button-1'><a href='.#executive'>แนะนำผู้บริหารองค์กร</a></button>
         </Popuphover>
     )
 
@@ -140,8 +150,8 @@ export default function SideBar(props) {
             let menusItem = [{
                 key: '',
                 icon: <FaHome className='icon-sli' />,
-                label: <Popover placement="right" title={''} content={HomePopup} trigger="click">
-                    <p>TL</p>
+                label: <Popover placement="right" title={''} content={HomePopup} trigger="hover">
+                    <div className='home'>Home</div>
                 </Popover>,
             },
             {
