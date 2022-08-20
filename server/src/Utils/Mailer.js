@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-const sendAfterCreateProfile = async (to, body) => {
+const sendResetPasswordToken = async (to, token) => {
     var mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -8,21 +8,21 @@ const sendAfterCreateProfile = async (to, body) => {
         secure: false,
         requireTLS: true,
         auth: {
-            user: 'onlytaskproject@gmail.com',
-            pass: 'hnmbrdhacbtgjlew'
+            user: 'noutnamin@gmail.com',
+            pass: 'zrmkubxtupoyisyg'
         }
     })
 
     let options = {
-        from: 'onlytaskproject@gmail.com',
+        from: 'waruen.css@gmail.com',
         to: to,
-        subject: 'แจ้งพนักงานเริ่มงาน',
+        subject: 'พนังานเริ่มงานใหม่',
         html: `
             <!doctype html>
             <html lang="en-US">
             <head>
                 <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
-                <meta name="description" content="">
+                <meta name="description" content="Reset Password Email Template.">
                 <style type="text/css">
                     a:hover {text-decoration: underline !important;}
                 </style>
@@ -48,21 +48,20 @@ const sendAfterCreateProfile = async (to, body) => {
                                             <tr>
                                                 <td style="height:40px;">&nbsp;</td>
                                             </tr>
-                                            
                                             <tr>
-                                                <th style="background-color: #04AA6D; color: white;">Name-th</th>
-                                                <th style="background-color: #04AA6D; color: white;">Name-en</th>
-                                                <th style="background-color: #04AA6D; color: white;">Position</th>
-                                                <th style="background-color: #04AA6D; color: white;">Start-Date</th>
+                                                <td style="padding:0 35px;">
+                                                    <h1 style="color:#1e1e2d; font-weight:500; margin:0;font-size:32px;font-family:'Rubik',sans-serif;">OnlyTask Project</h1>
+                                                    <span
+                                                        style="display:inline-block; vertical-align:middle; margin:29px 0 26px; border-bottom:1px solid #cecece; width:100px;"></span>
+                                                    <p style="color:#455056; font-size:15px;line-height:24px; margin:0;">
+                                                        คุณได้ส่งคำขอเพื่อรีเซ็ตรหัสผ่านของคุณเมื่อไม่นานมานี้ <br/>โปรดคลิกที่สิงก์
+                                                    ด้นล่างเพื่อดำเนินการต่อ <br/> <span style="color: red; font-weight: bold;">หากคุณไม่ได้ร้องขอโปรดอย่าดำเนินการใดๆ</span>
+                                                    </p>
+                                                    <a href="${process.env.CLIENT_URL}/reset-password?token=${token}" title="logo" target="_blank"
+                                                        style="background:#20e277;text-decoration:none !important; font-weight:500; margin-top:35px; color:#fff;text-transform:uppercase; font-size:14px;padding:10px 24px;display:inline-block;border-radius:50px;">รีเซ็ตรหัสผ่าน
+                                                        </a>
+                                                </td>
                                             </tr>
-                                            <tr>
-                                                <td style="border: 1px solid;">${body.name_th}</td>
-                                                <td style="border: 1px solid;">${body.name_en}</td>
-                                                <td style="border: 1px solid;">${body.position}</td>
-                                                <td style="border: 1px solid;">${body.start_date_work}</td>
-                                            </tr>
-                                           
-
                                             <tr>
                                                 <td style="height:40px;">&nbsp;</td>
                                             </tr>
@@ -70,6 +69,11 @@ const sendAfterCreateProfile = async (to, body) => {
                                     </td>
                                 <tr>
                                     <td style="height:20px;">&nbsp;</td>
+                                </tr>
+                                <tr>
+                                    <td style="text-align:center;">
+                                        <p style="font-size:14px; color:rgba(69, 80, 86, 0.7411764705882353); line-height:18px; margin:0 0 0;">&copy; <strong>www.onlytask.in.th</strong></p>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td style="height:80px;">&nbsp;</td>
@@ -86,14 +90,21 @@ const sendAfterCreateProfile = async (to, body) => {
     }
     try {
         let result = await mailTransporter.sendMail(options)
-        console.info('Successful send message ' + to)
+        console.log('Successful sended token reset password to ' + to)
         return result ? true : false
     } catch (err) {
-        console.error('Failed to send token reset password, ' + err.message)
+        console.log('Failed to send token reset password, ' + err.message)
         return false
     }
 }
 
+// const sedUser = async (to, toletm) => {
+
+// }
+
 module.exports = {
-    sendAfterCreateProfile
+    sendResetPasswordToken
+    // sedUser
 }
+
+// การใชเ body ${body.ตัวแปร}

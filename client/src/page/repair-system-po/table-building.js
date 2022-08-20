@@ -54,7 +54,7 @@ export default function TableBuilding(props) {
         {
           title: "เลขที่แจ้งซ่อม",
           dataIndex: "ticket_no",
-          width: 120,
+          width: 140,
           sorter: (a, b) => {
             a = a.ticket_no || "";
             b = b.ticket_no || "";
@@ -64,7 +64,7 @@ export default function TableBuilding(props) {
         {
           title: "วันที่แจ้งซ่อม",
           dataIndex: "create_date",
-          width: 100,
+          width: 160,
         },
         {
           title: "ผู้แจ้งซ่อม",

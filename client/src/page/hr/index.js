@@ -8,6 +8,8 @@ import { NavLink, useLocation } from "react-router-dom";
 import { IoMdAddCircle } from "react-icons/io";
 import { FaEdit } from "react-icons/fa";
 import { RiFileExcel2Fill } from "react-icons/ri";
+import { FaUserEdit } from "react-icons/fa";
+
 
 
 
@@ -48,9 +50,15 @@ const ButtonGroup = styled.div`
 `
 
 const TableComponent = styled(Table)`
+
+  .ant-table-thead > tr > th
+    {
+      font-size: 13px;
+    }
+
   .ant-table-tbody > tr > td
    {
-    font-size: 12px;
+    font-size: 11px;
     color: gray;
   }
  
@@ -77,8 +85,18 @@ const ButtonComponent = styled.div`
     padding: 3px;
     border-radius: 5px;
   }
+
+  &.button-status-Approve{
+    background-color: green;
+    color: #FFFF;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+  }
 `
-const BtnEdit = styled.div`
+const Btn_table = styled.div`
 
       .btn-edit-hr{
         font-size: 20px;
@@ -87,6 +105,18 @@ const BtnEdit = styled.div`
         width: 35px;
         height: 35px;
         border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .btn-adduser{
+        font-size: 20px;
+        color: #FFFF;
+        background-color: #015352;
+        width: 35px;
+        height: 35px;
+        border-radius: 20px;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -119,72 +149,152 @@ export default function Hr() {
               title: 'Fullname-en',
               dataIndex: 'name_en'
             },
-            {
-              title: 'Nick-name',
-              dataIndex: 'nick_name'
-            },
+            // {
+            //   title: 'Nick-name',
+            //   dataIndex: 'nick_name'
+            // },
             {
               title: 'Position',
-              dataIndex: 'nick_name'
+              dataIndex: 'position'
             },
             {
               title: 'Department',
-              dataIndex: 'nick_name'
+              dataIndex: 'department'
             },
             { title: 'Start_Work', dataIndex: 'start_date_work' },
 
-            {
-              title: 'Note',
-              dataIndex: 'note'
-            },
-          ]
 
-          if (resp.data.data.role == 20) {
-            let comumnsRole1 = [{
+            {
               title: 'Status',
               dataIndex: 'status_hr',
-              render: (_, record) => record.status_hr ? (
+              render: (_, record) => (
                 <ButtonComponent className={"button-status-" + record.status_hr}>
                   <div>{record.status_hr}</div>
                 </ButtonComponent>
-              ) : <></>
-            },]
+              )
+            },
 
-            columns = [...columns, ...comumnsRole1]
+          ]
+
+          if (resp.data.data.role == 20) { // สิทของพนักงาน คนแรก ที่แจ้งพนักงานเริ่มงงาน
+            columns.unshift({
+              title: '',
+              dataIndex: '',
+              width: 20,
+              render: (_, record) => (
+                <NavLink to={'/form-hr-a/' + record.id}>
+                  <Btn_table>
+                    <div className="btn-adduser">
+                      <FaUserEdit />
+                    </div>
+                  </Btn_table>
+                </NavLink>
+              )
+            })
           }
 
-
-          if (resp.data.data.role == 2) {
-            const columns2 = [
-              { title: 'เลขบัตรประชาชน', dataIndex: 'idcard_no' },
-              { title: 'วัน/เดือน/ปี', dataIndex: 'bird_day' },
-              { title: 'ประกันสังคม', dataIndex: 'social_security' },
-              { title: 'ชื่อโรงพยาบาล', dataIndex: 'name_hospital' },
-              { title: 'บัญชีธนาคาร', dataIndex: 'acc_no' },
-              // { title: 'start_date_work', dataIndex: 'start_date_work' },
-              { title: 'สังกัด', dataIndex: 'branch' },
-              { title: 'เบอร์โทรศัพท์', dataIndex: 'phone' },
-            ]
-
-            if (resp.data.data.role == 2) {
-              columns.unshift({
-                title: '',
-                dataIndex: '',
-                width: 20,
+          if (resp.data.data.role == 2) { // สิทของฝ่าย IT
+            const colum_it = [
+              { title: 'Sign-It', dataIndex: 'sign_it' },
+              {
+                title: 'Status-it',
+                dataIndex: 'status_it',
                 render: (_, record) => (
-                  <NavLink to={'/form-hr-full/' + record.id}>
-                    <BtnEdit>
-                      <div className="btn-edit-hr">
-                        <FaEdit />
-                      </div>
-                    </BtnEdit>
-                  </NavLink>
+                  <ButtonComponent className={"button-status-" + record.status_it}>
+                    <div>{record.status_it}</div>
+                  </ButtonComponent>
                 )
-              })
-            }
-            columns = [...columns, ...columns2]
+              },
+            ]
+            columns = [...columns, ...colum_it]
+            columns.push({
+              title: '',
+              dataIndex: '',
+              width: 20,
+              render: (_, record) => (
+                <NavLink to={'/form-app-it/' + record.id}>
+                  <Btn_table>
+                    <div className="btn-edit-hr">
+                      <FaEdit />
+                    </div>
+                  </Btn_table>
+                </NavLink>
+              )
+            })
           }
 
+          if (resp.data.data.role == 22) { //สิท พนักงาน เท่ากับของพี่มิ้น 
+            const colum_hr = [
+              { title: 'Sign-Hr', dataIndex: 'sign_contract' },
+              {
+                title: 'Status-Hr',
+                dataIndex: 'status_contract',
+                render: (_, record) => (
+                  <ButtonComponent className={"button-status-" + record.status_contract}>
+                    <div>{record.status_contract}</div>
+                  </ButtonComponent>
+                )
+              },
+            ]
+            columns = [...columns, ...colum_hr]
+            columns.push({
+              title: '',
+              dataIndex: '',
+              width: 20,
+              render: (_, record) => (
+                <NavLink to={'/form-app-ct/' + record.id}>
+                  <Btn_table>
+                    <div className="btn-edit-hr">
+                      <FaEdit />
+                    </div>
+                  </Btn_table>
+                </NavLink>
+              )
+            })
+          }
+
+          if (resp.data.data.role == 20) {
+            const column_approve = [
+
+              { title: 'Sign-It', dataIndex: 'sign_it' },
+              {
+                title: 'Status-it',
+                dataIndex: 'status_it',
+                render: (_, record) => (
+                  <ButtonComponent className={"button-status-" + record.status_it}>
+                    <div>{record.status_it}</div>
+                  </ButtonComponent>
+                )
+              },
+              { title: 'Sign-Hr', dataIndex: 'sign_contract' },
+              {
+                title: 'Status-hr',
+                dataIndex: 'status_contract',
+                render: (_, record) => (
+                  <ButtonComponent className={"button-status-" + record.status_contract}>
+                    <div>{record.status_contract}</div>
+                  </ButtonComponent>
+                )
+              },
+            ]
+            columns = [...columns, ...column_approve]
+
+          }
+
+          // if (resp.data.data.role == 2) {
+          //   const columns2 = [
+          //     { title: 'เลขบัตรประชาชน', dataIndex: 'idcard_no' },
+          //     { title: 'วัน/เดือน/ปี', dataIndex: 'bird_day' },
+          //     { title: 'ประกันสังคม', dataIndex: 'social_security' },
+          //     { title: 'ชื่อโรงพยาบาล', dataIndex: 'name_hospital' },
+          //     { title: 'บัญชีธนาคาร', dataIndex: 'acc_no' },
+          //     // { title: 'start_date_work', dataIndex: 'start_date_work' },
+          //     { title: 'สังกัด', dataIndex: 'branch' },
+          //     { title: 'เบอร์โทรศัพท์', dataIndex: 'phone' },
+          //   ]
+          //   columns = [...columns, ...columns2]
+          // }
+          console.log(columns)
           setcolumns(columns)
         }
 
@@ -218,7 +328,6 @@ export default function Hr() {
                 <NavLink to={"/form-hr-a"}>
                   <button className="button-create-building">
                     <IoMdAddCircle className="icon-add" />
-
                   </button>
                 </NavLink>
               ) : ("")}

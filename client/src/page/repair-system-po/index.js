@@ -6,7 +6,6 @@ import Card from "../../components/card";
 import { NavLink, useLocation } from "react-router-dom";
 import { Tabs } from "antd";
 import TableBuilding from "./table-building";
-import TablIt from "./table-it";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
@@ -74,7 +73,7 @@ export default function RepairSystemPO() {
     useEffect(() => {
         const init = async () => {
             try {
-                let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT+"/api/user/profile", {
+                let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/profile", {
                     withCredentials: true,
                 });
                 if (resp?.data?.status) {
@@ -82,14 +81,14 @@ export default function RepairSystemPO() {
                 }
 
                 let itResp = await axios.get(
-                    process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list_po/it",
+                    process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list_po/it",
                     { withCredentials: true }
                 );
                 if (itResp?.data?.status) {
                     setItData(itResp.data.data);
                 }
                 let buildingtResp = await axios.get(
-                    process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list_po/building",
+                    process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list_po/building",
                     { withCredentials: true }
                 );
                 if (buildingtResp?.data?.status) {
@@ -102,7 +101,7 @@ export default function RepairSystemPO() {
                     //     confirmButtonText: 'OK',
                     // }).then((result) => {
                     //     if (result.isConfirmed) {
-                            window.location.href = "/login"
+                    window.location.href = "/login"
                     //     }
                     // })
                 }

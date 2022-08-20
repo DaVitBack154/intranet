@@ -68,7 +68,7 @@ export default function TableIt(props) {
         },
         {
           title: 'ผู้แจ้งซ่อม',
-          width: 150,
+          width: '150px',
           dataIndex: 'TUserName'
         },
         {

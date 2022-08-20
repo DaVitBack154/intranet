@@ -95,9 +95,9 @@ module.exports.updateRepairList = async (req, res) => {
   } else {
 
     // เชคการส่ง อีเมล ในค่า value 
-    if ([2, 3, 4].includes(body.expence_id)) {
-      Mailer.sendAfterCreateProfile('waruen.css@gmail.com', body)
-    }
+    // if ([2, 3, 4].includes(body.expence_id)) {
+    //   Mailer.sendAfterCreateProfile('waruen.css@gmail.com', body)
+    // }
 
     updateData = update[0];
     updateData.close_date = body.close_date;
