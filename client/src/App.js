@@ -10,8 +10,8 @@ import ReportProcess from './page/report-process'
 
 import Hr from './page/hr'
 import FromHr_SimplaeProfile from './page/hr/from/simeple_profile'
-import Full_em from './page/hr/from/full_em'
 import Fromadduser from './page/hr/from/adduser'
+import From_Head from './page/hr/from/form_head'
 import Fromapp_it from './page/hr/from/form_app_it'
 import Fromapp_ct from './page/hr/from/form_app_ct'
 
@@ -36,8 +36,8 @@ const App = () => {
     { path: '/hr', element: <Hr /> },
     { path: '/form-hr-a', element: <FromHr_SimplaeProfile /> },
     { path: '/form-hr-a/:id', element: <FromHr_SimplaeProfile /> },
-    { path: '/form-hr-full/:id', element: <Full_em /> },
     { path: '/form-adduser/:id', element: <Fromadduser /> },
+    { path: '/form-app-head/:id', element: <From_Head /> },
     { path: '/form-app-it/:id', element: <Fromapp_it /> },
     { path: '/form-app-ct/:id', element: <Fromapp_ct /> },
 

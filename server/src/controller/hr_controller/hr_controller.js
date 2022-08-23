@@ -178,8 +178,6 @@ module.exports.UpdateAdduser = async (req, res) => {
 
 module.exports.UpdateAppit = async (req, res) => {
     let { id } = req.params;
-
-    // let userid = req.session.userid
     let user_hr = req.session.hr_acc
 
     if (!req.session.isLogin) {
@@ -188,7 +186,6 @@ module.exports.UpdateAppit = async (req, res) => {
     if (user_hr != 'hr') {
         return res.status(403).json({ status: false, message: 'permission denine' })
     }
-
 
     let body = req.body;
     let hr_employees = await hr_model.GetProfileID(id)
@@ -211,6 +208,37 @@ module.exports.UpdateAppit = async (req, res) => {
 }
 module.exports.UpdateAppct = async (req, res) => {
     let { id } = req.params;
+    let user_hr = req.session.hr_acc
+
+    if (!req.session.isLogin) {
+        return res.status(401).json({ status: false, message: 'unauthorize' })
+    }
+    if (user_hr != 'hr') {
+        return res.status(403).json({ status: false, message: 'permission denine' })
+    }
+
+    let body = req.body;
+    let hr_employees = await hr_model.GetProfileID(id)
+    let status_hr = hr_employees[0].status_hr
+
+    let status_contract = body.status_contract
+    let status_it = hr_employees[0].status_it
+    if (status_contract == 'Approve' && status_it == 'Approve') {
+        status_hr = 'Confirm'
+    } else {
+        status_hr = 'Pending'
+    }
+    let update = await hr_model.UpdateAppit(id, body, status_hr);
+
+    if (update == false) {
+        return res.json({ status: false, message: "UPDATE FAILED" });
+    } else {
+        return res.json({ status: true, message: "UPDATE SUCCESS" });
+    }
+}
+
+module.exports.UpdateHead_hr = async (req, res) => {
+    let { id } = req.params;
     // let userid = req.session.userid
     let user_hr = req.session.hr_acc
 
@@ -222,11 +250,16 @@ module.exports.UpdateAppct = async (req, res) => {
     }
 
     let body = req.body;
-    let update = await hr_model.UpdateAppct(id, body);
+    let update = await hr_model.UpdateHead_hr(id, body);
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
+        if (body.status_contract == 'confirm') {
+            Mailer.sendResetPasswordToken('1.css@gmail.com', body)
+            Mailer.sendResetPasswordToken('2.css@gmail.com', body)
+            Mailer.sendResetPasswordToken('3.css@gmail.com', body)
+            //send email
+        }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }
 }
-

@@ -18,17 +18,25 @@ module.exports.CreateProfile = async (create_user_name, body) => {
         { name: "date_card_exp", sqltype: mssql.VarChar, value: body.date_card_exp },
         { name: "action_user", sqltype: mssql.VarChar, value: body.action_user },
         { name: "create_user_name", sqltype: mssql.Int, value: create_user_name },
-        { name: "maihet", sqltype: mssql.VarChar, value: maihet },
+        { name: "maihet", sqltype: mssql.VarChar, value: body.maihet },
         { name: "img_simple", sqltype: mssql.VarChar, value: body.img_simple },
+
+        // { name: "status_it", sqltype: mssql.VarChar, value: body.status_it },
+        { name: "sign_it", sqltype: mssql.VarChar, value: body.sign_it },
+        // { name: "status_contract", sqltype: mssql.VarChar, value: body.status_contract },
+        { name: "sign_contract", sqltype: mssql.VarChar, value: body.sign_contract },
+        { name: "sign_head", sqltype: mssql.VarChar, value: body.sign_head },
 
 
     ]
     let sql = `
         INSERT INTO tb_hr (name_th, name_en, nick_name, start_date_work, sign_date_work, position, department, address, idcard_no, 
-            phone, date_card_start, date_card_exp, action_user, create_user_name, img_simple, maihet, status_hr) 
+        phone, date_card_start, date_card_exp, action_user, create_user_name, img_simple, maihet, sign_it, sign_contract, 
+        sign_head, status_hr, status_it, status_contract, status_head) 
         OUTPUT Inserted.id
         VALUES (@name_th, @name_en, @nick_name, @start_date_work, @sign_date_work,  @position, @department, @address, 
-        @idcard_no, @phone, @date_card_start, @date_card_exp, @action_user, @create_user_name, @img_simple, @maihet, 'Pending')
+        @idcard_no, @phone, @date_card_start, @date_card_exp, @action_user, @create_user_name, @img_simple, @maihet, 
+        @sign_it, @sign_contract, @sign_head, 'Pending', 'Pending', 'Pending', 'Pending')
     `
 
     let result = await query(sql, parameters)
@@ -99,7 +107,7 @@ module.exports.GetProfileID = async (id) => {
     let sql = `
     SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work,
     h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
-    h.action_user, u.TUserName, maihet, img_simple, status_it, sign_it, status_contract, sign_contract
+    h.action_user, u.TUserName, maihet, img_simple, status_it, sign_it, status_contract, sign_contract, status_head, sign_head
     FROM tb_hr h
     Left join tb_users u On u.id = h.create_user_name
     WHERE h.id = @id
@@ -240,6 +248,7 @@ module.exports.UpdateAppct = async (id, body) => {
     let parameters = [
         { name: "status_contract", sqltype: mssql.VarChar, value: body.status_contract },
         { name: "sign_contract", sqltype: mssql.VarChar, value: body.sign_contract },
+        { name: "status_hr", sqltype: mssql.VarChar, value: status_hr },
         { name: "id", sqltype: mssql.Int, value: id },
     ];
 
@@ -247,7 +256,28 @@ module.exports.UpdateAppct = async (id, body) => {
         UPDATE tb_hr
         SET 
         status_contract = @status_contract,
-        sign_contract = @sign_contract
+        sign_contract = @sign_contract,
+        status_hr = @status_hr
+        OUTPUT INSERTED.*
+        WHERE id = @id
+        `;
+    let update = await query(sql, parameters);
+    return update;
+}
+
+module.exports.UpdateHead_hr = async (id, body) => {
+    let parameters = [
+        { name: "status_head", sqltype: mssql.VarChar, value: body.status_contract },
+        { name: "sign_head", sqltype: mssql.VarChar, value: body.sign_contract },
+        // { name: "status_hr", sqltype: mssql.VarChar, value: status_hr },
+        { name: "id", sqltype: mssql.Int, value: id },
+    ];
+
+    let sql = `
+        UPDATE tb_hr
+        SET 
+        status_head = @status_head,
+        sign_head = @sign_head
         OUTPUT INSERTED.*
         WHERE id = @id
         `;

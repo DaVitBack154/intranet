@@ -2,18 +2,15 @@
 import { Layout, Menu, Popover } from 'antd';
 import { useEffect, useState } from "react";
 import axios from 'axios'
-import { GiHamburgerMenu } from 'react-icons/gi'
 import styled from 'styled-components';
 import { ImUserTie } from 'react-icons/im'
 import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
-import { GoInbox } from 'react-icons/go'
-import { MdLogout } from 'react-icons/md'
 import { BsFillPeopleFill } from 'react-icons/bs'
-
 import { useNavigate, useLocation } from 'react-router-dom';
 import Swal from 'sweetalert2';
-import MenuItem from 'antd/lib/menu/MenuItem';
+import { useDispatch, useSelector } from 'react-redux'
+import { setAccount } from '../store/AccountReducer'
 
 const { Sider } = Layout;
 
@@ -131,6 +128,9 @@ const Popuphover = styled.div`
 
 export default function SideBar(props) {
 
+    const dispatch = useDispatch()
+    const account = useSelector((state) => state.account)
+
     const [collapsed, setCollapsed] = useState(false);
     const history = useNavigate()
     const { pathname } = useLocation();
@@ -150,7 +150,7 @@ export default function SideBar(props) {
             let menusItem = [{
                 key: '',
                 icon: <FaHome className='icon-sli' />,
-                label: <Popover placement="right" title={''} content={HomePopup} trigger="hover">
+                label: <Popover placement="right" title={''} trigger="hover">
                     <div className='home'>Home</div>
                 </Popover>,
             },
@@ -170,8 +170,8 @@ export default function SideBar(props) {
                     let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/user/profile', { withCredentials: true })
 
                     if (resp?.data?.status) {
-                        setData(resp.data.data)
-                        console.log(resp.data.data)
+                        dispatch(setAccount(resp.data.data))
+
                         if (pathname === '/hr' && !resp.data.data.hr_acc) {
                             Swal.fire('คุณไม่มีสิทธิ์เข้าใช้งาน')
                             history('/')
@@ -223,7 +223,7 @@ export default function SideBar(props) {
                     </div>
                     <hr />
                     <div className="icon" ><ImUserTie className='icon-slider'></ImUserTie></div>
-                    <div className="username"><div className='h5 name'>HI' {data?.EUserName}</div></div>
+                    <div className="username"><div className='h5 name'>HI' {account?.profile?.EUserName}</div></div>
                     <div className='button-signout' onClick={async () => {
                         let logout = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT + '/api/logout', null, { withCredentials: true })
                         if (logout?.data?.status) {

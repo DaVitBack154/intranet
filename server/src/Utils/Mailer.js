@@ -1,6 +1,6 @@
 const nodemailer = require('nodemailer')
 
-const sendResetPasswordToken = async (to, token) => {
+const sendResetPasswordToken = async (to, body) => {
     var mailTransporter = nodemailer.createTransport({
         service: 'gmail',
         host: 'smtp.gmail.com',
@@ -64,7 +64,7 @@ const sendResetPasswordToken = async (to, token) => {
                                             </tr>
                                             <tr>
                                                 <td style="height:40px;">&nbsp;</td>
-                                            </tr>
+                                                
                                         </table>
                                     </td>
                                 <tr>
@@ -98,13 +98,17 @@ const sendResetPasswordToken = async (to, token) => {
     }
 }
 
-// const sedUser = async (to, toletm) => {
+const sedUser = async (to, toletm) => {
 
-// }
+}
 
+const sedUser1 = async (to, toletm) => {
+
+}
 module.exports = {
-    sendResetPasswordToken
-    // sedUser
+    sendResetPasswordToken,
+    sedUser,
+    sedUser1
 }
 
 // การใชเ body ${body.ตัวแปร}

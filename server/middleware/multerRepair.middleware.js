@@ -8,8 +8,8 @@ const storage = multer.diskStorage({
     cb(
       null,
       Date.now() +
-        "." +
-        file.originalname.split(".")[file.originalname.split(".").length - 1]
+      "." +
+      file.originalname.split(".")[file.originalname.split(".").length - 1]
     );
   },
 });
