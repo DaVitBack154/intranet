@@ -32,11 +32,11 @@ module.exports.CreateProfile = async (create_user_name, body) => {
     let sql = `
         INSERT INTO tb_hr (name_th, name_en, nick_name, start_date_work, sign_date_work, position, department, address, idcard_no, 
         phone, date_card_start, date_card_exp, action_user, create_user_name, img_simple, maihet, sign_it, sign_contract, 
-        sign_head, status_hr, status_it, status_contract, status_head) 
+        sign_head, status_hr) 
         OUTPUT Inserted.id
         VALUES (@name_th, @name_en, @nick_name, @start_date_work, @sign_date_work,  @position, @department, @address, 
         @idcard_no, @phone, @date_card_start, @date_card_exp, @action_user, @create_user_name, @img_simple, @maihet, 
-        @sign_it, @sign_contract, @sign_head, 'Pending', 'Pending', 'Pending', 'Pending')
+        @sign_it, @sign_contract, @sign_head, 'Pending')
     `
 
     let result = await query(sql, parameters)
@@ -244,7 +244,7 @@ module.exports.UpdateAppit = async (id, body, status_hr) => {
     return update;
 }
 
-module.exports.UpdateAppct = async (id, body) => {
+module.exports.UpdateAppct = async (id, body, status_hr) => {
     let parameters = [
         { name: "status_contract", sqltype: mssql.VarChar, value: body.status_contract },
         { name: "sign_contract", sqltype: mssql.VarChar, value: body.sign_contract },
@@ -267,8 +267,8 @@ module.exports.UpdateAppct = async (id, body) => {
 
 module.exports.UpdateHead_hr = async (id, body) => {
     let parameters = [
-        { name: "status_head", sqltype: mssql.VarChar, value: body.status_contract },
-        { name: "sign_head", sqltype: mssql.VarChar, value: body.sign_contract },
+        { name: "status_head", sqltype: mssql.VarChar, value: body.status_head },
+        { name: "sign_head", sqltype: mssql.VarChar, value: body.sign_head },
         // { name: "status_hr", sqltype: mssql.VarChar, value: status_hr },
         { name: "id", sqltype: mssql.Int, value: id },
     ];

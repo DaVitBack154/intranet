@@ -7,7 +7,7 @@ import { ImUserTie } from 'react-icons/im'
 import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
 import { BsFillPeopleFill } from 'react-icons/bs'
-import { useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux'
 import { setAccount } from '../store/AccountReducer'
@@ -107,25 +107,6 @@ const SideBarComponent = styled(Sider)`
     
 `
 
-const Popuphover = styled.div`
-    width: 300px;
-    
-    
-    .button-1{
-        width: 100%;
-        background-color: #113D3D;
-        display: flex;
-        justify-content: center;
-        padding: 10px;
-        margin-bottom: 10px;
-        border: none;
-        a{
-            color: #FFFF;
-            text-align: center;
-        }
-    }
-`
-
 export default function SideBar(props) {
 
     const dispatch = useDispatch()
@@ -137,32 +118,32 @@ export default function SideBar(props) {
     const [data, setData] = useState(null);
     const [menus, setMenus] = useState([])
 
-    const HomePopup = (
-        <Popuphover>
-            <button className='button-1'><a href='.#table-team'>ข้อมูลพนักงาน</a></button>
-            <button className='button-1'><a href='.#wisaitas'>วิสัยทัศน์ขององค์กร</a></button>
-            <button className='button-1'><a href='.#executive'>แนะนำผู้บริหารองค์กร</a></button>
-        </Popuphover>
-    )
-
     useEffect(() => {
         const init = async () => {
+
             let menusItem = [{
                 key: '',
                 icon: <FaHome className='icon-sli' />,
-                label: <Popover placement="right" title={''} trigger="hover">
-                    <div className='home'>Home</div>
-                </Popover>,
+                label: 'Home',
+                children: [
+                    { key: '#table-team', icon: null, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
+                    { key: '#wisaitas', icon: null, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
+                    { key: '#executive', icon: null, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
+                ]
             },
             {
                 key: 'repair',
                 icon: <GoTools className='icon-sli' />,
                 label: 'Help-Desk',
+
             },
             {
                 key: 'hr',
                 icon: <BsFillPeopleFill className='icon-sli' />,
                 label: 'Hr-Management',
+                children: [
+                    { key: 'hr', icon: null, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
+                ]
             },]
 
             if (!props.disableUserProfile) {
@@ -204,6 +185,17 @@ export default function SideBar(props) {
         init()
     }, [pathname]);
 
+    function renderMenuDefaultValue() {
+        let url = window.location.href
+
+        if (url.indexOf('#') > 0) {
+            let splitUrl = url.split('#')
+            return ['', '#' + splitUrl[1]]
+        } else {
+            return [pathname.replace('/', '')]
+        }
+    }
+
     return (
         <SideBarComponent trigger={null} collapsible collapsed={collapsed}>
 
@@ -235,7 +227,8 @@ export default function SideBar(props) {
                 <Menu
                     theme="dark"
                     mode="inline"
-                    defaultSelectedKeys={[pathname.replace('/', '')]}
+                    defaultOpenKeys={renderMenuDefaultValue()}
+                    defaultSelectedKeys={renderMenuDefaultValue()}
                     items={menus}
                     onClick={(item) => { history('/' + item.key) }}
                 />

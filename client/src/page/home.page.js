@@ -312,6 +312,11 @@ export default function HomePage() {
   ]
 
   useEffect(() => {
+
+    if (window.location.href.split('#').length > 1) {
+      window.scrollTo(0, document.getElementById(window.location.href.split('#')[1]).offsetTop);
+    }
+
     const init = async () => {
       let params = {
         type_dep: dep_id,
@@ -330,7 +335,7 @@ export default function HomePage() {
     }
 
     init()
-  }, [dep_id])
+  }, [dep_id, window.location.href])
 
 
   return (

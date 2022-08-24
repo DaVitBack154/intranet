@@ -19,7 +19,7 @@ module.exports.CreateProfile = async (req, res) => {
         return res.json({ status: false, message: 'Failed to create emplyee profile' })
     }
 
-    Mailer.sendResetPasswordToken('waruen.css@gmail.com', body)
+    // Mailer.sendResetPasswordToken('waruen.css@gmail.com', body)
     // Mailer.sedUser('nuttokota@gmail.com', body)
     return res.json({ status: true, message: 'Successful create emplyee profile' })
 }
@@ -228,7 +228,7 @@ module.exports.UpdateAppct = async (req, res) => {
     } else {
         status_hr = 'Pending'
     }
-    let update = await hr_model.UpdateAppit(id, body, status_hr);
+    let update = await hr_model.UpdateAppct(id, body, status_hr);
 
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
@@ -239,7 +239,6 @@ module.exports.UpdateAppct = async (req, res) => {
 
 module.exports.UpdateHead_hr = async (req, res) => {
     let { id } = req.params;
-    // let userid = req.session.userid
     let user_hr = req.session.hr_acc
 
     if (!req.session.isLogin) {
@@ -254,10 +253,10 @@ module.exports.UpdateHead_hr = async (req, res) => {
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
-        if (body.status_contract == 'confirm') {
-            Mailer.sendResetPasswordToken('1.css@gmail.com', body)
-            Mailer.sendResetPasswordToken('2.css@gmail.com', body)
-            Mailer.sendResetPasswordToken('3.css@gmail.com', body)
+        if (body.status_head == 'Approve') {
+            Mailer.sendApp_IT('waruen.css@gmail.com', body)
+            Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
+            Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
             //send email
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });

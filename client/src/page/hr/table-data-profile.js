@@ -263,7 +263,7 @@ export default function TableProfileData(props) {
         })
       }
 
-      if (account?.profile?.role == 20) { //level เท้ากับ พี่แทน หรือคนเตรียม อุปกรณ์
+      if (account?.profile?.role == 20) { //level คนแรก
         const column_approve = [
           { title: 'Sign-Head', dataIndex: 'sign_head' },
           {

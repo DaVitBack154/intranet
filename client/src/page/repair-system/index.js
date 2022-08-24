@@ -152,7 +152,7 @@ export default function RepairSystem() {
         </div>
         <br />
         <div className="repair-table">
-          {user?.role === 1 ? (
+          {user?.role === 1 || user?.role === 20 ? (
             <div className="button-group">
               <NavLink to={"/form-it"}>
                 <button className="button-create-it">

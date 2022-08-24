@@ -77,7 +77,7 @@ export default function FormLogin() {
       } else if (resp?.data?.data?.role === 4) {
         window.location.href = '/repair-acc'
       } else {
-        window.location.href = '/repair'
+        window.location.href = '/'
       }
     }
   }

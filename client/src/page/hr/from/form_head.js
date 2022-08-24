@@ -204,7 +204,7 @@ export default function Form_App_head() {
     const onFinish = async (values) => {
 
         try {
-            let result = await axios.put(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/put-app-ct/' + id, values, { withCredentials: true })
+            let result = await axios.put(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/put-app-head/' + id, values, { withCredentials: true })
 
             if (result.data.status) {
                 swal

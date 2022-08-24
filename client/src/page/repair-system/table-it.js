@@ -158,7 +158,7 @@ export default function TableIt(props) {
         })
       }
 
-      if (props?.user?.role === 1) {
+      if (props?.user?.role === 1 || props?.user?.role === 20) {
         column.push({
           title: 'point',
           dataIndex: '',
@@ -324,7 +324,7 @@ export default function TableIt(props) {
 
               try {
                 let updateResult = await axios.put(
-                  process.env.REACT_APP_SERVER_ENDPOINT+'/api/repair_list/' + selectedRecord.id + '/update-rating',
+                  process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list/' + selectedRecord.id + '/update-rating',
                   {
                     rating: rating,
                     comment_rating: comment_ratting
@@ -357,8 +357,8 @@ export default function TableIt(props) {
                     //   confirmButtonText: 'OK'
                     // }).then((result) => {
                     //   if (result.isConfirmed) {
-                        window.location.href = '/login'
-                      // }
+                    window.location.href = '/login'
+                    // }
                     // })
                   }
                 }
