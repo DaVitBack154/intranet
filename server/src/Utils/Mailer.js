@@ -1,5 +1,6 @@
 const nodemailer = require('nodemailer')
 
+
 const sendApp_IT = async (to, body) => {
     var mailTransporter = nodemailer.createTransport({
         service: 'gmail',
@@ -245,9 +246,11 @@ const sendApp_hr_img = async (to, body) => {
                                             <td>${body.position}</td>
                                             <td>${body.department}</td>
                                             <td>${body.start_date_work}</td>
-                                            <th><a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + ${body.img_simple}} target="__blank">
-                                            Image</th>
+                                            <td>
+                                            <a href="${process.env.NODE_APP_SERVER_ENDPOINT}/public/image/repair/${body.img_simple}" target="__blank">
+                                                Image
                                             </a>
+                                            </td>
                                             
                                             </tr>
                                         </table>

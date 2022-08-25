@@ -202,7 +202,7 @@ export default function Form_App_head() {
 
 
     const onFinish = async (values) => {
-
+        values.img_simple = fileName
         try {
             let result = await axios.put(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/put-app-head/' + id, values, { withCredentials: true })
 

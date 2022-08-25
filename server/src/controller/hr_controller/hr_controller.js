@@ -253,11 +253,13 @@ module.exports.UpdateHead_hr = async (req, res) => {
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
+        console.log(body)
         if (body.status_head == 'Approve') {
             Mailer.sendApp_IT('waruen.css@gmail.com', body)
             Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
             Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
             //send email
+
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }

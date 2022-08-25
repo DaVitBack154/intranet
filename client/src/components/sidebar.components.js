@@ -6,6 +6,7 @@ import styled from 'styled-components';
 import { ImUserTie } from 'react-icons/im'
 import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
+import { MdAddCircle } from 'react-icons/md'
 import { BsFillPeopleFill } from 'react-icons/bs'
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
@@ -100,7 +101,9 @@ const SideBarComponent = styled(Sider)`
         margin-top: 5px;
         text-align: center;
     }
-
+    .ant-menu-item {
+        padding-left: 25px!important;
+    }
     /* .ant-menu-title-content{
         margin-top: 15px;
     } */
@@ -118,17 +121,18 @@ export default function SideBar(props) {
     const [data, setData] = useState(null);
     const [menus, setMenus] = useState([])
 
+
     useEffect(() => {
         const init = async () => {
 
             let menusItem = [{
-                key: '',
+                key: 'home',
                 icon: <FaHome className='icon-sli' />,
                 label: 'Home',
                 children: [
-                    { key: '#table-team', icon: null, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
-                    { key: '#wisaitas', icon: null, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
-                    { key: '#executive', icon: null, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
+                    { key: '#table-team', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
+                    { key: '#wisaitas', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
+                    { key: '#executive', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
                 ]
             },
             {
@@ -138,12 +142,13 @@ export default function SideBar(props) {
 
             },
             {
-                key: 'hr',
+                key: 'hr_m',
                 icon: <BsFillPeopleFill className='icon-sli' />,
                 label: 'Hr-Management',
                 children: [
-                    { key: 'hr', icon: null, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
+                    { key: 'hr', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
                 ]
+
             },]
 
             if (!props.disableUserProfile) {
@@ -188,12 +193,17 @@ export default function SideBar(props) {
     function renderMenuDefaultValue() {
         let url = window.location.href
 
-        if (url.indexOf('#') > 0) {
+        if (pathname == '/hr')
+            return ['hr_m', 'hr']
+        else if (url.indexOf('#') > 0) {
             let splitUrl = url.split('#')
-            return ['', '#' + splitUrl[1]]
+            return ['home', '#' + splitUrl[1]]
         } else {
+            console.log(pathname.replace('/', ''))
             return [pathname.replace('/', '')]
         }
+
+
     }
 
     return (
