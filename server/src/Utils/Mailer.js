@@ -17,7 +17,7 @@ const sendApp_IT = async (to, body) => {
     let options = {
         from: 'waruen.css@gmail.com',
         to: to,
-        subject: 'พนังานเริ่มงานใหม่',
+        subject: 'พนังานเริ่มงานใหม่/IT',
         html: `
             <!doctype html>
             <html lang="en-US">

@@ -119,7 +119,7 @@ export default function PanelAuth() {
                         {toggle === 'singin' ?
                             <div className="overlay">
                                 <div>
-                                    <div className='head-text'>WELLCOME! CHASE ASIA</div>
+                                    <div className='head-text'>WELCOME! CHASE ASIA</div>
                                 </div>
                                 <div className='border-button'>
                                     <button className='btn-sing' onClick={() => {
@@ -132,7 +132,7 @@ export default function PanelAuth() {
                             </div>
                             :
                             <div className="overlay">
-                                <div className='head-text'>WELLCOME! CHASE ASIA</div>
+                                <div className='head-text'>WELCOME! CHASE ASIA</div>
                                 <div className='border-button'>
                                     <button className='btn-sing' onClick={() => {
                                         setToggle(toggle === 'singin' ? 'register' : 'singin')

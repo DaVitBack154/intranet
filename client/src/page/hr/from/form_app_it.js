@@ -30,6 +30,7 @@ const Form_app_it = styled.div`
 
     .ant-form-item.select-user{
       flex: inherit;
+      width: 100%;
     }
 
     .ant-form-item{
@@ -126,8 +127,8 @@ display: flex;
 flex-wrap: wrap;
 
 label{
-    margin-top: 5px;
-    width: 48%;
+    margin-top: 10px;
+    width: 32%;
     font-size: 15px;
 }
 `
@@ -144,26 +145,6 @@ const options = [
     {
         label: 'ขอเพิ่ม Email-Adress',
         value: 'ขอเพิ่ม Email-Adress',
-    },
-    {
-        label: 'ขอลบ User / บัตรเข้า-ออกประตูรหัส',
-        value: 'ขอลบ User / บัตรเข้า-ออกประตูรหัส',
-    },
-    {
-        label: 'ขอ Reset Password',
-        value: 'ขอ Reset Password',
-    },
-    {
-        label: 'ขอระงับ User ชั่วคราว / บัตรเข้า-ออกประตูรหัส',
-        value: 'ขอระงับ User ชั่วคราว / บัตรเข้า-ออกประตูรหัส',
-    },
-    {
-        label: 'ขอเพิ่มโปรแกรมบัญชี',
-        value: 'ขอเพิ่มโปรแกรมบัญชี',
-    },
-    {
-        label: 'ขอเพิ่ม User Contract-Management',
-        value: 'ขอเพิ่ม User Contract-Management',
     },
 ];
 
@@ -269,7 +250,7 @@ export default function Form_App_it() {
                             <Form.Item
                                 name={'maihet'}
                                 className='form-item-useraction'
-                                label={'maihet'}
+                                label={'หมายเหตุ'}
                             >
                                 <Input placeholder="หมายเหตุ" />
                             </Form.Item>

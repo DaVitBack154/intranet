@@ -95,6 +95,9 @@ const Form_app_it = styled.div`
             .form-item-useraction{
                 width: 100%;
             }
+            .new-require{
+                width: 33%;
+            }
             
         }
 
@@ -226,7 +229,7 @@ export default function Form_App_it() {
                             <Form.Item
                                 className='form-item-description'
                                 name={'address'}
-                                label={'ที่อยู่'}
+                                label={'ที่อยู่ตามบัตรประชาชน'}
                             >
                                 <Input.TextArea placeholder="ระบุที่อยู่" />
                             </Form.Item>
@@ -266,7 +269,7 @@ export default function Form_App_it() {
                             <Form.Item
                                 name={'maihet'}
                                 className='form-item-useraction'
-                                label={'maihet'}
+                                label={'หมายเหตุ'}
                             >
                                 <Input placeholder="หมายเหตุ" />
                             </Form.Item>
@@ -298,6 +301,41 @@ export default function Form_App_it() {
                             >
                                 <Input placeholder="ชื่อพนักงานทำสัญญา" />
                             </Form.Item>
+
+                            <Form.Item
+                                name={'sang_kut'}
+                                className={'new-require'}
+                                label={'สังกัด'}
+                                rules={[
+                                    {
+                                        required: true,
+                                        message: 'กรุณาเลือกสังกัด'
+                                    }
+                                ]}>
+                                <Select placeholder="กรุณาเลือกสังกัด">
+                                    <Select.Option value={'CA'}>CA</Select.Option>
+                                    <Select.Option value={'RW'}>RW</Select.Option>
+                                    {/* <Select.Option value={'CF'}>CF</Select.Option>
+                                    <Select.Option value={'CG'}>CG</Select.Option> */}
+                                </Select>
+                            </Form.Item>
+
+                            <Form.Item
+                                name={'product_ct'}
+                                className='new-require'
+                                label={'product'}
+                            >
+                                <Input placeholder="ระบุโปรดักส์พนักงาน" />
+                            </Form.Item>
+
+                            <Form.Item
+                                name={'num_emp'}
+                                className='new-require'
+                                label={'เลขพนักงาน'}
+                            >
+                                <Input placeholder="ระบุเลขพนักงาน" />
+                            </Form.Item>
+
 
                             {/* <Form.Item
                                 name={'it_maihet'}

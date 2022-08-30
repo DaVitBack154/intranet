@@ -7,12 +7,13 @@ import axios from 'axios';
 import swal from 'sweetalert2'
 import moment from 'moment'
 import { Checkbox, Divider } from 'antd';
+const { Option } = Select;
 
 const FormHr_a = styled.div`
     border: 1px solid #e2e0e0;
     width: 1200px;
     margin: 0 auto;
-    margin-top: 50px;
+    margin-top: 20px;
     background-color: #FFFF;
 
     .image-profile{
@@ -29,6 +30,7 @@ const FormHr_a = styled.div`
 
     .ant-form-item.select-user{
       flex: inherit;
+      width: 100%;
     }
 
     .ant-form-item{
@@ -109,6 +111,9 @@ const FormHr_a = styled.div`
     .form-item-useraction{
       width: 100%;
     }
+    .status_hr{
+      width: 100%;
+    }
 
     .button-submit{
         background-color: #015352;
@@ -131,13 +136,18 @@ const onChange = (checkedValues) => {
   console.log('checked = ', checkedValues);
 };
 
+
+const handleChange = (value) => {
+  console.log(`selected ${value}`);
+};
+
 const CheckboxGroupActionUser = styled(Checkbox.Group)`
   display: flex;
   flex-wrap: wrap;
 
   label{
-    margin-top: 5px;
-    width: 48%;
+    margin-top: 10px;
+    width: 32%;
     font-size: 15px;
   }
 `
@@ -155,26 +165,6 @@ const options = [
     label: 'ขอเพิ่ม Email-Adress',
     value: 'ขอเพิ่ม Email-Adress',
   },
-  {
-    label: 'ขอลบ User / บัตรเข้า-ออกประตูรหัส',
-    value: 'ขอลบ User / บัตรเข้า-ออกประตูรหัส',
-  },
-  {
-    label: 'ขอ Reset Password',
-    value: 'ขอ Reset Password',
-  },
-  {
-    label: 'ขอระงับ User ชั่วคราว / บัตรเข้า-ออกประตูรหัส',
-    value: 'ขอระงับ User ชั่วคราว / บัตรเข้า-ออกประตูรหัส',
-  },
-  {
-    label: 'ขอเพิ่มโปรแกรมบัญชี',
-    value: 'ขอเพิ่มโปรแกรมบัญชี',
-  },
-  {
-    label: 'ขอเพิ่ม User Contract-Management',
-    value: 'ขอเพิ่ม User Contract-Management',
-  },
 ];
 //รอทำ อาเรย์ ที่เป็นแบบ หลาย รายการ เพราะต้องเลือกหลาย ช่อง ทาง
 
@@ -186,6 +176,7 @@ export default function FromHr_a() {
   const history = useNavigate();
   const { id } = useParams()
   const [fileName, setFileName] = useState(null)
+  // const { Option } = Select;
 
   useEffect(() => {
     const init = async () => {
@@ -296,7 +287,7 @@ export default function FromHr_a() {
             <Form.Item
               className='form-item-description'
               name={'address'}
-              label={'ที่อยู่'}
+              label={'ที่อยู่ตามบัตรประชาชน'}
             >
               <Input.TextArea placeholder="ระบุที่อยู่" />
             </Form.Item>
@@ -334,12 +325,38 @@ export default function FromHr_a() {
             </Form.Item>
 
             <Form.Item
+              name={'status_hr'}
+              className={'status_hr'}
+              label={'Status'}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณาเลือกหมวดหมู่'
+                }
+              ]}>
+              <Select defaultValue="Pending" onChange={handleChange}>
+                <Option value={'Pending'}>Pending</Option>
+                <Option value={'Reject'}>Reject</Option>
+                <Option value={'Postponed'}>Postponed</Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
               name={'maihet'}
               className='form-item-useraction'
-              label={'maihet'}
+              label={'หมายเหตุ'}
             >
               <Input placeholder="หมายเหตุ" />
             </Form.Item>
+            {/* <Select
+              defaultValue="Pending"
+              style={{
+                width: 1200,
+              }}
+              disabled
+            >
+              <Option value="Pending">Pending</Option>
+            </Select> */}
 
             <Form.Item className="select-user" name='action_user' >
               <CheckboxGroupActionUser options={options} defaultValue={['1']} onChange={onChange} />

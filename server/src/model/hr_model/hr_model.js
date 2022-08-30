@@ -26,6 +26,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
         // { name: "status_contract", sqltype: mssql.VarChar, value: body.status_contract },
         { name: "sign_contract", sqltype: mssql.VarChar, value: body.sign_contract },
         { name: "sign_head", sqltype: mssql.VarChar, value: body.sign_head },
+        { name: "status_hr", sqltype: mssql.VarChar, value: body.status_hr },
 
 
     ]
@@ -36,7 +37,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
         OUTPUT Inserted.id
         VALUES (@name_th, @name_en, @nick_name, @start_date_work, @sign_date_work,  @position, @department, @address, 
         @idcard_no, @phone, @date_card_start, @date_card_exp, @action_user, @create_user_name, @img_simple, @maihet, 
-        @sign_it, @sign_contract, @sign_head, 'Pending')
+        @sign_it, @sign_contract, @sign_head, '@status_hr')
     `
 
     let result = await query(sql, parameters)
@@ -59,9 +60,10 @@ module.exports.UpdateProfile = async (id, body) => {
         { name: "date_card_start", sqltype: mssql.VarChar, value: body.date_card_start },
         { name: "date_card_exp", sqltype: mssql.VarChar, value: body.date_card_exp },
         { name: "action_user", sqltype: mssql.VarChar, value: body.action_user },
-        { name: "id", sqltype: mssql.Int, value: id },
-        { name: "maihet", sqltype: mssql.VarChar, value: maihet },
-        { name: "img_simple", sqltype: mssql.VarChar, value: body.img_simple }
+        { name: "status_hr", sqltype: mssql.VarChar, value: body.status_hr },
+        { name: "maihet", sqltype: mssql.VarChar, value: body.maihet },
+        { name: "img_simple", sqltype: mssql.VarChar, value: body.img_simple },
+        { name: "id", sqltype: mssql.Int, value: id }
     ]
 
     let sql = `
@@ -80,6 +82,7 @@ module.exports.UpdateProfile = async (id, body) => {
             ,date_card_exp = @date_card_exp
             ,action_user = @action_user
             ,img_simple = @img_simple
+            ,status_hr = @status_hr
             ,maihet = @maihet
             OUTPUT Inserted.id
             WHERE id = @id
@@ -254,6 +257,9 @@ module.exports.UpdateAppct = async (id, body, status_hr) => {
     let parameters = [
         { name: "status_contract", sqltype: mssql.VarChar, value: body.status_contract },
         { name: "sign_contract", sqltype: mssql.VarChar, value: body.sign_contract },
+        { name: "sang_kut", sqltype: mssql.VarChar, value: body.sang_kut },
+        { name: "product_ct", sqltype: mssql.VarChar, value: body.product_ct },
+        { name: "num_emp", sqltype: mssql.VarChar, value: body.num_emp },
         { name: "status_hr", sqltype: mssql.VarChar, value: status_hr },
         { name: "id", sqltype: mssql.Int, value: id },
     ];
@@ -263,6 +269,9 @@ module.exports.UpdateAppct = async (id, body, status_hr) => {
         SET 
         status_contract = @status_contract,
         sign_contract = @sign_contract,
+        sang_kut = @sang_kut,
+        product_ct = @product_ct,
+        num_emp = @num_emp,
         status_hr = @status_hr
         OUTPUT INSERTED.*
         WHERE id = @id
