@@ -195,16 +195,14 @@ export default function TableProfileData(props) {
                 </Btn_table>
               </NavLink>
 
-              <NavLink to={'/form-hr-a/' + record.id}>
+              {/* <NavLink to={'/form-hr-a/' + record.id}>
                 <Btn_table>
                   <div className="btn-adduser">
                     <FaUserEdit />
                   </div>
                 </Btn_table>
-              </NavLink>
+              </NavLink> */}
             </Btn_edit_view>
-
-
           )
         })
       }

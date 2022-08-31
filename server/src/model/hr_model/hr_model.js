@@ -37,7 +37,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
         OUTPUT Inserted.id
         VALUES (@name_th, @name_en, @nick_name, @start_date_work, @sign_date_work,  @position, @department, @address, 
         @idcard_no, @phone, @date_card_start, @date_card_exp, @action_user, @create_user_name, @img_simple, @maihet, 
-        @sign_it, @sign_contract, @sign_head, '@status_hr')
+        @sign_it, @sign_contract, @sign_head, @status_hr)
     `
 
     let result = await query(sql, parameters)
