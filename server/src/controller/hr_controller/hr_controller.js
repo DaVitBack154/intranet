@@ -38,11 +38,22 @@ module.exports.UpdateProfile = async (req, res) => {
     let { id } = req.params;
     let body = req.body
     let hr_employees = await hr_model.UpdateProfile(id, body)
-    if (hr_employees.lenght < 1) {
-        return res.json({ status: false, message: 'Failed to update emplyee profile' })
-    }
+    // if (hr_employees.lenght < 1) {
+    //     return res.json({ status: false, message: 'Failed to update emplyee profile' })
+    // }
 
-    return res.json({ status: true, message: 'Successful update emplyee profile' })
+    // return res.json({ status: true, message: 'Successful update emplyee profile' })
+    if (hr_employees == false) {
+        return res.json({ status: false, message: "UPDATE FAILED" });
+    } else {
+        console.log(body)
+        if (body.status_hr == 'Postponed' || body.status_hr == 'Reject') {
+            Mailer.sendExtCase('waruen.css@gmail.com', body)
+            //send email
+
+        }
+        return res.json({ status: true, message: "UPDATE SUCCESS" });
+    }
 }
 module.exports.GetProfile = async (req, res) => {
     let userid = req.session.userid

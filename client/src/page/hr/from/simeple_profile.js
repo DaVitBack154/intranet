@@ -7,7 +7,7 @@ import axios from 'axios';
 import swal from 'sweetalert2'
 import moment from 'moment'
 import { Checkbox, Divider } from 'antd';
-const { Option } = Select;
+
 
 const FormHr_a = styled.div`
     border: 1px solid #e2e0e0;
@@ -137,9 +137,6 @@ const onChange = (checkedValues) => {
 };
 
 
-const handleChange = (value) => {
-  console.log(`selected ${value}`);
-};
 
 const CheckboxGroupActionUser = styled(Checkbox.Group)`
   display: flex;
@@ -187,8 +184,8 @@ export default function FromHr_a() {
           let data = hrSipple.data.data
           data.start_date_work = data.start_date_work ? moment(data.start_date_work) : moment()
           data.sign_date_work = data.sign_date_work ? moment(data.sign_date_work) : moment()
-          data.date_card_start = data.date_card_start ? moment(data.date_card_start).format('YYYY-MM-DD') : ''
-          data.date_card_exp = data.date_card_exp ? moment(data.date_card_exp).format('YYYY-MM-DD') : ''
+          data.date_card_start = data.date_card_start ? moment(data.date_card_start) : moment()
+          data.date_card_exp = data.date_card_exp ? moment(data.date_card_exp) : moment()
           if (data.action_user && data.action_user.length > 0) data.action_user = JSON.parse(data.action_user)
           form.setFieldsValue(data)
           setFileName(data?.img_simple)
@@ -205,6 +202,8 @@ export default function FromHr_a() {
     values.img_simple = fileName
     values.start_date_work = moment(values.start_date_work).format('YYYY-MM-DD')
     values.sign_date_work = moment(values.sign_date_work).format('YYYY-MM-DD')
+    values.date_card_start = moment(values.date_card_start).format('YYYY-MM-DD')
+    values.date_card_exp = moment(values.date_card_exp).format('YYYY-MM-DD')
     if (values.action_user.length > 0) values.action_user = JSON.stringify(values.action_user)
 
     try {
@@ -308,23 +307,15 @@ export default function FromHr_a() {
               <Input placeholder="ระบุเบอร์มือถือ" />
             </Form.Item>
 
-            <Form.Item
-              name={'date_card_start'}
-              className='form-item-tusername'
-              label={'วันออกบัตร'}
-            >
-              <Input placeholder="ระบุวันออกบัตร" />
+            <Form.Item className="form-item-tusername" name={'date_card_start'} label={'วันออกบัตร'}>
+              <DatePicker />
             </Form.Item>
 
-            <Form.Item
-              name={'date_card_exp'}
-              className='form-item-tusername'
-              label={'วันหมดอายุบัตร'}
-            >
-              <Input placeholder="ระบุวันหมดอายุบัตร" />
+            <Form.Item className="form-item-tusername" name={'date_card_exp'} label={'วันหมดอายุบัตร'}>
+              <DatePicker />
             </Form.Item>
 
-            <Form.Item
+            {/* <Form.Item
               name={'status_hr'}
               className={'status_hr'}
               label={'Status'}
@@ -338,6 +329,23 @@ export default function FromHr_a() {
                 <Option value={'Pending'}>Pending</Option>
                 <Option value={'Reject'}>Reject</Option>
                 <Option value={'Postponed'}>Postponed</Option>
+              </Select>
+            </Form.Item> */}
+
+            <Form.Item
+              name={'status_hr'}
+              className={'status_hr'}
+              label={'Status'}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณาเลือกสถานะ'
+                }
+              ]}>
+              <Select placeholder="กรุณาเลือกสถานะ">
+                <Select.Option value={'Pending'}>Pending</Select.Option>
+                <Select.Option value={'Reject'}>Reject</Select.Option>
+                <Select.Option value={'Postponed'}>Postponed</Select.Option>
               </Select>
             </Form.Item>
 

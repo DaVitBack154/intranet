@@ -70,6 +70,26 @@ const ButtonComponent = styled.div`
     border-radius: 5px;
   }
 
+  &.button-status-Postponed{
+    background-color: #0069D9;
+    color: #FFFF;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+  }
+
+  &.button-status-Reject{
+    background-color: gray;
+    color: #FFFF;
+    display: flex;
+    justify-content: center;
+    font-weight: bold;
+    padding: 3px;
+    border-radius: 5px;
+  }
+
   &.button-status-Approve{
     background-color: green;
     color: #FFFF;
@@ -81,6 +101,7 @@ const ButtonComponent = styled.div`
   }
 `
 const Btn_table = styled.div`
+      margin-right: 10px;
 
       .btn-edit-hr{
         font-size: 20px;
@@ -106,6 +127,11 @@ const Btn_table = styled.div`
         align-items: center;
       }
 
+`
+
+const Btn_edit_view = styled.div`
+  display: flex;
+  padding-right: 5px;  
 `
 
 export default function TableProfileData(props) {
@@ -160,13 +186,25 @@ export default function TableProfileData(props) {
           dataIndex: '',
           width: 20,
           render: (_, record) => (
-            <NavLink to={'/form-hr-a/' + record.id}>
-              <Btn_table>
-                <div className="btn-adduser">
-                  <FaUserEdit />
-                </div>
-              </Btn_table>
-            </NavLink>
+            <Btn_edit_view className='button-edit-view'>
+              <NavLink to={'/form-hr-a/' + record.id}>
+                <Btn_table>
+                  <div className="btn-adduser">
+                    <FaUserEdit />
+                  </div>
+                </Btn_table>
+              </NavLink>
+
+              <NavLink to={'/form-hr-a/' + record.id}>
+                <Btn_table>
+                  <div className="btn-adduser">
+                    <FaUserEdit />
+                  </div>
+                </Btn_table>
+              </NavLink>
+            </Btn_edit_view>
+
+
           )
         })
       }
