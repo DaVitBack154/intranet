@@ -229,6 +229,19 @@ export default function FromHr_a() {
               history("/hr");
             }
           });
+      } else {
+        swal
+          .fire({
+            title: "",
+            text: result.data.message,
+            icon: "error",
+            confirmButtonText: "X",
+          })
+          .then((result) => {
+            // if (result.isConfirmed) {
+            //   history("/hr");
+            // }
+          });
       }
     } catch (error) {
       console.log(error)
@@ -295,6 +308,12 @@ export default function FromHr_a() {
               name={'idcard_no'}
               className='form-item-tusername'
               label={'เลขบัตรประชาชน'}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณากรอกบัตรประชาชน'
+                }
+              ]}
             >
               <Input placeholder="ระบุเลขบัตรประชาชน" />
             </Form.Item>
@@ -366,7 +385,12 @@ export default function FromHr_a() {
               <Option value="Pending">Pending</Option>
             </Select> */}
 
-            <Form.Item className="select-user" name='action_user' >
+            <Form.Item className="select-user" name='action_user' rules={[
+              {
+                required: true,
+                message: 'กรุณาเลือกสถานะ'
+              }
+            ]}>
               <CheckboxGroupActionUser options={options} defaultValue={['1']} onChange={onChange} />
             </Form.Item>
 

@@ -11,6 +11,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
 import Swal from "sweetalert2";
+import { useSelector } from "react-redux";
 
 const { TabPane } = Tabs;
 
@@ -64,7 +65,7 @@ const RepairSystemComponent = styled.div`
 `;
 
 export default function RepairSystem() {
-  const [user, setUser] = useState(null);
+  const user = useSelector((state) => state.account.profile)
   const [currentTab, setCurrentTab] = useState(null);
   const [itData, setItData] = useState([]);
   const [buildData, setBuildData] = useState([]);
@@ -73,12 +74,6 @@ export default function RepairSystem() {
   useEffect(() => {
     const init = async () => {
       try {
-        let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/profile", {
-          withCredentials: true,
-        });
-        if (resp?.data?.status) {
-          setUser(resp.data.data);
-        }
 
         let itResp = await axios.get(
           process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list/it",

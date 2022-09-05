@@ -126,6 +126,24 @@ module.exports.GetProfileID = async (id) => {
     return result
 }
 
+module.exports.GetProfileByIDCard = async (idcard_no) => {
+    let parameters = [
+        { name: "idcard_no", sqltype: mssql.VarChar, value: idcard_no },
+    ]
+    let sql = `
+    SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work,
+    h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
+    h.action_user, u.TUserName, h.maihet, h.status_hr, img_simple, status_it, sign_it, status_contract, sign_contract, 
+    status_head, sign_head
+    FROM tb_hr h
+    Left join tb_users u On u.id = h.create_user_name
+    WHERE h.idcard_no = @idcard_no
+    `
+    let result = await query(sql, parameters)
+    return result
+}
+
+
 
 module.exports.UpdateFullProfileID = async (id, body) => {
     let parameters = [

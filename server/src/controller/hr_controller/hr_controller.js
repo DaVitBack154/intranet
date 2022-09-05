@@ -14,10 +14,19 @@ module.exports.CreateProfile = async (req, res) => {
     }
 
     let body = req.body
+
+
+    let duplicate_id_card = await hr_model.GetProfileByIDCard(body.idcard_no);
+    if (duplicate_id_card.length > 0) {
+        return res.json({ status: false, message: "Duplicate ID-CARD" })
+    }
+
+
     let hr_employees = await hr_model.CreateProfile(userid, body)
-    if (hr_employees.lenght < 1) {
+    if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to create emplyee profile' })
     }
+
 
     // Mailer.sendResetPasswordToken('waruen.css@gmail.com', body)
     // Mailer.sedUser('nuttokota@gmail.com', body)
@@ -38,7 +47,7 @@ module.exports.UpdateProfile = async (req, res) => {
     let { id } = req.params;
     let body = req.body
     let hr_employees = await hr_model.UpdateProfile(id, body)
-    // if (hr_employees.lenght < 1) {
+    // if (hr_employees.length < 1) {
     //     return res.json({ status: false, message: 'Failed to update emplyee profile' })
     // }
 
@@ -69,7 +78,7 @@ module.exports.GetProfile = async (req, res) => {
     let { id } = req.params;
     let hr_employees = await hr_model.GetProfile(userid, id)
 
-    if (hr_employees.lenght < 1) {
+    if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to getemplyee profile' })
     }
 
@@ -89,7 +98,7 @@ module.exports.GetProfileID = async (req, res) => {
     let { id } = req.params;
     let hr_employees = await hr_model.GetProfileID(id)
 
-    if (hr_employees.lenght < 1) {
+    if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to getemplyee profile' })
     }
 
@@ -133,7 +142,7 @@ module.exports.GetFullProfile = async (req, res) => {
     let { id } = req.params;
     let hr_employees = await hr_model.GetFullProfile(id)
 
-    if (hr_employees.lenght < 1) {
+    if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to getemplyee profile' })
     }
 
@@ -157,7 +166,7 @@ module.exports.GetAdduser = async (req, res) => {
     let { id } = req.params;
     let hr_employees = await hr_model.GetAdduser(id)
 
-    if (hr_employees.lenght < 1) {
+    if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to getemplyee profile' })
     }
 

@@ -1,5 +1,4 @@
 import styled from "styled-components"
-import { EditOutlined, EllipsisOutlined, SettingOutlined } from '@ant-design/icons';
 import { Carousel } from 'antd';
 import SideBarComponent from "../components/sidebar.components";
 import { useEffect, useState } from "react";
@@ -22,6 +21,123 @@ const HomepageComponent = styled.div`
 `;
 const Contentportal = styled.div`
   background-color: transparent;
+
+  .content-first{
+    width: 100%;
+    height: 80vh;
+    background-color: black;
+    overflow: hidden;
+
+    .g1-chase{
+      object-fit: cover;
+      opacity: 0.5;
+    }
+   
+    .content-text{
+
+      .text{
+        font-weight: bold;
+        color: #FFFF;
+        font-size: 50px;
+        position: absolute;
+        top: 180px;
+        left: 450px;
+        font-family: "Raleway", sans-serif;
+      }
+      .btn-getstan{
+
+        .btn-get{
+          position: absolute;
+          top: 300px;
+          left: 660px;
+          border-radius: 50px;
+          background-color: #015352;
+          border: none;
+          color: #F2F2F2;
+          font-size: 20px;
+          display: inline-block;
+          padding: 9px 35px;
+          letter-spacing: 1px;
+        
+          &:hover{
+            background-color: #ffc107;
+            color: #F2F6F6;
+          }
+        }
+      }
+    }
+
+  }
+
+
+  .company-brand{
+    background-color: #F3F5FA;
+    padding: 20px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
+
+    .brand-com{
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      margin-right: 10px;
+
+      .brand-slie{
+        width: 150px;
+        &:hover{
+            transform: scale(1.3);
+            transition: transform 0.25s;
+        }
+      }
+    }
+  }
+
+
+  .content-service{
+    background-color: #FFFF;
+
+    .head-service{
+      text-align: center;
+      .h-service{
+        font-weight: bold;
+        font-size: 30px;
+        color: #015352;
+        padding: 9px 35px;
+        letter-spacing: 1px;
+      }
+    }
+
+    .content-body-service{
+        display: flex;
+        justify-content: space-evenly;
+        padding: 10px;
+
+        .box1, .box2, .box3, .box4{
+          width: 24%;
+          /* background-color: red; */
+          padding: 10px;
+          /* border: 1px solid red; */
+          margin-bottom: 20px;
+        }
+        .icon-service{
+          width: 130px;
+          margin: 0 auto;
+          padding-bottom: 20px;
+        }
+        .service-title{
+          margin-left: 10px;
+
+          .text-title{
+            font-weight: bold;
+            color: #015352;
+          }
+        }
+        .content-text-service{
+          padding: 10px;
+          color: #015352;
+        }
+
+    }
+  }
 
   .content-group-button {
     display: flex;
@@ -144,9 +260,11 @@ const Contentportal = styled.div`
               padding: 20px;
               background-color: #015352;
               color:#FFFF;
+              font-size: 17px;
               .lag{
-                font-size: 25px;
+                font-size: 30px;
                 text-align: center;
+                font-weight: bold;
               }
             }
         }
@@ -161,9 +279,10 @@ const Contentportal = styled.div`
 
 const HeadCard = styled.div`
   margin-top: 30px;
+  margin-bottom: 20px;
   .border-agent{
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    background-color: #FFFF;
+    
+    background-color: #F3F5FA;
 
     .head-agent{
 
@@ -180,13 +299,17 @@ const HeadCard = styled.div`
     .body-agent{
       .box1-agent-flex,.box2-agent-flex{
         display: flex;
+        
+        
 
           .box1, .box2, .box3, .box4{
           width: 50%;
           display: flex;
           height: 300px;
-          padding: 10px;
-          border: 1px solid #e2e0e0;
+          margin: 10px 7px;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
+          background-color: #FFFF;
+         
           
 
             .img{
@@ -196,11 +319,13 @@ const HeadCard = styled.div`
               justify-content: center;
               
                 .img-card{
-                  width:220px;
-                  height: 290px;
-                  border-radius: 50%;
-                  padding: 10px 10px;
-  
+                  width:210px;
+                  height: 190px;
+                  border-radius: 100%;
+                  margin-top: 30px;
+                  &:hover{
+                    transform: scale(1.2);
+                  }
                 }
             }
             .text{
@@ -344,69 +469,126 @@ export default function HomePage() {
       <div className="content">
         <Contentportal className="content-portal">
 
-          {/* <div className="img-top">
-            <img src="/backgroud1.png" className="img-brand"></img>
-          </div> */}
-
-          <Carousel autoplay>
-            <div>
-              <img src="/g1.png" className="img-brand"></img>
+          {/* คอนเท้นหัวบน รูปภาพ */}
+          <div className="content-first">
+            <img src="/hero-bg.jpg" className="g1-chase"></img>
+            <div className="content-text">
+              <h1 className="text">WELLCOME TO EPOLTAL</h1>
+              <div className="btn-getstan">
+                <button className="btn-get">Getstandart</button>
+              </div>
             </div>
-            <div>
-              <img src="/g2.jpg" className="img-brand"></img>
+          </div>
+          {/* คอนเท้นหัวบน รูปภาพ */}
+
+
+          {/* รูปภาพบริษัท ในเครือข่าย */}
+          <div className="company-brand">
+            <div className="brand-com">
+              <div><img src="/chase.png" className="brand-slie"></img></div>
+              <div><img src="/aaaa.png" className="brand-slie"></img></div>
+              <div><img src="/bbbb.png" className="brand-slie"></img></div>
+              <div><img src="/cccc.png" className="brand-slie"></img></div>
             </div>
-            <div>
-              <img src="/g3.jpg" className="img-brand"></img>
-            </div>
-          </Carousel>
+          </div>
+          {/* รูปภาพบริษัท ในเครือข่าย */}
+          <br /><br />
 
 
-
-          {/* <hr /> */}
-
-          <div className="back-group-team">
-
-            <div className="head-member">
-              <div>CONTRACT WITH EMPLOYEE</div>
+          {/* หัวข้อ service ทั้งหมด */}
+          <div className="content-service">
+            <div className="head-service">
+              <h1 className="h-service">SERVICE</h1>
               <hr />
             </div>
 
-            <div className="button-group">
-              <div className={'item ' + (dep_id == 1 ? 'group' : '')} onClick={() => { setdep_id(1) }}><span>IT-Support</span></div>
-              <div className={'item ' + (dep_id == 2 ? 'group' : '')} onClick={() => { setdep_id(2) }}><span>Accounting</span></div>
-              <div className={'item ' + (dep_id == 3 ? 'group' : '')} onClick={() => { setdep_id(3) }}><span>Procurement</span></div>
-              <div className={'item ' + (dep_id == 4 ? 'group' : '')} onClick={() => { setdep_id(4) }}><span>Messenger</span></div>
-              <div className={'item ' + (dep_id == 5 ? 'group' : '')} onClick={() => { setdep_id(5) }}><span>Other</span></div>
-            </div>
-            <br />
+            <div className="content-body-service">
 
-            <div className="department-team">
-              <Table className="table-team" id={'table-team'} columns={columns} dataSource={userData} />
-            </div>
-
-          </div>
-          {/* {เพิ่มข้อมูลเข้าไปใหม่} */}
-          <div className="border-step" id={'wisaitas'}>
-            <div className="flex-step">
-
-              <div className="img-step">
-                <img src="https://www.chase.co.th/storage/page/service/FjzdxuFE8XUWKgJtFjagnPEJoyCoJoubznIettnG.jpg" alt="" className="step" />
+              <div className="box1">
+                <div className="icon-service">
+                  <img src="/49049.jpg" className="icon-service" alt="" />
+                </div>
+                <div className="service-title">
+                  <h2 className="text-title">Delinquent Account Collection</h2>
+                </div>
+                <div className="content-text-service">
+                  <p>
+                    ติดตามทวงถามทางโทรศัพท์
+                    และลงพื้นที่เพื่อตรวจสอบ&nbsp;(Phone and Field Collections)
+                    ในทุกภาค ทั่วประเทศ เป็นบริการที่ได้รับ การไว้วางใจยาวนานต่อเนื่องจาก
+                    ทั้งสถาบันการเงินชั้นนำของไทยและของต่างประเทศ
+                  </p>
+                </div>
               </div>
 
-              <div className="detail-step">
-                <p className="lag">มาตรฐานการจัดขั้นตอนการปฏิบัติงาน</p>
-                <p>&nbsp;</p>
-                <p>&nbsp;&nbsp;&nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด (มหาชน) มีมาตรฐานการจัด ขั้นตอนการปฏิบัติงานให้กับพนักงาน อย่างเป็นระบบ เพื่อช่วยให้พนักงานเข้าใจวิธีการทำงานและมีวิสัยทัศน์ไป ในทิศทางเดียวกัน เพื่อก่อให้เกิดประสิทธิภาพสูงสุด ในการทำงาน ตลอดจนการลดข้อผิดพลาดในการ ปฏิบัติหน้าที่ของพนักงานด้วย</p>
-                <p>
-                  &nbsp;</p>
-                <p>&nbsp;&nbsp;&nbsp;บริษัทฯ จะนำข้อมูลใหม่ที่ได้รับจากลูกค้าเข้าสู่ ระบบ และระบบจะพิมพ์หนังสือทวงถามส่งให้กับลูกหนี้ ภายใน 24 ชั่วโมงหลังจากรับข้อมูลมาจากลูกค้าและ บัญชีลูกค้าทุกรายจะถูกส่งให้กับพนักงานทวงถาม ซึ่งทำหน้าที่ติดต่อกับลูกค้า โดยระบบจะจัดการส่งข้อมูล ไปโดยอัตโนมัติตามเงื่อนไขที่ได้กำหนดไว้ก่อนแล้ว สำหรับลูกค้าที่ไม่มีข้อมูล ที่อยู่ปัจจุบันหรือหมายเลข โทรศัพท์ บริษัทฯ จะจัดส่งผู้ชำนาญการไปทำการสืบหา ข้อมูล ที่อยู่ เพื่อให้สามารถติดต่อลูกหนี้ได้</p>
+              <div className="box2">
+                <div className="icon-service">
+                  <img src="/law.png" className="icon-service" alt="" />
+                </div>
+                <div className="service-title">
+                  <h2 className="text-title">Legal Services</h2>
+                </div>
+                <div className="content-text-service">
+                  <p>
+                    การให้บริการดำเนินคดีแบบครบวงจร ซึ่งรวมถึงงานด้าน สืบทรัพย์เพื่อบังคับคดี และการขายทอดตลาด
+                  </p>
+                </div>
               </div>
 
+              <div className="box3">
+                <div className="icon-service">
+                  <img src="/letter.png" className="icon-service" alt="" />
+                </div>
+                <div className="service-title">
+                  <h2 className="text-title">Letter Services</h2>
+                </div>
+                <div className="content-text-service">
+                  <p>
+                    ให้บริการออกแบบรูปแบบต่าง ๆ ของ จดหมาย หรือ หนังสือบอกกล่าว ดำเนินคดี หรือทวงถามหนี้
+                  </p>
+                </div>
+              </div>
+
+              <div className="box4">
+                <div className="icon-service">
+                  <img src="/train.png" className="icon-service" alt="" />
+                </div>
+                <div className="service-title">
+                  <h2 className="text-title">Training Programs</h2>
+                </div>
+                <div className="content-text-service">
+                  <p>
+                    จัดอบรมพนักงาน โดยมีหลักสูตร ของเนื้อหาในการอบรมครอบคลุม
+                    ถึง Collection Techniques,
+                    และกฎหมายต่างๆ ที่เกี่ยวข้อง
+                    ด้วยทีมงานผู้อบรมที่มีความเชี่ยว
+                    ชาญเฉพาะด้าน
+                  </p>
+                </div>
+              </div>
             </div>
-
+            {/* ข้อมูล วิสัยทัศ ที่มีพนักงาน */}
+            <div className="border-step" id={'wisaitas'}>
+              <div className="flex-step">
+                <div className="img-step">
+                  <img src="/img-po.jpg" alt="" className="step" />
+                </div>
+                <div className="detail-step">
+                  <p className="lag">มาตรฐานการจัดขั้นตอนการปฏิบัติงาน</p>
+                  <p>&nbsp;</p>
+                  <p>&nbsp;&nbsp;&nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด (มหาชน) มีมาตรฐานการจัด ขั้นตอนการปฏิบัติงานให้กับพนักงาน อย่างเป็นระบบ เพื่อช่วยให้พนักงานเข้าใจวิธีการทำงานและมีวิสัยทัศน์ไป ในทิศทางเดียวกัน เพื่อก่อให้เกิดประสิทธิภาพสูงสุด ในการทำงาน ตลอดจนการลดข้อผิดพลาดในการ ปฏิบัติหน้าที่ของพนักงานด้วย</p>
+                  <p>
+                    &nbsp;</p>
+                  <p>&nbsp;&nbsp;&nbsp;บริษัทฯ จะนำข้อมูลใหม่ที่ได้รับจากลูกค้าเข้าสู่ ระบบ และระบบจะพิมพ์หนังสือทวงถามส่งให้กับลูกหนี้ ภายใน 24 ชั่วโมงหลังจากรับข้อมูลมาจากลูกค้าและ บัญชีลูกค้าทุกรายจะถูกส่งให้กับพนักงานทวงถาม ซึ่งทำหน้าที่ติดต่อกับลูกค้า โดยระบบจะจัดการส่งข้อมูล ไปโดยอัตโนมัติตามเงื่อนไขที่ได้กำหนดไว้ก่อนแล้ว สำหรับลูกค้าที่ไม่มีข้อมูล ที่อยู่ปัจจุบันหรือหมายเลข โทรศัพท์ บริษัทฯ จะจัดส่งผู้ชำนาญการไปทำการสืบหา ข้อมูล ที่อยู่ เพื่อให้สามารถติดต่อลูกหนี้ได้</p>
+                </div>
+              </div>
+            </div>
+            {/* ข้อมูล วิสัยทัศ ที่มีพนักงาน */}
           </div>
-          {/* {เพิ่มข้อมูลเข้าไปใหม่} */}
+          {/* หัวข้อ service ทั้งหมด */}
+          <br />
 
+          {/* ในส่วนของผู้บริหาร  */}
           <HeadCard >
             <div className="border-agent" id={"executive"}>
               <div className="head-agent">
@@ -492,12 +674,43 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-
+                <br />
               </div>
-
 
             </div>
           </HeadCard>
+          {/* ในส่วนของผู้บริหาร  */}
+          <br /><br />
+
+
+
+
+
+
+
+
+          {/* ข้อมูลฝ่ายไอที */}
+          <div className="back-group-team">
+            <div className="head-member">
+              <div>CONTRACT WITH EMPLOYEE</div>
+              <hr />
+            </div>
+
+            <div className="button-group">
+              <div className={'item ' + (dep_id == 1 ? 'group' : '')} onClick={() => { setdep_id(1) }}><span>IT-Support</span></div>
+              <div className={'item ' + (dep_id == 2 ? 'group' : '')} onClick={() => { setdep_id(2) }}><span>Accounting</span></div>
+              <div className={'item ' + (dep_id == 3 ? 'group' : '')} onClick={() => { setdep_id(3) }}><span>Procurement</span></div>
+              <div className={'item ' + (dep_id == 4 ? 'group' : '')} onClick={() => { setdep_id(4) }}><span>Messenger</span></div>
+              <div className={'item ' + (dep_id == 5 ? 'group' : '')} onClick={() => { setdep_id(5) }}><span>Other</span></div>
+            </div>
+            <br />
+
+            <div className="department-team">
+              <Table className="table-team" id={'table-team'} columns={columns} dataSource={userData} />
+            </div>
+          </div>
+          {/* ข้อมูลฝ่ายไอที */}
+
 
         </Contentportal>
       </div>
