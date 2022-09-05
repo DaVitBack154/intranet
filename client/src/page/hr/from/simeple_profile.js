@@ -178,6 +178,7 @@ export default function FromHr_a() {
   useEffect(() => {
     const init = async () => {
       try {
+        if (!id)return
         let hrSipple = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile/' + id, { withCredentials: true })
         console.log(hrSipple)
         if (hrSipple.data.status) {
