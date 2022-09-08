@@ -275,9 +275,9 @@ module.exports.UpdateHead_hr = async (req, res) => {
     } else {
         console.log(body)
         if (body.status_head == 'Approve') {
-            Mailer.sendApp_IT('IT@chase.co.th', body)
-            Mailer.sendApp_Hr_ct('Thunwarat.P@chase.co.th', body)
-            Mailer.sendApp_hr_img('Chayapol.B@chase.co.th', body)
+            Mailer.sendApp_IT('waruen.css@gmail.com', body)
+            Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
+            Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
             //send email
 
         }
