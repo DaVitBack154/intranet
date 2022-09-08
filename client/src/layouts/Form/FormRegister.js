@@ -12,6 +12,7 @@ const FormLoginComponent = styled.div`
     background-color: #FFF;
     height: 100%;
     padding: 20px;
+    width: 100%;
 
     .img-chase{
         display: flex;
@@ -54,7 +55,7 @@ export default function FormRegister(props) {
     const [form] = Form.useForm();
 
     const onFinish = async (values) => {
-        let resp = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT+"/api/register", values, {
+        let resp = await axios.post(process.env.REACT_APP_SERVER_ENDPOINT + "/api/register", values, {
             withCredentials: true,
         });
 
@@ -89,7 +90,6 @@ export default function FormRegister(props) {
                 form={form}
                 onFinish={onFinish}
                 layout="vertical"
-                size="large"
             >
 
                 <Form.Item

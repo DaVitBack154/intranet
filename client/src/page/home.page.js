@@ -39,7 +39,7 @@ const Contentportal = styled.div`
         font-size: 50px;
         position: absolute;
         top: 180px;
-        left: 450px;
+        left: 370px;
         font-family: "Raleway", sans-serif;
       }
       .btn-getstan{
@@ -47,7 +47,7 @@ const Contentportal = styled.div`
         .btn-get{
           position: absolute;
           top: 300px;
-          left: 660px;
+          left: 550px;
           border-radius: 50px;
           background-color: #015352;
           border: none;
@@ -243,7 +243,6 @@ const Contentportal = styled.div`
       
         .flex-step{
           display: flex;
-          padding: 5px;
             .img-wrapper{
               background-color: #015352;
             }
@@ -252,17 +251,20 @@ const Contentportal = styled.div`
               overflow: hidden;
             }
             .img-conctainer{
-              width: 850px;
+              width: 100%;
+              .step{
+                width: 700px;
+                height: 480px
+              }
             }
-            .detail-step{
-              
+            .detail-step{      
               width: 50%;
               padding: 20px;
               background-color: #015352;
               color:#FFFF;
               font-size: 17px;
               .lag{
-                font-size: 30px;
+                font-size: 20px;
                 text-align: center;
                 font-weight: bold;
               }
