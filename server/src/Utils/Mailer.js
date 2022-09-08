@@ -15,7 +15,7 @@ const sendApp_IT = async (to, body) => {
     })
 
     let options = {
-        from: 'waruen.css@gmail.com',
+        from: 'IT@chase.co.th',
         to: to,
         subject: 'พนักงานเริ่มงานใหม่/IT',
         html: `
@@ -103,7 +103,7 @@ const sendApp_Hr_ct = async (to, body) => {
     })
 
     let options = {
-        from: 'waruen.css@gmail.com',
+        from: 'Thunwarat.P@chase.co.th',
         to: to,
         subject: 'พนักงานเริ่มงานใหม่/HR',
         html: `
@@ -203,7 +203,7 @@ const sendApp_hr_img = async (to, body) => {
     })
 
     let options = {
-        from: 'waruen.css@gmail.com',
+        from: 'Chayapol.B@chase.co.th',
         to: to,
         subject: 'พนักงานเริ่มงานใหม่/HR/image',
         html: `
