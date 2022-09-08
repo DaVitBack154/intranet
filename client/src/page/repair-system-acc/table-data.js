@@ -7,6 +7,8 @@ import axios from 'axios'
 import { Excel } from 'antd-table-saveas-excel'
 import { RiFileExcel2Fill } from 'react-icons/ri'
 import { TbReportSearch } from 'react-icons/tb'
+import { useSelector, useDispatch } from 'react-redux'
+import { setColumnit } from '../../store/ListAccountReducer'
 
 const ButtonGroup_it = styled.div`
   display: flex;
@@ -33,7 +35,9 @@ const ButtonGroup_it = styled.div`
 `
 
 export default function TableData(props) {
-  const [columns, setColumns] = useState(null)
+  const dispatch = useDispatch()
+  const datait = useSelector((state) => state.Listaccount.datait)
+  const columns = useSelector((state) => state.Listaccount.columnit)
 
   useEffect(() => {
     const init = async () => {
@@ -86,7 +90,7 @@ export default function TableData(props) {
           dataIndex: 'img_repair',
           render: (_, record) =>
             record.img_repair && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_repair} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_repair} target="__blank">
                 รูป
               </a>
             )
@@ -108,7 +112,7 @@ export default function TableData(props) {
           dataIndex: 'image',
           render: (_, record) =>
             record.image && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.image} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.image} target="__blank">
                 รูป
               </a>
             )
@@ -118,7 +122,7 @@ export default function TableData(props) {
           dataIndex: 'img_inv',
           render: (_, record) =>
             record.img_inv && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_inv} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_inv} target="__blank">
                 รูป
               </a>
             )
@@ -158,25 +162,24 @@ export default function TableData(props) {
           dataIndex: 'img_acc',
           render: (_, record) =>
             record.img_acc && (
-              <a href={process.env.REACT_APP_SERVER_ENDPOINT+'/public/image/repair/' + record.img_acc} target="__blank">
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_acc} target="__blank">
                 รูป
               </a>
             )
         }
       ]
 
-      setColumns(column)
+      dispatch(setColumnit(column))
     }
 
     init()
-  }, [props.user, props.data])
+  }, [datait])
 
   const handleClick = async () => {
     try {
-      console.log(props.data)
       // let repairLogsData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list/it-logs', { withCredentials: true })
 
-      if (props.data) {
+      if (datait) {
         let excelColumn = [
           {
             title: 'เลขที่แจ้งซ่อม',
@@ -240,8 +243,8 @@ export default function TableData(props) {
         excel
           .addSheet('sheet1')
           .addColumns(excelColumn)
-          .addDataSource(props.data, {})
-          .addColumns([{ title: 'จำนวนทั้งหมด ' + props.data.length }])
+          .addDataSource(datait, {})
+          .addColumns([{ title: 'จำนวนทั้งหมด ' + datait.length }])
           .saveAs('report-it.xlsx')
       }
     } catch (error) {
@@ -252,7 +255,7 @@ export default function TableData(props) {
   return (
     <>
       <Table
-        dataSource={props.data}
+        dataSource={datait}
         columns={columns}
         topLeftButton={
           <ButtonGroup_it>

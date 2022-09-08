@@ -5,8 +5,7 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import Table from '../components/table'
 import { MdEmail } from 'react-icons/md'
-
-
+import { motion } from "framer-motion"
 
 const HomepageComponent = styled.div`
   display: flex;
@@ -34,7 +33,6 @@ const Contentportal = styled.div`
     }
    
     .content-text{
-
       .text{
         font-weight: bold;
         color: #FFFF;
@@ -246,13 +244,15 @@ const Contentportal = styled.div`
         .flex-step{
           display: flex;
           padding: 5px;
-
+            .img-wrapper{
+              background-color: #015352;
+            }
             .img-step{
-              
-              width: 50%;
-                .step{
-                  width: 100%;
-                }
+              width: 100%;
+              overflow: hidden;
+            }
+            .img-conctainer{
+              width: 850px;
             }
             .detail-step{
               
@@ -287,7 +287,7 @@ const HeadCard = styled.div`
     .head-agent{
 
         .executive{
-          font-size: 30px;
+          font-size: 35px;
           font-weight: bold;
           color: #015352;
           text-align: center;
@@ -319,12 +319,14 @@ const HeadCard = styled.div`
               justify-content: center;
               
                 .img-card{
-                  width:210px;
-                  height: 190px;
+                  width:180px;
+                  height: 170px;
                   border-radius: 100%;
-                  margin-top: 30px;
+                  margin-top: 50px;
                   &:hover{
-                    transform: scale(1.2);
+                    transform: scale(1.3);
+                    transition: transform 0.25s;
+
                   }
                 }
             }
@@ -339,6 +341,7 @@ const HeadCard = styled.div`
               .name-agen{
                 font-weight: bold;
                 color: #2C4964;
+                font-size: 30px;
               }
               .name-agen-k{
                 font-weight: bold;
@@ -401,6 +404,7 @@ export default function HomePage() {
 
   const [userData, setUserData] = useState([]);
   const [dep_id, setdep_id] = useState(1)
+  const [isBannerReady, setIsBannerReady] = useState(false)
 
   const columns = [
     {
@@ -437,10 +441,14 @@ export default function HomePage() {
   ]
 
   useEffect(() => {
+    setTimeout(() => {
+      setIsBannerReady(true)
+    }, 1250);
 
     if (window.location.href.split('#').length > 1) {
       window.scrollTo(0, document.getElementById(window.location.href.split('#')[1]).offsetTop);
     }
+
 
     const init = async () => {
       let params = {
@@ -470,15 +478,21 @@ export default function HomePage() {
         <Contentportal className="content-portal">
 
           {/* คอนเท้นหัวบน รูปภาพ */}
-          <div className="content-first">
+          <motion.div className={`content-first`}
+            initial={{ x: '100%' }}
+            animate={{ x: 0 }}
+            transition={{ duration: 1 }}>
             <img src="/hero-bg.jpg" className="g1-chase"></img>
-            <div className="content-text">
-              <h1 className="text">WELLCOME TO EPOLTAL</h1>
+            <div className={`content-text`}>
+              <motion.h1 className="text"
+                initial={{ opacity: 0, y: '-40px' }}
+                animate={{ opacity: isBannerReady ? 1 : 0, y: isBannerReady ? 0 : '-40px' }}
+                transition={{ duration: 1 }}>WELLCOME TO EPOLTAL</motion.h1>
               <div className="btn-getstan">
                 <button className="btn-get">Getstandart</button>
               </div>
             </div>
-          </div>
+          </motion.div>
           {/* คอนเท้นหัวบน รูปภาพ */}
 
 
@@ -570,8 +584,17 @@ export default function HomePage() {
             {/* ข้อมูล วิสัยทัศ ที่มีพนักงาน */}
             <div className="border-step" id={'wisaitas'}>
               <div className="flex-step">
-                <div className="img-step">
-                  <img src="/img-po.jpg" alt="" className="step" />
+                <div className="img-wrapper">
+                  <motion.div className={`img-step`}
+                    initial={{ width: '0%' }}
+                    whileInView={{ width: '100%' }}
+                    viewport={{ once: false }}
+                    transition={{ duration: 1 }}
+                  >
+                    <div className="img-conctainer">
+                      <img src="/img-po.jpg" alt="" className="step" />
+                    </div>
+                  </motion.div>
                 </div>
                 <div className="detail-step">
                   <p className="lag">มาตรฐานการจัดขั้นตอนการปฏิบัติงาน</p>
@@ -583,7 +606,6 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            {/* ข้อมูล วิสัยทัศ ที่มีพนักงาน */}
           </div>
           {/* หัวข้อ service ทั้งหมด */}
           <br />
@@ -593,7 +615,7 @@ export default function HomePage() {
             <div className="border-agent" id={"executive"}>
               <div className="head-agent">
                 <div className="executive">
-                  Executive
+                  EXECUTIVES
                 </div>
                 <hr />
               </div>

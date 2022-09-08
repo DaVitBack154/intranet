@@ -10,8 +10,8 @@ import axios from 'axios'
 import { useEffect, useState } from 'react'
 import { IoMdAddCircle } from 'react-icons/io'
 import Swal from 'sweetalert2'
-import { useSelector } from 'react-redux'
-
+import { useSelector, useDispatch } from 'react-redux'
+import { setDatait } from '../../store/ListAccountReducer'
 const { TabPane } = Tabs
 
 const RepairSystemPOComponent = styled.div`
@@ -64,11 +64,12 @@ const RepairSystemPOComponent = styled.div`
 
 export default function RepairSystemPO() {
   // const [user, setUser] = useState(null)
+  const datait = useSelector((state) => state.Listaccount.datait)
   const user = useSelector((state) => state.account.profile)
   const [currentTab, setCurrentTab] = useState(null)
-  const [itData, setItData] = useState([])
   const [buildData, setBuildData] = useState([])
   let { search } = useLocation()
+  const dispatch = useDispatch()
 
   useEffect(() => {
     const init = async () => {
@@ -82,7 +83,7 @@ export default function RepairSystemPO() {
 
         let itResp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list_acc/it', { withCredentials: true })
         if (itResp?.data?.status) {
-          setItData(itResp.data.data)
+          dispatch(setDatait(itResp.data.data))
         }
         let buildingtResp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list_acc/building', { withCredentials: true })
         if (buildingtResp?.data?.status) {
@@ -118,25 +119,25 @@ export default function RepairSystemPO() {
         <div className="repair-panel">
           <div className="panel-group-card">
             <Card
-              number={currentTab == '1' ? itData : buildData}
+              number={currentTab == '1' ? datait : buildData}
               detail="รายการแจ้งซ่อม-ทั้งหมด"
               icon={<IoIosDocument />}
               color="#0B5ED7"
             />
             <Card
-              number={currentTab == '1' ? itData : buildData}
+              number={currentTab == '1' ? datait : buildData}
               detail="รายการแจ้งซ่อม-Process"
               icon={<IoIosDocument />}
               color="#d73747"
             />
             <Card
-              number={currentTab == '1' ? itData : buildData}
+              number={currentTab == '1' ? datait : buildData}
               detail="รายการแจ้งซ่อม-Success"
               icon={<IoIosDocument />}
               color="#149759"
             />
             <Card
-              number={currentTab == '1' ? itData : buildData}
+              number={currentTab == '1' ? datait : buildData}
               detail="รายการแจ้งซ่อม-Pending"
               icon={<IoIosDocument />}
               color="#FFCA2C"
@@ -171,11 +172,11 @@ export default function RepairSystemPO() {
               setCurrentTab(e)
             }}>
             <TabPane tab="ฝ่าย IT-Support" key="1">
-              <TableData user={user} data={itData} setData={setItData} />
+              <TableData />
             </TabPane>
-            <TabPane tab="ฝ่าย อาคาร" key="2">
+            {/* <TabPane tab="ฝ่าย อาคาร" key="2">
               <TableData user={user} data={buildData} setData={setBuildData} />
-            </TabPane>
+            </TabPane> */}
           </Tabs>
         </div>
       </div>

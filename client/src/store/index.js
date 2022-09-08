@@ -3,13 +3,15 @@ import { combineReducers } from 'redux'
 
 import AccountReducer from './AccountReducer'
 import Hr_Reducer from './Hr_Reducer';
+import ListAccountReducer from './ListAccountReducer';
 
 const { composeWithDevTools } = require("redux-devtools-extension");
 
 
 const reducer = combineReducers({
     account: AccountReducer,
-    hr_data: Hr_Reducer
+    hr_data: Hr_Reducer,
+    Listaccount: ListAccountReducer
 
 })
 const store = configureStore({
