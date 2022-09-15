@@ -274,7 +274,6 @@ module.exports.UpdateHead_hr = async (req, res) => {
             Mailer.sendApp_IT('waruen.css@gmail.com', body)
             Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
             Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
-            // Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
             //send email
         } else if (body.status_head == 'Reject') {
             // Mailer.sendExtCase('thananun.p@chase.co.th', body)
