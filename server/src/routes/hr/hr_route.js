@@ -16,6 +16,7 @@ router.put('/put-adduser/:id', hr_controller.UpdateAdduser)
 
 router.put('/put-app-it/:id', hr_controller.UpdateAppit)
 router.put('/put-app-ct/:id', hr_controller.UpdateAppct)
+router.put('/put-app-img/:id', hr_controller.UpdateAppimg)
 router.put('/put-app-head/:id', hr_controller.UpdateHead_hr)
 
 

@@ -14,6 +14,7 @@ import Fromadduser from './page/hr/from/adduser'
 import From_Head from './page/hr/from/form_head'
 import Fromapp_it from './page/hr/from/form_app_it'
 import Fromapp_ct from './page/hr/from/form_app_ct'
+import Fromapp_img from './page/hr/from/form_app_img'
 
 import RepairSystemPO from './page/repair-system-po'
 import FormPO from './page/form-po'
@@ -33,6 +34,7 @@ const App = () => {
     { path: '/form-building/:id', element: <FromBuildingAdmin /> },
     { path: '/report-process/:type', element: <ReportProcess /> },
 
+
     { path: '/hr', element: <Hr /> },
     { path: '/form-hr-a', element: <FromHr_SimplaeProfile /> },
     { path: '/form-hr-a/:id', element: <FromHr_SimplaeProfile /> },
@@ -40,6 +42,8 @@ const App = () => {
     { path: '/form-app-head/:id', element: <From_Head /> },
     { path: '/form-app-it/:id', element: <Fromapp_it /> },
     { path: '/form-app-ct/:id', element: <Fromapp_ct /> },
+    { path: '/form-app-img/:id', element: <Fromapp_img /> },
+
 
     { path: '/repair-po', element: <RepairSystemPO /> },
     { path: '/form-po/:id', element: <FormPO /> },

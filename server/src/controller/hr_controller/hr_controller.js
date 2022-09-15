@@ -207,7 +207,8 @@ module.exports.UpdateAppit = async (req, res) => {
 
     let status_it = body.status_it
     let status_contract = hr_employees[0].status_contract
-    if (status_it == 'Approve' && status_contract == 'Approve') {
+    let status_img = hr_employees[0].status_img
+    if (status_it == 'Approve' && status_contract == 'Approve' && status_img == 'Approve') {
         status_hr = 'Confirm'
     } else {
         status_hr = 'Pending'
@@ -238,14 +239,47 @@ module.exports.UpdateAppct = async (req, res) => {
 
     let status_contract = body.status_contract
     let status_it = hr_employees[0].status_it
+    let status_img = hr_employees[0].status_img
 
-    if (status_contract == 'Approve' && status_it == 'Approve') {
+    if (status_contract == 'Approve' && status_it == 'Approve' && status_img == 'Approve') {
         status_hr = 'Confirm'
     } else {
         status_hr = 'Pending'
     }
     let update = await hr_model.UpdateAppct(id, body, status_hr);
 
+    if (update == false) {
+        return res.json({ status: false, message: "UPDATE FAILED" });
+    } else {
+        return res.json({ status: true, message: "UPDATE SUCCESS" });
+    }
+}
+module.exports.UpdateAppimg = async (req, res) => {
+    let { id } = req.params;
+    let user_hr = req.session.hr_acc
+
+    if (!req.session.isLogin) {
+        return res.status(401).json({ status: false, message: 'unauthorize' })
+    }
+    if (user_hr != 'hr') {
+        return res.status(403).json({ status: false, message: 'permission denine' })
+    }
+
+    let body = req.body;
+    let hr_employees = await hr_model.GetProfileID(id)
+    let status_hr = hr_employees[0].status_hr
+
+    let status_img = body.status_img
+    let status_contract = hr_employees[0].status_contract
+    let status_it = hr_employees[0].status_it
+
+    if (status_img == 'Approve' && status_contract == 'Approve' && status_it == 'Approve') {
+        status_hr = 'Confirm'
+    } else {
+        status_hr = 'Pending'
+    }
+    let update = await hr_model.UpdateAppimg(id, body, status_hr);
+    // console.log(update)
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {

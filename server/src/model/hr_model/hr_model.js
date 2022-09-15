@@ -101,7 +101,7 @@ module.exports.GetProfile = async (id) => {
         SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work, h.status_hr,
         h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
         h.action_user, u.TUserName, h.maihet, h.img_simple, h.maihet_head, h.status_it, h.sign_it, h.status_contract, h.sign_contract, 
-        h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level
+        h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level, h.status_img, h.sign_img
         FROM tb_hr h    
         Left join tb_users u On u.id = h.create_user_name
         ORDER BY id DESC
@@ -118,7 +118,7 @@ module.exports.GetProfileID = async (id) => {
     SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work,
     h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
     h.action_user, u.TUserName, h.maihet, h.status_hr, h.maihet_head, h.img_simple, h.status_it, h.sign_it, h.status_contract, 
-    h.sign_contract, h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level
+    h.sign_contract, h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level, h.status_img, h.sign_img
     
     FROM tb_hr h
     Left join tb_users u On u.id = h.create_user_name
@@ -296,6 +296,28 @@ module.exports.UpdateAppct = async (id, body, status_hr) => {
         sang_kut = @sang_kut,
         product_ct = @product_ct,
         num_emp = @num_emp,
+        status_hr = @status_hr
+        OUTPUT INSERTED.*
+        WHERE id = @id
+        `;
+    let update = await query(sql, parameters);
+    return update;
+}
+
+module.exports.UpdateAppimg = async (id, body, status_hr) => {
+    let parameters = [
+        { name: "status_img", sqltype: mssql.VarChar, value: body.status_img },
+        { name: "sign_img", sqltype: mssql.VarChar, value: body.sign_img },
+        { name: "status_hr", sqltype: mssql.VarChar, value: status_hr },
+        { name: "id", sqltype: mssql.Int, value: id },
+
+    ];
+
+    let sql = `
+        UPDATE tb_hr
+        SET 
+        status_img = @status_img,
+        sign_img = @sign_img,
         status_hr = @status_hr
         OUTPUT INSERTED.*
         WHERE id = @id

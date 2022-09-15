@@ -146,10 +146,10 @@ export default function TableProfileData(props) {
     const init = async () => {
 
       let columns = [
-        {
-          title: 'Fullname-th',
-          dataIndex: 'name_th'
-        },
+        // {
+        //   title: 'Fullname-th',
+        //   dataIndex: 'name_th'
+        // },
         {
           title: 'Fullname-en',
           dataIndex: 'name_en'
@@ -185,7 +185,7 @@ export default function TableProfileData(props) {
         columns.unshift({
           title: '',
           dataIndex: '',
-          width: 20,
+          width: 10,
           render: (_, record) => (
             <Btn_edit_view className='button-edit-view'>
               <NavLink to={'/form-hr-a/' + record.id}>
@@ -300,7 +300,37 @@ export default function TableProfileData(props) {
         })
       }
 
-      if (account?.profile?.role == 20) { //level คนแรก
+      if (account?.profile?.role == 24) { //สิท พนักงาน เท่ากับของ สนุ๊ก
+        const colum_hr_img = [
+          { title: 'Sign-Hr-img', dataIndex: 'sign_img' },
+          {
+            title: 'Status-Hr-img',
+            dataIndex: 'status_img',
+            render: (_, record) => (
+              <ButtonComponent className={"button-status-" + record.status_img}>
+                <div>{record.status_img}</div>
+              </ButtonComponent>
+            )
+          },
+        ]
+        columns = [...columns, ...colum_hr_img]
+        columns.push({
+          title: '',
+          dataIndex: '',
+          width: 20,
+          render: (_, record) => (
+            <NavLink to={'/form-app-img/' + record.id}>
+              <Btn_table>
+                <div className="btn-edit-hr">
+                  <FaEdit />
+                </div>
+              </Btn_table>
+            </NavLink>
+          )
+        })
+      }
+
+      if (account?.profile?.role == 20 || account?.profile?.role == 25) { //level คนแรก
         const column_approve = [
           { title: 'Sign-Head', dataIndex: 'sign_head' },
           {
@@ -329,6 +359,16 @@ export default function TableProfileData(props) {
             render: (_, record) => (
               <ButtonComponent className={"button-status-" + record.status_contract}>
                 <div>{record.status_contract}</div>
+              </ButtonComponent>
+            )
+          },
+          { title: 'Sign-Hr-img', dataIndex: 'sign_img' },
+          {
+            title: 'Status-Hr-img',
+            dataIndex: 'status_img',
+            render: (_, record) => (
+              <ButtonComponent className={"button-status-" + record.status_img}>
+                <div>{record.status_img}</div>
               </ButtonComponent>
             )
           },
