@@ -178,7 +178,7 @@ export default function FromHr_a() {
   useEffect(() => {
     const init = async () => {
       try {
-        if (!id)return
+        if (!id) return
         let hrSipple = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile/' + id, { withCredentials: true })
         console.log(hrSipple)
         if (hrSipple.data.status) {
@@ -335,26 +335,9 @@ export default function FromHr_a() {
               <DatePicker />
             </Form.Item>
 
-            {/* <Form.Item
-              name={'status_hr'}
-              className={'status_hr'}
-              label={'Status'}
-              rules={[
-                {
-                  required: true,
-                  message: 'กรุณาเลือกหมวดหมู่'
-                }
-              ]}>
-              <Select defaultValue="Pending" onChange={handleChange}>
-                <Option value={'Pending'}>Pending</Option>
-                <Option value={'Reject'}>Reject</Option>
-                <Option value={'Postponed'}>Postponed</Option>
-              </Select>
-            </Form.Item> */}
-
             <Form.Item
               name={'status_hr'}
-              className={'status_hr'}
+              className={'form-item-tusername'}
               label={'Status'}
               rules={[
                 {
@@ -370,21 +353,36 @@ export default function FromHr_a() {
             </Form.Item>
 
             <Form.Item
+              name={'user_level'}
+              className={'form-item-tusername'}
+              label={'User-Level'}
+              rules={[
+                {
+                  required: true,
+                  message: 'กรุณาเลือกกำหนดเลเวล'
+                }
+              ]}>
+              <Select placeholder="กรุณาเลือกเลเวล">
+                <Select.Option value={'C'}>C</Select.Option>
+                <Select.Option value={'S'}>S</Select.Option>
+                <Select.Option value={'M'}>M</Select.Option>
+                <Select.Option value={'A'}>A</Select.Option>
+                <Select.Option value={'L'}>L</Select.Option>
+                <Select.Option value={'LA'}>LA</Select.Option>
+                <Select.Option value={'K'}>K</Select.Option>
+                <Select.Option value={'E'}>E</Select.Option>
+                <Select.Option value={'I'}>I</Select.Option>
+                <Select.Option value={'F'}>F</Select.Option>
+              </Select>
+            </Form.Item>
+
+            <Form.Item
               name={'maihet'}
               className='form-item-useraction'
               label={'หมายเหตุ'}
             >
               <Input placeholder="หมายเหตุ" />
             </Form.Item>
-            {/* <Select
-              defaultValue="Pending"
-              style={{
-                width: 1200,
-              }}
-              disabled
-            >
-              <Option value="Pending">Pending</Option>
-            </Select> */}
 
             <Form.Item className="select-user" name='action_user' rules={[
               {
@@ -433,6 +431,7 @@ export default function FromHr_a() {
                 <img src={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + fileName} width={400} height={400} />
               </div>
             )}
+
             <Form.Item className='form-button'>
               <button className="button-submit" type="submit">
                 ➤ SAVE

@@ -28,12 +28,11 @@ module.exports.CreateProfile = async (req, res) => {
     }
 
 
-    // Mailer.sendResetPasswordToken('waruen.css@gmail.com', body)
-    // Mailer.sedUser('nuttokota@gmail.com', body)
+    // Mailer.sendFirst_Emp('manit.c@chase.co.th', body)
+    Mailer.sendFirst_Emp('waruen.css@gmail.com', body)
     return res.json({ status: true, message: 'Successful create emplyee profile' })
 }
 module.exports.UpdateProfile = async (req, res) => {
-    // let userid = req.session.userid
     let user_hr = req.session.hr_acc
 
     if (!req.session.isLogin) {
@@ -47,19 +46,14 @@ module.exports.UpdateProfile = async (req, res) => {
     let { id } = req.params;
     let body = req.body
     let hr_employees = await hr_model.UpdateProfile(id, body)
-    // if (hr_employees.length < 1) {
-    //     return res.json({ status: false, message: 'Failed to update emplyee profile' })
-    // }
 
-    // return res.json({ status: true, message: 'Successful update emplyee profile' })
     if (hr_employees == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
-        console.log(body)
+        // console.log(body)
         if (body.status_hr == 'Postponed' || body.status_hr == 'Reject') {
-            Mailer.sendExtCase('waruen.css@gmail.com', body)
+            Mailer.sendExtCase_iri('waruen.css@gmail.com', body)
             //send email
-
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }
@@ -238,11 +232,13 @@ module.exports.UpdateAppct = async (req, res) => {
     }
 
     let body = req.body;
+
     let hr_employees = await hr_model.GetProfileID(id)
     let status_hr = hr_employees[0].status_hr
 
     let status_contract = body.status_contract
     let status_it = hr_employees[0].status_it
+
     if (status_contract == 'Approve' && status_it == 'Approve') {
         status_hr = 'Confirm'
     } else {
@@ -269,17 +265,20 @@ module.exports.UpdateHead_hr = async (req, res) => {
     }
 
     let body = req.body;
+
     let update = await hr_model.UpdateHead_hr(id, body);
     if (update == false) {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
-        console.log(body)
         if (body.status_head == 'Approve') {
-            Mailer.sendApp_IT('IT@chase.co.th', body)
-            Mailer.sendApp_Hr_ct('Thunwarat.P@chase.co.th', body)
-            Mailer.sendApp_hr_img('Chayapol.B@chase.co.th', body)
+            Mailer.sendApp_IT('waruen.css@gmail.com', body)
+            Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
+            Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
+            // Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
             //send email
-
+        } else if (body.status_head == 'Reject') {
+            // Mailer.sendExtCase('thananun.p@chase.co.th', body)
+            Mailer.sendExtCase_Haed('waruen.css@gmail.com', body)
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }

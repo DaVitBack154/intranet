@@ -5,7 +5,6 @@ import Navbar from '../../../components/navbar.compoenets';
 import styled from 'styled-components';
 import axios from 'axios';
 import swal from 'sweetalert2'
-import moment from 'moment'
 
 
 const AdduserProfile = styled.div`

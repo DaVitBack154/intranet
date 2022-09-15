@@ -10,8 +10,9 @@ module.exports.login = async (req, res) => {
     return res.json({ status: false, message: "user or password is invalid" });
   }
   let user = users[0];
-
+  // console.log(upperCasePassword)
   if (user.EPassword != upperCasePassword) {
+    // console.log(upperCasePassword)
     return res.json({ status: false, message: "user or password is invalid" });
   }
 

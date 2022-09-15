@@ -6,7 +6,6 @@ import styled from 'styled-components';
 import axios from 'axios';
 import swal from 'sweetalert2'
 import moment from 'moment'
-import { Checkbox, Divider } from 'antd';
 
 const Form_app_it = styled.div`
     border: 1px solid #e2e0e0;
@@ -125,7 +124,7 @@ const Form_app_it = styled.div`
 `
 
 
-export default function Form_App_it() {
+export default function Form_App_ct() {
 
     const [form] = Form.useForm()
     const history = useNavigate();
@@ -140,6 +139,8 @@ export default function Form_App_it() {
                     let data = hrSipple.data.data
                     data.start_date_work = data.start_date_work ? moment(data.start_date_work) : moment()
                     data.sign_date_work = data.sign_date_work ? moment(data.sign_date_work) : moment()
+                    data.date_card_start = data.date_card_start ? moment(data.date_card_start).format('YYYY-MM-DD') : ''
+                    data.date_card_exp = data.date_card_exp ? moment(data.date_card_exp).format('YYYY-MM-DD') : ''
                     form.setFieldsValue(data)
                     console.log(data)
                 }
@@ -276,7 +277,7 @@ export default function Form_App_it() {
 
                         </div>
 
-                        <div className='name-head'>ฝ่าย Hr-Contract</div>
+                        <div className='name-head'>ฝ่าย People-Contract</div>
                         <div className='it-app'>
                             <Form.Item
                                 name={'status_contract'}
@@ -335,15 +336,6 @@ export default function Form_App_it() {
                             >
                                 <Input placeholder="ระบุเลขพนักงาน" />
                             </Form.Item>
-
-
-                            {/* <Form.Item
-                                name={'it_maihet'}
-                                className='form-item-useraction'
-                                label={'maihet'}
-                            >
-                                <Input placeholder="หมายเหตุ" />
-                            </Form.Item> */}
                         </div>
 
                         <Form.Item className='form-button'>

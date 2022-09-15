@@ -9,6 +9,7 @@ import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
 import { setData, setColumn } from '../../store/Hr_Reducer';
+import { Excel } from 'antd-table-saveas-excel'
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -349,6 +350,79 @@ export default function TableProfileData(props) {
     init()
   }, [account])
 
+  const handleClick = async () => {
+    try {
+      let hr_excelData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
+
+      if (hr_excelData?.data?.status) {
+        let excelColumn = [
+          {
+            title: 'ชื่อ-นามสกุล(TH)',
+            dataIndex: 'name_th'
+          },
+          {
+            title: 'ชื่อ-นามสกุล(EN)',
+            dataIndex: 'name_en'
+          },
+          {
+            title: 'ชื่อเล่น',
+            dataIndex: 'nick_name'
+          },
+          {
+            title: 'ตำแหน่ง',
+            dataIndex: 'position'
+          },
+          {
+            title: 'แผนก',
+            dataIndex: 'department'
+          },
+          {
+            title: 'วันเซ็นสัญญา',
+            dataIndex: 'sign_date_work'
+          },
+          {
+            title: 'วันที่เริ่มงาน',
+            dataIndex: 'start_date_work'
+          },
+          {
+            title: 'ที่อยู่',
+            dataIndex: 'address'
+          },
+          {
+            title: 'เลขบัตรประชาชน',
+            dataIndex: 'idcard_no'
+          },
+          {
+            title: 'วันที่ออก-บัตร',
+            dataIndex: 'date_card_start'
+          },
+          {
+            title: 'วันหมดอายุ-บัตร',
+            dataIndex: 'date_card_exp'
+          },
+          {
+            title: 'เบอร์มือถือ',
+            dataIndex: 'phone'
+          },
+          {
+            title: 'Level-User',
+            dataIndex: 'user_level'
+          },
+        ]
+
+        const excel = new Excel()
+        excel
+          .addSheet('sheet1')
+          .addColumns(excelColumn)
+          .addDataSource(hr_excelData.data.data, {})
+          .addColumns([{ title: 'จำนวนทั้งหมด ' + hr_excelData.data.data.length }])
+          .saveAs('report-hr.xlsx')
+      }
+    } catch (error) {
+      console.error(error)
+    }
+  }
+
   return (
     <TableComponent columns={column} dataSource={data} topLeftButton={<ButtonGroup className="">
       {account?.profile?.role == 20 ? (
@@ -359,7 +433,7 @@ export default function TableProfileData(props) {
         </NavLink>
       ) : ("")}
 
-      <button className="btn-excel">
+      <button className="btn-excel" onClick={handleClick}>
         <RiFileExcel2Fill />
       </button>
     </ButtonGroup>} />

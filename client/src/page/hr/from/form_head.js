@@ -6,7 +6,7 @@ import styled from 'styled-components';
 import axios from 'axios';
 import swal from 'sweetalert2'
 import moment from 'moment'
-import { Checkbox, Divider } from 'antd';
+import { Checkbox } from 'antd';
 
 const Form_app_head = styled.div`
     border: 1px solid #e2e0e0;
@@ -97,6 +97,9 @@ const Form_app_head = styled.div`
                 width: 100%;
             }
             
+            .status_hr{
+                display: none;
+            }
         }
 
     }
@@ -299,11 +302,42 @@ export default function Form_App_head() {
                             </Form.Item>
 
                             <Form.Item
+                                name={'status_hr'}
+                                className={'status_hr'}
+                                label={'Status'}
+                            >
+                                <Select placeholder="กรุณาเลือกสถานะ">
+                                    <Select.Option value={'Pending'}>Pending</Select.Option>
+                                    <Select.Option value={'Reject'}>Reject</Select.Option>
+                                    <Select.Option value={'Postponed'}>Postponed</Select.Option>
+                                </Select>
+                            </Form.Item>
+
+                            <Form.Item
                                 name={'maihet'}
                                 className='form-item-useraction'
                                 label={'หมายเหตุ'}
                             >
                                 <Input placeholder="หมายเหตุ" />
+                            </Form.Item>
+
+                            <Form.Item
+                                name={'user_level'}
+                                className={'form-item-useraction'}
+                                label={'User-Level'}
+                            >
+                                <Select placeholder="กรุณาเลือกเลเวล">
+                                    <Select.Option value={'C'}>C</Select.Option>
+                                    <Select.Option value={'S'}>S</Select.Option>
+                                    <Select.Option value={'M'}>M</Select.Option>
+                                    <Select.Option value={'A'}>A</Select.Option>
+                                    <Select.Option value={'L'}>L</Select.Option>
+                                    <Select.Option value={'LA'}>LA</Select.Option>
+                                    <Select.Option value={'K'}>K</Select.Option>
+                                    <Select.Option value={'E'}>E</Select.Option>
+                                    <Select.Option value={'I'}>I</Select.Option>
+                                    <Select.Option value={'F'}>F</Select.Option>
+                                </Select>
                             </Form.Item>
 
                             <Form.Item className="select-user" name='action_user' >
@@ -351,7 +385,7 @@ export default function Form_App_head() {
 
                         </div>
 
-                        <div className='name-head'>ฝ่าย Head-HR</div>
+                        <div className='name-head'>ฝ่าย People-Head</div>
                         <div className='it-app'>
                             <Form.Item
                                 name={'status_head'}
@@ -375,6 +409,14 @@ export default function Form_App_head() {
                                 label={'name-hr'}
                             >
                                 <Input placeholder="ชื่อพนักงานทำสัญญา" />
+                            </Form.Item>
+
+                            <Form.Item
+                                name={'maihet_head'}
+                                className='form-item-useraction'
+                                label={'หมายเหตุ-หัวหน้า'}
+                            >
+                                <Input placeholder="หมายเหตุ-หัวหน้า" />
                             </Form.Item>
 
                         </div>
