@@ -392,7 +392,7 @@ export default function TableProfileData(props) {
 
       }
 
-      if (account?.profile?.role == 24 || account?.profile?.role == 23 || account?.profile?.role == 22) { //สิท พนักงาน ทุกคนที่เห็น
+      if (account?.profile?.role == 24 || account?.profile?.role == 23 || account?.profile?.role == 22 || account?.profile?.role == 2 || account?.profile?.role == 25) { //สิท พนักงาน ทุกคนที่เห็น
         columns.unshift({
           title: '',
           dataIndex: '',
@@ -429,7 +429,9 @@ export default function TableProfileData(props) {
       let hr_excelData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
 
       if (hr_excelData?.data?.status) {
+
         let excelColumn = [
+
           {
             title: 'ชื่อ-นามสกุล(TH)',
             dataIndex: 'name_th'
@@ -482,7 +484,27 @@ export default function TableProfileData(props) {
             title: 'Level-User',
             dataIndex: 'user_level'
           },
+          {
+            title: 'Status-User',
+            dataIndex: 'status_hr'
+          },
         ]
+
+        // const data = [
+        //   {
+        //     title: 'number',
+        //     dataIndex: 'number'
+        //   }
+        // ];
+        // for (let i = 0; i < hr_excelData.data.data.length; i++) {
+        //   data.unshift({
+        //     key: i,
+        //     number: `${i}`,
+        //   });
+        // }
+        // excelColumn = [...excelColumn, ...data]
+
+        // console.log(excelColumn)
 
         const excel = new Excel()
         excel

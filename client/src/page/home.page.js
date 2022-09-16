@@ -489,7 +489,7 @@ export default function HomePage() {
               <motion.h1 className="text"
                 initial={{ opacity: 0, y: '-40px' }}
                 animate={{ opacity: isBannerReady ? 1 : 0, y: isBannerReady ? 0 : '-40px' }}
-                transition={{ duration: 1 }}>WELLCOME TO EPOLTAL</motion.h1>
+                transition={{ duration: 1 }}>WELCOME TO EPOLTAL</motion.h1>
               <div className="btn-getstan">
                 <button className="btn-get">Getstandart</button>
               </div>

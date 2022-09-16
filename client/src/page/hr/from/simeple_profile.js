@@ -363,16 +363,15 @@ export default function FromHr_a() {
                 }
               ]}>
               <Select placeholder="กรุณาเลือกเลเวล">
-                <Select.Option value={'C'}>C</Select.Option>
-                <Select.Option value={'S'}>S</Select.Option>
-                <Select.Option value={'M'}>M</Select.Option>
-                <Select.Option value={'A'}>A</Select.Option>
-                <Select.Option value={'L'}>L</Select.Option>
-                <Select.Option value={'LA'}>LA</Select.Option>
-                <Select.Option value={'K'}>K</Select.Option>
-                <Select.Option value={'E'}>E</Select.Option>
-                <Select.Option value={'I'}>I</Select.Option>
-                <Select.Option value={'F'}>F</Select.Option>
+                <Select.Option value={'Collector'}>Collector</Select.Option>
+                <Select.Option value={'Supervisor'}>Supervisor</Select.Option>
+                <Select.Option value={'Manager'}>Manager</Select.Option>
+                <Select.Option value={'Admin'}>Admin</Select.Option>
+                <Select.Option value={'Lawyer'}>Lawyer</Select.Option>
+                <Select.Option value={'Lawyer assistant'}>Lawyer assistant</Select.Option>
+                <Select.Option value={'Execution'}>Execution</Select.Option>
+                <Select.Option value={'Accounting & Finance'}>Accounting & Finance</Select.Option>
+                <Select.Option value={'View Only'}>View Only</Select.Option>
               </Select>
             </Form.Item>
 

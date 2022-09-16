@@ -58,6 +58,8 @@ module.exports.UpdateProfile = async (req, res) => {
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }
 }
+
+
 module.exports.GetProfile = async (req, res) => {
     let userid = req.session.userid
     let user_hr = req.session.hr_acc
@@ -143,7 +145,6 @@ module.exports.GetFullProfile = async (req, res) => {
 
     return res.json({ status: true, data: hr_employees[0] })
 }
-
 
 module.exports.GetAdduser = async (req, res) => {
     let userid = req.session.userid
