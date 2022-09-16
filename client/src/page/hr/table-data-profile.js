@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import axios from "axios";
 import { FaEdit } from "react-icons/fa";
 import { FaUserEdit } from "react-icons/fa";
+import { FaSearchPlus } from "react-icons/fa"
 import { setData, setColumn } from '../../store/Hr_Reducer';
 import { Excel } from 'antd-table-saveas-excel'
 
@@ -128,6 +129,18 @@ const Btn_table = styled.div`
         align-items: center;
       }
 
+      .btn-viewuser{
+        font-size: 20px;
+        color: #FFFF;
+        background-color: #015352;
+        width: 35px;
+        height: 35px;
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
 `
 
 const Btn_edit_view = styled.div`
@@ -196,13 +209,14 @@ export default function TableProfileData(props) {
                 </Btn_table>
               </NavLink>
 
-              {/* <NavLink to={'/form-hr-a/' + record.id}>
+              <NavLink to={'/form-hr-user_id/' + record.id}>
                 <Btn_table>
-                  <div className="btn-adduser">
-                    <FaUserEdit />
+                  <div className="btn-viewuser">
+                    <FaSearchPlus className='icon-view' />
                   </div>
                 </Btn_table>
-              </NavLink> */}
+              </NavLink>
+
             </Btn_edit_view>
           )
         })
@@ -376,6 +390,26 @@ export default function TableProfileData(props) {
         ]
         columns = [...columns, ...column_approve]
 
+      }
+
+      if (account?.profile?.role == 24 || account?.profile?.role == 23 || account?.profile?.role == 22) { //สิท พนักงาน ทุกคนที่เห็น
+        columns.unshift({
+          title: '',
+          dataIndex: '',
+          width: 10,
+          render: (_, record) => (
+            <Btn_edit_view className='button-edit-view'>
+              <NavLink to={'/form-hr-user_id/' + record.id}>
+                <Btn_table>
+                  <div className="btn-viewuser">
+                    <FaSearchPlus className='icon-view' />
+                  </div>
+                </Btn_table>
+              </NavLink>
+
+            </Btn_edit_view>
+          )
+        })
       }
 
       // setcolumns(columns)

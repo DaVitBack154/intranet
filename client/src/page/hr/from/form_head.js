@@ -224,21 +224,21 @@ export default function Form_App_head() {
                                 name={'name_th'}
                                 label={'Full-name(TH)'}
                             >
-                                <Input placeholder="ระบุชื่อ-นามสกุล(th)" />
+                                <Input placeholder="ระบุชื่อ-นามสกุล(th)" readOnly />
                             </Form.Item>
                             <Form.Item
                                 className='form-item-tusername'
                                 name={'name_en'}
                                 label={'Full-name(EN)'}
                             >
-                                <Input placeholder="ระบุชื่อ-นามสกุล(en)" />
+                                <Input placeholder="ระบุชื่อ-นามสกุล(en)" readOnly />
                             </Form.Item>
                             <Form.Item
                                 className='form-item-nickname'
                                 name={'nick_name'}
                                 label={'Nick-Name'}
                             >
-                                <Input placeholder="ระบุชื่อเล่น" />
+                                <Input placeholder="ระบุชื่อเล่น" readOnly />
                             </Form.Item>
                             <Form.Item className="form-item-nickname" name={'start_date_work'} label={'วันเริ่มงาน'}>
                                 <DatePicker />
@@ -251,14 +251,14 @@ export default function Form_App_head() {
                                 name={'position'}
                                 label={'Position'}
                             >
-                                <Input placeholder="ระบุตำแหน่ง" />
+                                <Input placeholder="ระบุตำแหน่ง" readOnly />
                             </Form.Item>
                             <Form.Item
                                 name={'department'}
                                 className='form-item-tusername'
                                 label={'Department'}
                             >
-                                <Input placeholder="ระบุแผนก" />
+                                <Input placeholder="ระบุแผนก" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -266,7 +266,7 @@ export default function Form_App_head() {
                                 name={'address'}
                                 label={'ที่อยู่ตามบัตรประชาชน'}
                             >
-                                <Input.TextArea placeholder="ระบุที่อยู่" />
+                                <Input.TextArea placeholder="ระบุที่อยู่" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -274,7 +274,7 @@ export default function Form_App_head() {
                                 className='form-item-tusername'
                                 label={'เลขบัตรประชาชน'}
                             >
-                                <Input placeholder="ระบุเลขบัตรประชาชน" />
+                                <Input placeholder="ระบุเลขบัตรประชาชน" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -282,7 +282,7 @@ export default function Form_App_head() {
                                 className='form-item-tusername'
                                 label={'เบอร์มือถือ'}
                             >
-                                <Input placeholder="ระบุเบอร์มือถือ" />
+                                <Input placeholder="ระบุเบอร์มือถือ" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -290,7 +290,7 @@ export default function Form_App_head() {
                                 className='form-item-tusername'
                                 label={'วันออกบัตร'}
                             >
-                                <Input placeholder="ระบุวันออกบัตร" />
+                                <Input placeholder="ระบุวันออกบัตร" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -298,7 +298,7 @@ export default function Form_App_head() {
                                 className='form-item-tusername'
                                 label={'วันหมดอายุบัตร'}
                             >
-                                <Input placeholder="ระบุวันหมดอายุบัตร" />
+                                <Input placeholder="ระบุวันหมดอายุบัตร" readOnly />
                             </Form.Item>
 
                             <Form.Item
@@ -318,7 +318,7 @@ export default function Form_App_head() {
                                 className='form-item-useraction'
                                 label={'หมายเหตุ'}
                             >
-                                <Input placeholder="หมายเหตุ" />
+                                <Input placeholder="หมายเหตุ" readOnly />
                             </Form.Item>
 
                             <Form.Item
