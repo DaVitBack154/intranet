@@ -28,8 +28,8 @@ module.exports.CreateProfile = async (req, res) => {
     }
 
 
-    // Mailer.sendFirst_Emp('manit.c@chase.co.th', body)
-    Mailer.sendFirst_Emp('waruen.css@gmail.com', body)
+    Mailer.sendFirst_Emp('manit.c@chase.co.th', body)
+    // Mailer.sendFirst_Emp('waruen.css@gmail.com', body)
     return res.json({ status: true, message: 'Successful create emplyee profile' })
 }
 module.exports.UpdateProfile = async (req, res) => {
@@ -52,7 +52,9 @@ module.exports.UpdateProfile = async (req, res) => {
     } else {
         // console.log(body)
         if (body.status_hr == 'Postponed' || body.status_hr == 'Reject') {
-            Mailer.sendExtCase_iri('waruen.css@gmail.com', body)
+            Mailer.sendExtCase_iri('manit.c@chase.co.th', body)
+            Mailer.sendExtCase_iri('thunwarat.p@chase.co.th', body)
+            Mailer.sendExtCase_iri('IT@chase.co.th', body)
             //send email
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
@@ -306,14 +308,14 @@ module.exports.UpdateHead_hr = async (req, res) => {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
         if (body.status_head == 'Approve') {
-            Mailer.sendApp_IT('waruen.css@gmail.com', body)
-            Mailer.sendApp_Hr_ct('waruen.css@gmail.com', body)
-            Mailer.sendApp_hr_img('waruen.css@gmail.com', body)
+            Mailer.sendApp_IT('IT@chase.co.th', body)
+            Mailer.sendApp_Hr_ct('thunwarat.p@chase.co.th', body)
+            Mailer.sendApp_hr_img('chayapol.b@chase.co.th', body)
             //send email
             //mail
         } else if (body.status_head == 'Reject') {
             // Mailer.sendExtCase('thananun.p@chase.co.th', body)
-            Mailer.sendExtCase_Haed('waruen.css@gmail.com', body)
+            Mailer.sendExtCase_Haed('thananun.p@chase.co.th', body)
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }
