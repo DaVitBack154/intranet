@@ -38,6 +38,7 @@ module.exports.updateProfile = async (id, body) => {
 }
 
 module.exports.getEmployeeByID = async (type_dep) => {
+
     let parameters = [
         { name: "type_dep", sqltype: mssql.Int, value: type_dep },
     ]

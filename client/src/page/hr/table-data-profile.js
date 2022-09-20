@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import { RiFileExcel2Fill } from "react-icons/ri";
+import { RiFileExcel2Fill, RiFilePdfFill } from "react-icons/ri";
 import { IoMdAddCircle } from "react-icons/io";
 import Table from "../../components/table";
 import { NavLink } from "react-router-dom"
@@ -425,12 +425,27 @@ export default function TableProfileData(props) {
   }, [account])
 
   const handleClick = async () => {
+
     try {
       let hr_excelData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
 
+      console.log(hr_excelData)
+
       if (hr_excelData?.data?.status) {
 
+        let count = 1;
+        let excelData = hr_excelData.data.data;
+
+        excelData.forEach(data => {
+          data.count = count;
+          count++;
+        })
+
         let excelColumn = [
+          {
+            title: 'ลำดับ',
+            dataIndex: 'count'
+          },
 
           {
             title: 'ชื่อ-นามสกุล(TH)',
@@ -510,8 +525,8 @@ export default function TableProfileData(props) {
         excel
           .addSheet('sheet1')
           .addColumns(excelColumn)
-          .addDataSource(hr_excelData.data.data, {})
-          .addColumns([{ title: 'จำนวนทั้งหมด ' + hr_excelData.data.data.length }])
+          .addDataSource(excelData, {})
+          .addColumns([{ title: 'จำนวนทั้งหมด ' + excelData.length }])
           .saveAs('report-hr.xlsx')
       }
     } catch (error) {
