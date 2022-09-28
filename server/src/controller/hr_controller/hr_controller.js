@@ -3,6 +3,7 @@ const Mailer = require('../../Utils/Mailer')
 
 module.exports.CreateProfile = async (req, res) => {
     let userid = req.session.userid
+    console.log("userid => ", userid)
     let user_hr = req.session.hr_acc
 
     if (!req.session.isLogin) {
@@ -14,6 +15,7 @@ module.exports.CreateProfile = async (req, res) => {
     }
 
     let body = req.body
+    console.log("body => ", body)
 
 
     let duplicate_id_card = await hr_model.GetProfileByIDCard(body.idcard_no);
@@ -28,8 +30,8 @@ module.exports.CreateProfile = async (req, res) => {
     }
 
 
-    Mailer.sendFirst_Emp('manit.c@chase.co.th', body)
-    // Mailer.sendFirst_Emp('waruen.css@gmail.com', body)
+    // Mailer.sendFirst_Emp('manit.c@chase.co.th', body)
+    Mailer.sendFirst_Emp('waruen.css@gmail.com', body)
     return res.json({ status: true, message: 'Successful create emplyee profile' })
 }
 module.exports.UpdateProfile = async (req, res) => {
@@ -74,7 +76,7 @@ module.exports.GetProfile = async (req, res) => {
     }
 
     let { id } = req.params;
-    let hr_employees = await hr_model.GetProfile(userid, id)
+    let hr_employees = await hr_model.GetProfile()
 
     if (hr_employees.length < 1) {
         return res.json({ status: false, message: 'Failed to getemplyee profile' })
@@ -308,14 +310,16 @@ module.exports.UpdateHead_hr = async (req, res) => {
         return res.json({ status: false, message: "UPDATE FAILED" });
     } else {
         if (body.status_head == 'Approve') {
-            Mailer.sendApp_IT('IT@chase.co.th', body)
-            Mailer.sendApp_Hr_ct('thunwarat.p@chase.co.th', body)
-            Mailer.sendApp_hr_img('chayapol.b@chase.co.th', body)
+            // Mailer.sendApp_IT('IT@chase.co.th', body)
+            // Mailer.sendApp_Hr_ct('thunwarat.p@chase.co.th', body)
+            // Mailer.sendApp_hr_img('chayapol.b@chase.co.th', body)
+            Mailer.sendApp_IT('waruen.css@gmail.com', body)
             //send email
             //mail
         } else if (body.status_head == 'Reject') {
             // Mailer.sendExtCase('thananun.p@chase.co.th', body)
-            Mailer.sendExtCase_Haed('thananun.p@chase.co.th', body)
+            // Mailer.sendExtCase_Haed('thananun.p@chase.co.th', body)
+            Mailer.sendApp_IT('waruen.css@gmail.com', body)
         }
         return res.json({ status: true, message: "UPDATE SUCCESS" });
     }

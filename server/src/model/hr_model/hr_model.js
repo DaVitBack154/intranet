@@ -17,7 +17,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
         { name: "date_card_start", sqltype: mssql.VarChar, value: body.date_card_start },
         { name: "date_card_exp", sqltype: mssql.VarChar, value: body.date_card_exp },
         { name: "action_user", sqltype: mssql.VarChar, value: body.action_user },
-        { name: "create_user_name", sqltype: mssql.Int, value: create_user_name },
+        { name: "create_user_name", sqltype: mssql.VarChar, value: create_user_name },
         { name: "maihet", sqltype: mssql.VarChar, value: body.maihet },
         { name: "user_level", sqltype: mssql.VarChar, value: body.user_level },
         { name: "img_simple", sqltype: mssql.VarChar, value: body.img_simple },
@@ -42,6 +42,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
     `
 
     let result = await query(sql, parameters)
+    console.log('result => ', result)
     return result
 }
 
@@ -93,20 +94,22 @@ module.exports.UpdateProfile = async (id, body) => {
     return result
 }
 //ดีงข้อมูลทั้งหมด
-module.exports.GetProfile = async (id) => {
-    let parameters = [
-        { name: "id", sqltype: mssql.Int, value: id },
-    ]
+module.exports.GetProfile = async () => {
+    // module.exports.GetProfile = async (id) => {
+    // console.log("id => ", id)
+    // let parameters = [
+    //     { name: "id", sqltype: mssql.VarChar, value: id },
+    // ]
     let sql = `
-        SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work, h.status_hr,
-        h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
-        h.action_user, u.TUserName, h.maihet, h.img_simple, h.maihet_head, h.status_it, h.sign_it, h.status_contract, h.sign_contract, 
-        h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level, h.status_img, h.sign_img
-        FROM tb_hr h    
-        Left join tb_users u On u.id = h.create_user_name
-        ORDER BY id DESC
+    SELECT h.id, h.name_th, h.name_en, h.nick_name, FORMAT(h.start_date_work, 'yyyy-MM-dd') as start_date_work, h.status_hr,
+    h.sign_date_work, h.position, h.department, h.address, h.idcard_no, h.phone, h.date_card_start, h.date_card_exp,
+    h.action_user, h.maihet, h.img_simple, h.maihet_head, h.status_it, h.sign_it, h.status_contract, h.sign_contract, 
+    h.status_head, h.sign_head, h.sang_kut, h.product_ct, h.num_emp, h.user_level, h.status_img, h.sign_img
+    FROM tb_hr h    
+    ORDER BY id DESC
     `
-    let result = await query(sql, parameters)
+    let result = await query(sql, [])
+
     return result
 }
 //ดึงข้อมูลจาก from

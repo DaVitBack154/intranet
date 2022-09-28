@@ -8,7 +8,7 @@ import { Excel } from 'antd-table-saveas-excel'
 import { RiFileExcel2Fill } from 'react-icons/ri'
 import { TbReportSearch } from 'react-icons/tb'
 import { useSelector, useDispatch } from 'react-redux'
-import { setColumnit } from '../../store/ListAccountReducer'
+import { setColumnit, setColumnbuilding } from '../../store/ListAccountReducer'
 
 const ButtonGroup_it = styled.div`
   display: flex;
@@ -37,11 +37,16 @@ const ButtonGroup_it = styled.div`
 export default function TableData(props) {
   const dispatch = useDispatch()
   const datait = useSelector((state) => state.Listaccount.datait)
-  const columns = useSelector((state) => state.Listaccount.columnit)
+  const columnsIt = useSelector((state) => state.Listaccount.columnit)
+
+  const data_building = useSelector((state) => state.Listaccount.databuilding)
+  const columnsBuilding = useSelector((state) => state.Listaccount.columbuilding)
+
 
   useEffect(() => {
     const init = async () => {
-      let column = [
+
+      let columnIt = [
         {
           fixed: 'left',
           title: '',
@@ -127,24 +132,24 @@ export default function TableData(props) {
               </a>
             )
         },
-        {
-          title: 'Approve',
-          dataIndex: 'acc_approve',
-          render: (_, record) => {
-            let status = null
-            if (!record?.acc_approve || record?.acc_approve === 0) status = 'not-approve'
-            if (record?.acc_approve && record?.acc_approve === 1) status = 'approve'
-            if (record?.acc_approve && record?.acc_approve === 2) status = 'reject'
+        // {
+        //   title: 'Approve',
+        //   dataIndex: 'acc_approve',
+        //   render: (_, record) => {
+        //     let status = null
+        //     if (!record?.acc_approve || record?.acc_approve === 0) status = 'not-approve'
+        //     if (record?.acc_approve && record?.acc_approve === 1) status = 'approve'
+        //     if (record?.acc_approve && record?.acc_approve === 2) status = 'reject'
 
-            return (
-              <div div className="table-button-group">
-                <button className={'button-detail status-' + status} onClick={() => { }}>
-                  <b>{status}</b>
-                </button>
-              </div>
-            )
-          }
-        },
+        //     return (
+        //       <div div className="table-button-group">
+        //         <button className={'button-detail status-' + status} onClick={() => { }}>
+        //           <b>{status}</b>
+        //         </button>
+        //       </div>
+        //     )
+        //   }
+        // },
         {
           title: 'ผู้อนุมัติ',
           dataIndex: 'acc_name'
@@ -169,11 +174,40 @@ export default function TableData(props) {
         }
       ]
 
-      dispatch(setColumnit(column))
+      let columnBulding = [
+        {
+          fixed: 'left',
+          title: '',
+          dataIndex: '',
+          width: 75,
+          render: (_, record) => (
+            <NavLink to={'/form-acc/' + record.id + '?type_id=' + record.type_id}>
+              <button className={'button-edit'}>
+                <AiTwotoneEdit />
+              </button>
+            </NavLink>
+          )
+        },
+        {
+          title: 'เลขที่แจ้งซ่อม',
+          dataIndex: 'ticket_no',
+          sorter: (a, b) => {
+            a = a.ticket_no || ''
+            b = b.ticket_no || ''
+            return a.localeCompare(b)
+          }
+        },
+      ]
+
+      if (props.type === 'it') {
+        dispatch(setColumnit(columnIt))
+      } else if (props.type === 'building') {
+        dispatch(setColumnbuilding(columnBulding))
+      }
     }
 
     init()
-  }, [datait])
+  }, [datait, data_building])
 
   const handleClick = async () => {
     try {
@@ -255,8 +289,8 @@ export default function TableData(props) {
   return (
     <>
       <Table
-        dataSource={datait}
-        columns={columns}
+        dataSource={props.type === 'it' ? datait : data_building}
+        columns={props.type === 'it' ? columnsIt : columnsBuilding}
         topLeftButton={
           <ButtonGroup_it>
             {props?.user?.role === 4 ? (

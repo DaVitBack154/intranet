@@ -232,7 +232,6 @@ export default function TableBuilding(props) {
 
   return (
     <>
-
       <Table dataSource={props.data} columns={columns} topLeftButton={
         <ButtonGroup_it>
           {props?.user?.role === 2 || props?.user?.role === 3 ? (

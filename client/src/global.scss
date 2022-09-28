@@ -116,3 +116,18 @@ button {
   padding: 8px;
   border-radius: 10px;
 }
+
+.up-down-animation {
+  animation: up-down 5s infinite alternate;
+}
+@keyframes up-down {
+  0% {
+    transform: translateY(-20px);
+  }
+  50% {
+    transform: translateX(-20px);
+  }
+  100% {
+    transform: translateY(20px);
+  }
+}

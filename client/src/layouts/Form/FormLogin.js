@@ -4,7 +4,6 @@ import swal from 'sweetalert2'
 import { BsFillPersonCheckFill } from 'react-icons/bs'
 import { FaUnlockAlt } from 'react-icons/fa'
 import styled from 'styled-components'
-import { useEffect } from 'react'
 
 const FormLoginComponent = styled.div`
   background-color: #fff;
@@ -70,6 +69,7 @@ export default function FormLogin() {
         confirmButtonText: 'X'
       })
     } else {
+      console.log(resp.data.data)
       if (resp?.data?.data?.role === 5) {
         window.location.href = '/repair-po'
       } else if (resp?.data?.data?.role === 6) {
@@ -92,7 +92,7 @@ export default function FormLogin() {
         <h1 className="title">Sign in</h1>
         <FormComponent className="login-form-wrapper" form={form} onFinish={onFinish} layout="vertical" size="large">
           <Form.Item
-            name={'EUsername'}
+            name={'EUserName'}
             rules={[
               {
                 required: true,
@@ -102,7 +102,7 @@ export default function FormLogin() {
             <Input className="input-login" prefix={<BsFillPersonCheckFill className="icon-login" />} placeholder="Username" />
           </Form.Item>
           <Form.Item
-            name={'EPassword'}
+            name={'UserPassword'}
             rules={[
               {
                 required: true,

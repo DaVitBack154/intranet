@@ -187,6 +187,7 @@ export default function TableBuilding(props) {
   const handleClick = async () => {
     try {
       let repairLogsData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list/building-logs', { withCredentials: true })
+      console.log('repairLogsData.data.data => ', repairLogsData.data.data)
 
       if (repairLogsData?.data?.status) {
         let excelColumn = [
@@ -276,7 +277,7 @@ export default function TableBuilding(props) {
 
               try {
                 let updateResult = await axios.put(
-                  process.env.REACT_APP_SERVER_ENDPOINT+'/api/repair_list/' + selectedRecord.id + '/update-rating',
+                  process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list/' + selectedRecord.id + '/update-rating',
                   {
                     rating: rating,
                     comment_rating: comment_ratting
@@ -309,9 +310,9 @@ export default function TableBuilding(props) {
                     //   title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
                     //   confirmButtonText: 'OK'
                     // }).then((result) => {
-                      // if (result.isConfirmed) {
-                        window.location.href = '/login'
-                      // }
+                    // if (result.isConfirmed) {
+                    window.location.href = '/login'
+                    // }
                     // })
                   }
                 } else {

@@ -126,14 +126,14 @@ export default function SideBar(props) {
         const init = async () => {
 
             let menusItem = [{
-                key: 'home',
+                key: '',
                 icon: <FaHome className='icon-sli' />,
                 label: 'Home',
-                children: [
-                    { key: '#table-team', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
-                    { key: '#wisaitas', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
-                    { key: '#executive', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
-                ]
+                // children: [
+                //     { key: '#table-team', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
+                //     { key: '#wisaitas', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
+                //     { key: '#executive', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
+                // ]
             },
             {
                 key: 'repair',
@@ -154,6 +154,7 @@ export default function SideBar(props) {
             if (!props.disableUserProfile) {
                 try {
                     let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/user/profile', { withCredentials: true })
+                    console.log(resp.data.data)
 
                     if (resp?.data?.status) {
                         dispatch(setAccount(resp.data.data))

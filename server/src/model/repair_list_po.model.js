@@ -2,6 +2,7 @@ const query = require("./_database");
 const mssql = require("mssql");
 
 module.exports.getRepairPoItList = async (id) => {
+  console.log(id)
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
   SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
@@ -29,7 +30,7 @@ module.exports.getRepairPoItList = async (id) => {
 };
 
 module.exports.getRepairPoBuildingList = async (id) => {
-  let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
+  let parameters = [{ name: "id", sqltype: mssql.Char, value: id }];
   let sql = `
   SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, po_approve, up.TUserName as po_name, po_number
@@ -84,7 +85,7 @@ module.exports.getRepairPoDetail = async (id) => {
 
 module.exports.updateRepairPo = async (userid, id, body) => {
   let parameters = [
-    { name: "po_id", sqltype: mssql.Int, value: userid },
+    { name: "po_id", sqltype: mssql.Char, value: userid },
     { name: "po_approve", sqltype: mssql.Int, value: body?.po_approve },
     { name: "po_number", sqltype: mssql.VarChar, value: body?.po_number },
     { name: "po_date", sqltype: mssql.VarChar, value: body?.po_date },

@@ -6,7 +6,7 @@ module.exports.getReportRepair = async (year, month, type_id, admin_id) => {
     { name: "month", sqltype: mssql.Int, value: parseInt(month) },
     { name: "year", sqltype: mssql.Int, value: parseInt(year) },
     { name: "type_id", sqltype: mssql.Int, value: type_id },
-    { name: "admin_id", sqltype: mssql.Int, value: admin_id },
+    { name: "admin_id", sqltype: mssql.Char, value: admin_id },
   ];
   let sql = `
     SELECT
@@ -47,7 +47,7 @@ module.exports.GetReportAdminRating = async (year, month, type_id, admin_id) => 
   let parameters = [
     { name: "month", sqltype: mssql.Int, value: parseInt(month) },
     { name: "year", sqltype: mssql.Int, value: parseInt(year) },
-    { name: "admin_id", sqltype: mssql.Int, value: admin_id },
+    { name: "admin_id", sqltype: mssql.Char, value: admin_id },
     { name: "type_id", sqltype: mssql.Int, value: type_id },
   ];
   let sql = `

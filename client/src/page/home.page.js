@@ -42,6 +42,14 @@ const Contentportal = styled.div`
         left: 370px;
         font-family: "Raleway", sans-serif;
       }
+      
+      @media only screen and (min-width: 1900px) {
+        .text{
+          left: 650px;
+        }
+      }
+
+
       .btn-getstan{
 
         .btn-get{
@@ -276,117 +284,209 @@ const Contentportal = styled.div`
       height: 280px;
       color: '#fff',
      }
+
+     .chase-voc{
+      background-color: #015352;
+      width: 100%;
+
+        .group-voc{
+          /* background-color: red; */
+          display: flex;
+          .box1-voc{
+            width: 40%;
+            /* background-color: red; */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            .group-box1{
+              .flex-box1{
+                display: flex ;
+
+                .red-img{
+                  width: 60px;
+                  max-width: fit-content;
+                  position: absolute;
+                  left: 65px;
+                }
+              }
+              .text-content{
+              font-size: 60px;
+              font-weight: bold;
+              color: #FFFF;
+              }
+
+              .btn-link-voc{
+                
+                
+                .btn-link{
+                  margin-left: 10px;
+                  border-radius: 10px;
+                  opacity: 0.8;
+                  padding: 10px;
+                  color: #FFFF;
+                  border: 1 px solid gray;
+                  width: 250px;
+                  height: 70px;
+                  display: flex;
+                  justify-content: center;
+                  align-items: center;
+                  background-color: #113d3d;
+                  border: none;
+                  font-size: 20px;
+                }
+              }
+
+            }
+         
+          }
+          .box2-voc{
+            width: 60%;
+            /* background-color: green; */
+
+            .img-box2{
+              max-width: 100%;
+              padding: 20px;
+              display: flex;
+              justify-content: center;
+              align-items: center;
+              .img-voc{
+                max-width: 75%;
+                height: auto;
+              }
+            }
+          }
+       
+        }
+     }
+
+     .towwer-bran{
+      width: 100%;
+      background: linear-gradient(rgba(40, 58, 90, 0.9), rgba(40, 58, 90, 0.9)),
+      url("chser.png") fixed center top;
+      background-size: cover;
+      padding: 120px 0;
+
+      .content-tower{
+        color: #FFFF;
+        text-align: center;
+        font-size: 20px;
+        font-weight: bold;
+      }
+
+     }
+
 `;
 
 
-const HeadCard = styled.div`
-  margin-top: 30px;
-  margin-bottom: 20px;
-  .border-agent{
-    
-    background-color: #F3F5FA;
+// const HeadCard = styled.div`
+//   margin-top: 30px;
+//   margin-bottom: 20px;
+//   .border-agent{
 
-    .head-agent{
+//     background-color: #F3F5FA;
 
-        .executive{
-          font-size: 35px;
-          font-weight: bold;
-          color: #015352;
-          text-align: center;
-          padding: 15px 10px;
-        }
-    }
-    
+//     .head-agent{
 
-    .body-agent{
-      .box1-agent-flex,.box2-agent-flex{
-        display: flex;
-        
-        
+//         .executive{
+//           font-size: 35px;
+//           font-weight: bold;
+//           color: #015352;
+//           text-align: center;
+//           padding: 15px 10px;
+//         }
+//     }
 
-          .box1, .box2, .box3, .box4{
-          width: 50%;
-          display: flex;
-          height: 300px;
-          margin: 10px 7px;
-          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
-          background-color: #FFFF;
-         
-          
 
-            .img{
-             
-              width: 37%;
-              display: flex;
-              justify-content: center;
-              
-                .img-card{
-                  width:180px;
-                  height: 170px;
-                  border-radius: 100%;
-                  margin-top: 50px;
-                  &:hover{
-                    transform: scale(1.3);
-                    transition: transform 0.25s;
+//     .body-agent{
+//       .box1-agent-flex,.box2-agent-flex{
+//         display: flex;
 
-                  }
-                }
-            }
-            .text{
-              width: 60%;
-              padding: 15px;
-             
-              .border-text{
-                
-              }
-              
-              .name-agen{
-                font-weight: bold;
-                color: #2C4964;
-                font-size: 30px;
-              }
-              .name-agen-k{
-                font-weight: bold;
-                color: #2C4964;
-                font-size: 25px;
-              }
-              .position-agen{
-                color: #FD7D00;
-                position: relative;
-                top: -15px;
-              }
-              .card-agent{
-                width: 25px;
-                background-color: #2C4964;
-                border: none;
-                position: relative;
-                left: -165px;
-                top: -40;
-              }
-              .email{
-                display: flex;
-                .icon-mail{
-                  font-size: 30px;
-                }
-                .name-mail{
-                  font-size: 20px;
-                  position: relative;
-                  top: 1px;
-                  margin-left: 20px;
-                }
-                
-              }
 
-              
-            }
-          }
-      }
-      
-    }
-  }
-  
-  
-`
+
+//           .box1, .box2, .box3, .box4{
+//           width: 50%;
+//           display: flex;
+//           height: 300px;
+//           margin: 10px 7px;
+//           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
+//           background-color: #FFFF;
+
+
+
+//             .img{
+
+//               width: 37%;
+//               display: flex;
+//               justify-content: center;
+
+//                 .img-card{
+//                   width:180px;
+//                   height: 170px;
+//                   border-radius: 100%;
+//                   margin-top: 50px;
+//                   &:hover{
+//                     transform: scale(1.3);
+//                     transition: transform 0.25s;
+
+//                   }
+//                 }
+//             }
+//             .text{
+//               width: 60%;
+//               padding: 15px;
+
+//               .border-text{
+
+//               }
+
+//               .name-agen{
+//                 font-weight: bold;
+//                 color: #2C4964;
+//                 font-size: 30px;
+//               }
+//               .name-agen-k{
+//                 font-weight: bold;
+//                 color: #2C4964;
+//                 font-size: 25px;
+//               }
+//               .position-agen{
+//                 color: #FD7D00;
+//                 position: relative;
+//                 top: -15px;
+//               }
+//               .card-agent{
+//                 width: 25px;
+//                 background-color: #2C4964;
+//                 border: none;
+//                 position: relative;
+//                 left: -165px;
+//                 top: -40;
+//               }
+//               .email{
+//                 display: flex;
+//                 .icon-mail{
+//                   font-size: 30px;
+//                 }
+//                 .name-mail{
+//                   font-size: 20px;
+//                   position: relative;
+//                   top: 1px;
+//                   margin-left: 20px;
+//                 }
+
+//               }
+
+
+//             }
+//           }
+//       }
+
+//     }
+//   }
+
+
+// `
 
 const Profileim = styled.div`
   border-radius: 50px;
@@ -489,10 +589,10 @@ export default function HomePage() {
               <motion.h1 className="text"
                 initial={{ opacity: 0, y: '-40px' }}
                 animate={{ opacity: isBannerReady ? 1 : 0, y: isBannerReady ? 0 : '-40px' }}
-                transition={{ duration: 1 }}>WELCOME TO EPOLTAL</motion.h1>
-              <div className="btn-getstan">
+                transition={{ duration: 1 }}>WELCOME TO EPORTAL</motion.h1>
+              {/* <div className="btn-getstan">
                 <button className="btn-get">Getstandart</button>
-              </div>
+              </div> */}
             </div>
           </motion.div>
           {/* คอนเท้นหัวบน รูปภาพ */}
@@ -508,7 +608,7 @@ export default function HomePage() {
             </div>
           </div>
           {/* รูปภาพบริษัท ในเครือข่าย */}
-          <br /><br />
+
 
 
           {/* หัวข้อ service ทั้งหมด */}
@@ -610,10 +710,43 @@ export default function HomePage() {
             </div>
           </div>
           {/* หัวข้อ service ทั้งหมด */}
-          <br />
+
+          {/* รูปภาพตึก */}
+          <div className="towwer-bran">
+            <div className="container" data-aos="zoom-in">
+              <div className="content-tower">
+                ยังคิด content ไปโดยอัตโนมัติตามเงื่อนไขที่ได้กำหนดไว้ก่อนแล้ว
+              </div>
+            </div>
+          </div>
+          {/* รูปภาพบริษัท ในเครือข่าย */}
+
+          {/* หัวข้อการทำ VOS แบบ เฟสบุค */}
+          <div className="chase-voc">
+            <div className="group-voc">
+              <div className="box1-voc">
+                <div className="group-box1">
+                  <div className="flex-box1">
+                    <h1 className="text-content">CHASE VOC</h1>
+                    <img src="red.png" alt="" className="red-img" />
+                  </div>
+
+                  <div className="btn-link-voc">
+                    <button className="btn-link">Comming-Soon</button>
+                  </div>
+                </div>
+              </div>
+              <div className="box2-voc">
+                <div className="img-box2">
+                  <img src="/hero-img.png" alt="" className="img-voc up-down-animation" />
+                </div>
+              </div>
+            </div>
+          </div>
+          {/* หัวข้อการทำ VOS แบบ เฟสบุค */}
 
           {/* ในส่วนของผู้บริหาร  */}
-          <HeadCard >
+          {/* <HeadCard >
             <div className="border-agent" id={"executive"}>
               <div className="head-agent">
                 <div className="executive">
@@ -702,7 +835,7 @@ export default function HomePage() {
               </div>
 
             </div>
-          </HeadCard>
+          </HeadCard> */}
           {/* ในส่วนของผู้บริหาร  */}
           <br /><br />
 
@@ -714,7 +847,7 @@ export default function HomePage() {
 
 
           {/* ข้อมูลฝ่ายไอที */}
-          <div className="back-group-team">
+          {/* <div className="back-group-team">
             <div className="head-member">
               <div>CONTRACT WITH EMPLOYEE</div>
               <hr />
@@ -732,7 +865,7 @@ export default function HomePage() {
             <div className="department-team">
               <Table className="table-team" id={'table-team'} columns={columns} dataSource={userData} />
             </div>
-          </div>
+          </div> */}
           {/* ข้อมูลฝ่ายไอที */}
 
 

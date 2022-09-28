@@ -22,10 +22,15 @@ module.exports.getRepairItListLogs = async (req, res) => {
   // let userid = 9
   let { id } = req.params;
   let userid = req.session.userid;
+
+  console.log("req.params => ", req.params)
+  console.log("userid => ", userid)
+
   if (!req.session.isLogin) {
     return res.status(401).json({ status: false, message: "unauthorize" });
   }
   let userRoleId = req.session.role_id;
+  console.log("userRoleId => ", userRoleId)
 
   let details = await repair_listModel.getRepairItListLogs(
     userid,

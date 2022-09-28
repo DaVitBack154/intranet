@@ -22,7 +22,7 @@ module.exports.getRepairAccItList = async (id) => {
   Left join tb_type t ON t.id=rt.type_id
   Left join tb_branch b ON b.id = rt.branch_id
   WHERE rt.type_id = 1 
-  AND (po_approve = 1  and  expence_id in (2,3,4)) or (fin_approve = 1 and expence_id in (6))
+  AND (po_approve = 1  and  expence_id in (2,3,4) or fin_approve = 1 and expence_id in (6))
     `;
 
   if (id) {
@@ -96,7 +96,7 @@ module.exports.getRepairAccDetail = async (id) => {
 
 module.exports.updateRepairAcc = async (userid, id, body) => {
   let parameters = [
-    { name: "acc_id", sqltype: mssql.Int, value: userid },
+    { name: "acc_id", sqltype: mssql.Char, value: userid },
     { name: "acc_approve", sqltype: mssql.Int, value: body?.acc_approve },
     { name: "acc_acc", sqltype: mssql.VarChar, value: body?.acc_acc },
     { name: "acc_date", sqltype: mssql.VarChar, value: body?.acc_date },

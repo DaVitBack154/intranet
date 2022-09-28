@@ -11,6 +11,8 @@ import { FaUserEdit } from "react-icons/fa";
 import { FaSearchPlus } from "react-icons/fa"
 import { setData, setColumn } from '../../store/Hr_Reducer';
 import { Excel } from 'antd-table-saveas-excel'
+import moment from 'moment'
+import { DatePicker } from 'antd';
 
 const ButtonGroup = styled.div`
   display: flex;
@@ -154,6 +156,19 @@ export default function TableProfileData(props) {
   const dispatch = useDispatch()
   const data = useSelector((state) => state.hr_data.data)
   const column = useSelector((state) => state.hr_data.column)
+  const [selectedMonth, setSelectedMonth] = useState(null)
+
+  /**
+ * @param {import('moment').Moment | null} date 
+ */
+  const handleSelectedMonthChanage = date => {
+    console.log('date => ', date)
+    if (date) {
+      setSelectedMonth(date.get('M'))
+    } else setSelectedMonth(null)
+  }
+
+  console.log('selectedMonth => ', selectedMonth)
 
   useEffect(() => {
     const init = async () => {
@@ -416,6 +431,7 @@ export default function TableProfileData(props) {
       dispatch(setColumn(columns))
 
       let hrResp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
+      console.log("hrResp.data.data => ", hrResp.data.data)
       if (hrResp?.data?.status) {
         dispatch(setData(hrResp.data.data))
       }
@@ -429,15 +445,21 @@ export default function TableProfileData(props) {
     try {
       let hr_excelData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/hr/get-profile', { withCredentials: true })
 
-      console.log(hr_excelData)
 
       if (hr_excelData?.data?.status) {
 
         let count = 1;
-        let excelData = hr_excelData.data.data;
+        let excelData = hr_excelData.data.data.filter(data => {
+          if (selectedMonth !== null) {
+            return moment(data.start_date_work).get("M") === selectedMonth
+          } else return true
+        });
+
+        console.log('excelData => ', excelData)
 
         excelData.forEach(data => {
           data.count = count;
+          data.sign_date_work = moment(data.sign_date_work).format('YYYY-MM-DD')
           count++;
         })
 
@@ -547,6 +569,7 @@ export default function TableProfileData(props) {
       <button className="btn-excel" onClick={handleClick}>
         <RiFileExcel2Fill />
       </button>
+      <DatePicker onChange={handleSelectedMonthChanage} picker="month" />
     </ButtonGroup>} />
   )
 }

@@ -1,15 +1,12 @@
 import SideBar from "../../components/sidebar.components";
 import Navbar from "../../components/navbar.compoenets";
 import styled from "styled-components";
-import { IoIosDocument } from "react-icons/io";
-import Card from "../../components/card";
 import { NavLink, useLocation } from "react-router-dom";
 import { Tabs } from "antd";
 import TableBuilding from "./table-building";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
-import Swal from "sweetalert2";
 import TableIt from "./table-it";
 import { useSelector } from "react-redux";
 
@@ -97,7 +94,7 @@ export default function RepairSystemPO() {
                     setBuildData(buildingtResp.data.data);
                 }
             } catch (error) {
-                if (error.response.status == 401) {
+                if (error.response.status === 401) {
                     // Swal.fire({
                     //     title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
                     //     confirmButtonText: 'OK',
@@ -114,43 +111,16 @@ export default function RepairSystemPO() {
         const query = new URLSearchParams(search);
         const queryTab = query.get('tab');
         if (!currentTab) {
-            setCurrentTab(queryTab == '2' ? '2' : '1')
+            setCurrentTab(queryTab === '2' ? '2' : '1')
         }
-    }, [currentTab]);
+    }, [currentTab, search]);
 
     return (
         <RepairSystemPOComponent className="repair-system">
             <SideBar />
             <div className="content">
                 <Navbar />
-                <div className="repair-panel">
-                    <div className="panel-group-card">
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-ทั้งหมด"
-                            icon={<IoIosDocument />}
-                            color="#0B5ED7"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Process"
-                            icon={<IoIosDocument />}
-                            color="#d73747"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Success"
-                            icon={<IoIosDocument />}
-                            color="#149759"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Pending"
-                            icon={<IoIosDocument />}
-                            color="#FFCA2C"
-                        />
-                    </div>
-                </div>
+
                 <br />
                 <div className="repair-table">
                     {user?.role === 1 ? (

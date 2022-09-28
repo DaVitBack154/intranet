@@ -193,6 +193,9 @@ export default function TableIt(props) {
     try {
       let repairLogsData = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + '/api/repair_list/it-logs', { withCredentials: true })
 
+
+      console.log(repairLogsData.data.data)
+
       if (repairLogsData?.data?.status) {
         let excelColumn = [
           {

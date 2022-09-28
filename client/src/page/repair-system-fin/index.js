@@ -1,15 +1,13 @@
 import SideBar from "../../components/sidebar.components";
 import Navbar from "../../components/navbar.compoenets";
 import styled from "styled-components";
-import { IoIosDocument } from "react-icons/io";
-import Card from "../../components/card";
 import { NavLink, useLocation } from "react-router-dom";
 import { Tabs } from "antd";
 import TableData from "./table-data";
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { IoMdAddCircle } from "react-icons/io";
-import Swal from "sweetalert2";
+
 
 const { TabPane } = Tabs;
 
@@ -72,7 +70,7 @@ export default function RepairSystemPO() {
     useEffect(() => {
         const init = async () => {
             try {
-                let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT+"/api/user/profile", {
+                let resp = await axios.get(process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/profile", {
                     withCredentials: true,
                 });
                 if (resp?.data?.status) {
@@ -80,14 +78,14 @@ export default function RepairSystemPO() {
                 }
 
                 let itResp = await axios.get(
-                    process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list_fin/it",
+                    process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list_fin/it",
                     { withCredentials: true }
                 );
                 if (itResp?.data?.status) {
                     setItData(itResp.data.data);
                 }
                 let buildingtResp = await axios.get(
-                    process.env.REACT_APP_SERVER_ENDPOINT+"/api/repair_list_fin/building",
+                    process.env.REACT_APP_SERVER_ENDPOINT + "/api/repair_list_fin/building",
                     { withCredentials: true }
                 );
                 if (buildingtResp?.data?.status) {
@@ -99,9 +97,9 @@ export default function RepairSystemPO() {
                     //     title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
                     //     confirmButtonText: 'OK',
                     // }).then((result) => {
-                        // if (result.isConfirmed) {
-                            window.location.href = "/login"
-                        // }
+                    // if (result.isConfirmed) {
+                    window.location.href = "/login"
+                    // }
                     // })
                 }
             }
@@ -121,32 +119,7 @@ export default function RepairSystemPO() {
             <div className="content">
                 <Navbar />
                 <div className="repair-panel">
-                    <div className="panel-group-card">
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-ทั้งหมด"
-                            icon={<IoIosDocument />}
-                            color="#0B5ED7"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Process"
-                            icon={<IoIosDocument />}
-                            color="#d73747"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Success"
-                            icon={<IoIosDocument />}
-                            color="#149759"
-                        />
-                        <Card
-                            number={currentTab == "1" ? itData : buildData}
-                            detail="รายการแจ้งซ่อม-Pending"
-                            icon={<IoIosDocument />}
-                            color="#FFCA2C"
-                        />
-                    </div>
+
                 </div>
                 <br />
                 <div className="repair-table">

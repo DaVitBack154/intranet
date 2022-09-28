@@ -14,7 +14,7 @@ module.exports.getRepairListItByTickid = async (ticketId) => {
 
 module.exports.getRepairItList = async (userid, roleId, id) => {
   let parameters = [
-    { name: "userid", sqltype: mssql.Int, value: userid },
+    { name: "userid", sqltype: mssql.Char, value: userid },
     { name: "id", sqltype: mssql.Int, value: id },
   ];
 
@@ -49,8 +49,12 @@ module.exports.getRepairItList = async (userid, roleId, id) => {
 };
 
 module.exports.getRepairItListLogs = async (userid, roleId, id) => {
+  console.log("userid => ", userid)
+  console.log("roleId => ", roleId)
+  console.log("id => ", id)
+
   let parameters = [
-    { name: "userid", sqltype: mssql.Int, value: userid },
+    { name: "userid", sqltype: mssql.Char, value: userid },
     { name: "id", sqltype: mssql.Int, value: id },
   ];
 
@@ -60,8 +64,8 @@ module.exports.getRepairItListLogs = async (userid, roleId, id) => {
     , tp.name topic_id,  FORMAT (rt.close_date, 'yyyy-MM-dd HH:mm:ss') as close_date, img_repair
     , b.name as branch
     FROM repair_list_logs rt
-    Left join tb_users u On u.id = rt.user_id
-    Left join tb_users ua On ua.id = rt.admin_id
+    Left join tb_users u On rt.user_id = u.id 
+    Left join tb_users ua On rt.admin_id = ua.id
     Left join tb_department d On d.id = rt.dep_id
     Left join tb_status s ON s.id =rt.status_id
     Left join tb_type t ON t.id=rt.type_id
@@ -83,12 +87,13 @@ module.exports.getRepairItListLogs = async (userid, roleId, id) => {
 
   sql += ` ORDER BY ticket_no DESC, create_date DESC `;
   let user = await query(sql, parameters);
+  console.log("user => ", user)
   return user;
 };
 
 module.exports.getRepairBuiList = async (userid, roleId, id) => {
   let parameters = [
-    { name: "userid", sqltype: mssql.Int, value: userid },
+    { name: "userid", sqltype: mssql.Char, value: userid },
     { name: "id", sqltype: mssql.Int, value: id },
   ];
   let sql = `
@@ -121,7 +126,7 @@ module.exports.getRepairBuiList = async (userid, roleId, id) => {
 
 module.exports.getRepairBuildingListLogs = async (userid, roleId, id) => {
   let parameters = [
-    { name: "userid", sqltype: mssql.Int, value: userid },
+    { name: "userid", sqltype: mssql.Char, value: userid },
     { name: "id", sqltype: mssql.Int, value: id },
   ];
 
@@ -152,6 +157,7 @@ module.exports.getRepairBuildingListLogs = async (userid, roleId, id) => {
 
   sql += ` ORDER BY ticket_no DESC, create_date DESC `;
   let user = await query(sql, parameters);
+  console.log('user => ', user)
   return user;
 };
 
@@ -165,8 +171,8 @@ module.exports.updateRepairList = async (userid, id, body) => {
     { name: "expence_id", sqltype: mssql.Int, value: body?.expence_id },
     { name: "close_date", sqltype: mssql.VarChar, value: body?.close_date },
     { name: "img_repair", sqltype: mssql.VarChar, value: body?.img_repair },
-    { name: "admin_id", sqltype: mssql.Int, value: userid },
-    { name: "id", sqltype: mssql.Int, value: id },
+    { name: "admin_id", sqltype: mssql.Char, value: userid },
+    { name: "id", sqltype: mssql.Char, value: id },
   ];
 
   let sql = `
@@ -197,7 +203,7 @@ module.exports.createRepairIT = async (
 ) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: ticket_no },
-    { name: "user_id", sqltype: mssql.Int, value: user_id },
+    { name: "user_id", sqltype: mssql.Char, value: user_id },
     { name: "ip", sqltype: mssql.VarChar, value: ip },
     { name: "branch_id", sqltype: mssql.Int, value: branch_id },
     { name: "description", sqltype: mssql.VarChar, value: description },
@@ -219,19 +225,18 @@ module.exports.createRepairIT = async (
 module.exports.createRepairLogs = async (body) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: body.ticket_no },
-    { name: "user_id", sqltype: mssql.Int, value: body.user_id },
+    { name: "user_id", sqltype: mssql.Char, value: body.user_id },
     { name: "ip", sqltype: mssql.VarChar, value: body.ip },
     { name: "branch_id", sqltype: mssql.Int, value: body.branch_id },
     { name: "description", sqltype: mssql.VarChar, value: body.description },
     { name: "type_id", sqltype: mssql.Int, value: body.type_id },
-
     { name: "topic_id", sqltype: mssql.Int, value: body.topic_id },
     { name: "status_id", sqltype: mssql.Int, value: body.status_id },
     { name: "comment", sqltype: mssql.VarChar, value: body.comment },
     { name: "remark", sqltype: mssql.VarChar, value: body.remark },
     { name: "expence_id", sqltype: mssql.Int, value: body.expence_id },
     { name: "close_date", sqltype: mssql.VarChar, value: body.close_date },
-    { name: "admin_id", sqltype: mssql.Int, value: body.admin_id },
+    { name: "admin_id", sqltype: mssql.Char, value: body.admin_id },
   ];
 
   let insert = await query(
@@ -243,6 +248,8 @@ module.exports.createRepairLogs = async (body) => {
     `,
     parameters
   );
+
+  console.log('insert => ', insert)
 
   return insert;
 };
@@ -266,7 +273,7 @@ module.exports.createRepairBuilding = async (
 ) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: ticket_no },
-    { name: "user_id", sqltype: mssql.Int, value: user_id },
+    { name: "user_id", sqltype: mssql.Char, value: user_id },
     { name: "branch_id", sqltype: mssql.Int, value: branch_id },
     { name: "description", sqltype: mssql.VarChar, value: description },
   ];

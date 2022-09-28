@@ -200,6 +200,7 @@ export default function FromHr_a() {
   }, [])
 
   const onFinish = async (values) => {
+    console.log("values => ", values)
     values.img_simple = fileName
     values.start_date_work = moment(values.start_date_work).format('YYYY-MM-DD')
     values.sign_date_work = moment(values.sign_date_work).format('YYYY-MM-DD')
@@ -389,7 +390,7 @@ export default function FromHr_a() {
                 message: 'กรุณาเลือกสถานะ'
               }
             ]}>
-              <CheckboxGroupActionUser options={options} defaultValue={['1']} onChange={onChange} />
+              <CheckboxGroupActionUser options={options} onChange={onChange} />
             </Form.Item>
 
             <Form.Item className="form-item-upload" label={'อัพโหลดรูปภาพ'}>

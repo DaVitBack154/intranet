@@ -1,29 +1,26 @@
-const authModel = require("../model/auth.model");
+const axios = require('axios').default;
 const Validator = require("validatorjs");
 
-module.exports.login = async (req, res) => {
-  let body = req.body;
-  const upperCasePassword = body.EPassword.toUpperCase();
+const authModel = require("../model/auth.model");
+const userModel = require("../model/user.model");
 
-  let users = await authModel.getUserByUsername(body.EUsername);
-  if (users.length < 1) {
+module.exports.login = async (req, res) => {
+  let { EUserName, UserPassword } = req.body;
+
+  const userFromSQL2008 = await axios.post('http://localhost:5000/auth/login', { EUserName, UserPassword })
+  console.log('userFromSQL2008 => ', userFromSQL2008.data)
+
+  if (!userFromSQL2008.data.status) {
     return res.json({ status: false, message: "user or password is invalid" });
   }
-  let user = users[0];
-  // console.log(upperCasePassword)
-  if (user.EPassword != upperCasePassword) {
-    // console.log(upperCasePassword)
-    return res.json({ status: false, message: "user or password is invalid" });
-  }
+  const user = userFromSQL2008.data.data;
+  await userModel.syncProfileWithOriginDatabase(user.id, user)
 
   req.session.isLogin = true;
   req.session.userid = user.id;
   req.session.role_id = user.role;
   req.session.hr_acc = user.hr_acc;
 
-  // console.log(req.session.isLogin)
-
-  // return res.json({ status: true, message: "login successfully", user });
   return res.json({ status: true, message: "login successfully", data: { role: user.role } });
 };
 

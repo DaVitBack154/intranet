@@ -84,7 +84,7 @@ module.exports.getRepairFinDetail = async (id) => {
 
 module.exports.updateRepairFin = async (userid, id, body) => {
   let parameters = [
-    { name: "fin_id", sqltype: mssql.Int, value: userid },
+    { name: "fin_id", sqltype: mssql.Char, value: userid },
     { name: "fin_approve", sqltype: mssql.Int, value: body?.fin_approve },
     { name: "fin_number", sqltype: mssql.VarChar, value: body?.fin_number },
     {
