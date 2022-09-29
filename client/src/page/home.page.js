@@ -307,20 +307,21 @@ const Contentportal = styled.div`
                   width: 60px;
                   max-width: fit-content;
                   position: absolute;
-                  left: 65px;
+                  left: 135px;
                 }
               }
               .text-content{
               font-size: 60px;
               font-weight: bold;
               color: #FFFF;
+              margin-left: 145px;
               }
 
               .btn-link-voc{
                 
                 
                 .btn-link{
-                  margin-left: 10px;
+                  margin-left: 150px;
                   border-radius: 10px;
                   opacity: 0.8;
                   padding: 10px;
@@ -387,114 +388,105 @@ const Contentportal = styled.div`
 `;
 
 
-// const HeadCard = styled.div`
-//   margin-top: 30px;
-//   margin-bottom: 20px;
-//   .border-agent{
+const HeadCard = styled.div`
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  .border-agent{
 
-//     background-color: #F3F5FA;
+    background-color: #F3F5FA;
 
-//     .head-agent{
+    .head-agent{
 
-//         .executive{
-//           font-size: 35px;
-//           font-weight: bold;
-//           color: #015352;
-//           text-align: center;
-//           padding: 15px 10px;
-//         }
-//     }
-
-
-//     .body-agent{
-//       .box1-agent-flex,.box2-agent-flex{
-//         display: flex;
+        .executive{
+          font-size: 35px;
+          font-weight: bold;
+          color: #015352;
+          text-align: center;
+          padding: 15px 10px;
+        }
+    }
 
 
+    .body-agent{
+      .box1-agent-flex,.box2-agent-flex{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        
 
-//           .box1, .box2, .box3, .box4{
-//           width: 50%;
-//           display: flex;
-//           height: 300px;
-//           margin: 10px 7px;
-//           box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
-//           background-color: #FFFF;
+          .box1, .box2, .box3, .box4{
+          width: 43%;
+          display: flex;
+          height: 250px;
+          margin: 10px 10px;
+          box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);  
+          background-color: #FFFF;
+        
+            .img{
+              width: 40%;
+              height: auto;
+              display: flex;
+              justify-content: center;
+              align-items: center;
 
+                .img-card{
+                  width:80%;
+                  height: 180px;
+                  border-radius: 50%;
+              
+                  /* &:hover{
+                    transform: scale(1.3);
+                    transition: transform 0.25s;
 
+                  } */
+                }
+            }
+            .text{
+              width: 60%;
+              padding: 15px;
 
-//             .img{
+              .name-agen{
+                font-weight: bold;
+                color: #2C4964;
+                font-size: 23px;
+              }
 
-//               width: 37%;
-//               display: flex;
-//               justify-content: center;
+              .position-agen{
+                position: relative;
+                font-size: 17px;
+                top: -15px;
+              }
+              .card-agent{
+                width: 40px;
+                background-color: gray;
+                border: none;
+                position: relative;
+                left: -130px;
+                top: -40;
+              }
+              .email{
+                display: flex;
+                .icon-mail{
+                  font-size: 20px;
+                  color: #2C4964;
+                }
+                .name-mail{
+                  font-size: 16px;
+                  position: relative;
+                  top: -2px;
+                  margin-left: 10px;
+                }
 
-//                 .img-card{
-//                   width:180px;
-//                   height: 170px;
-//                   border-radius: 100%;
-//                   margin-top: 50px;
-//                   &:hover{
-//                     transform: scale(1.3);
-//                     transition: transform 0.25s;
-
-//                   }
-//                 }
-//             }
-//             .text{
-//               width: 60%;
-//               padding: 15px;
-
-//               .border-text{
-
-//               }
-
-//               .name-agen{
-//                 font-weight: bold;
-//                 color: #2C4964;
-//                 font-size: 30px;
-//               }
-//               .name-agen-k{
-//                 font-weight: bold;
-//                 color: #2C4964;
-//                 font-size: 25px;
-//               }
-//               .position-agen{
-//                 color: #FD7D00;
-//                 position: relative;
-//                 top: -15px;
-//               }
-//               .card-agent{
-//                 width: 25px;
-//                 background-color: #2C4964;
-//                 border: none;
-//                 position: relative;
-//                 left: -165px;
-//                 top: -40;
-//               }
-//               .email{
-//                 display: flex;
-//                 .icon-mail{
-//                   font-size: 30px;
-//                 }
-//                 .name-mail{
-//                   font-size: 20px;
-//                   position: relative;
-//                   top: 1px;
-//                   margin-left: 20px;
-//                 }
-
-//               }
+              }
 
 
-//             }
-//           }
-//       }
+            }
+          }
+      }
 
-//     }
-//   }
-
-
-// `
+    }
+  }
+`
 
 const Profileim = styled.div`
   border-radius: 50px;
@@ -719,11 +711,12 @@ export default function HomePage() {
           </div>
           {/* หัวข้อ service ทั้งหมด */}
 
+
           {/* รูปภาพตึก */}
           <div className="towwer-bran">
             <div className="container" data-aos="zoom-in">
               <div className="content-tower">
-              <h3 className="head">ความเป็นมาของบริษัท</h3>
+                <h3 className="head">ความเป็นมาของบริษัท</h3>
                 <div className="content-body">
                   <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด จดทะเบียนก่อตั้งในปี 1998 (และจดทะเบียนเป็น บริษัท เชฎฐ์ เอเชีย จำกัด (มหาชน) ในปี 2022 ) โดยการรวมตัวของผู้บริหาร ที่พร้อมใจทำงานกันเป็นทีมภาย<br></br>
                     ใต้วัตถุประสงค์หลักที่จะให้บริการที่ดีเลิศในด้านการติดตาม เรียกเก็บ และเร่งรัดหนี้สิน ให้กับลูกค้าในกลุ่มธุรกิจ สินเชื่อบัตรเครดิต การสื่อสารโทรคมนาคม สินเชื่อบ้านและที่ดิน สินเชื่อรถยนต์ <br></br>
@@ -736,6 +729,7 @@ export default function HomePage() {
           </div>
           {/* รูปภาพบริษัท ในเครือข่าย */}
 
+
           {/* หัวข้อการทำ VOS แบบ เฟสบุค */}
           <div className="chase-voc">
             <div className="group-voc">
@@ -745,7 +739,6 @@ export default function HomePage() {
                     <h1 className="text-content">CHASE VOC</h1>
                     <img src="red.png" alt="" className="red-img" />
                   </div>
-
                   <div className="btn-link-voc">
                     <button className="btn-link">Comming-Soon</button>
                   </div>
@@ -761,7 +754,7 @@ export default function HomePage() {
           {/* หัวข้อการทำ VOS แบบ เฟสบุค */}
 
           {/* ในส่วนของผู้บริหาร  */}
-          {/* <HeadCard >
+          <HeadCard >
             <div className="border-agent" id={"executive"}>
               <div className="head-agent">
                 <div className="executive">
@@ -771,7 +764,7 @@ export default function HomePage() {
               </div>
 
               <div className="body-agent">
-                <div className="box1-agent-flex">
+                <div className="box1-agent-flex boxup-animation">
                   <div className="box1">
                     <div className="img">
                       <img alt="example" src="/4.jpg" className="img-card" />
@@ -779,7 +772,7 @@ export default function HomePage() {
                     <div className="text">
                       <br /><br />
                       <div className="border-text">
-                        <h1 className="name-agen">K. Pracha Chaisuwan</h1>
+                        <h1 className="name-agen">Pracha Chaisuwan</h1>
                         <h2 className="position-agen">Chief Executive Officer</h2>
                         <hr className="card-agent" />
                         <div className="email">
@@ -797,7 +790,7 @@ export default function HomePage() {
                     <div className="text">
                       <br /><br />
                       <div className="border-text">
-                        <h1 className="name-agen-k">K. Hathairat Kaewsaenmuang</h1>
+                        <h1 className="name-agen">Hathairat Kaewsaenmuang</h1>
                         <h2 className="position-agen">Chief Operating Officer</h2>
                         <hr className="card-agent" />
                         <div className="email">
@@ -809,7 +802,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="box2-agent-flex">
+                <div className="box2-agent-flex boxup-animation">
                   <div className="box3">
                     <div className="img">
                       <img alt="example" src="/6.jpg" className="img-card" />
@@ -846,11 +839,10 @@ export default function HomePage() {
                     </div>
                   </div>
                 </div>
-                <br />
               </div>
 
             </div>
-          </HeadCard> */}
+          </HeadCard>
           {/* ในส่วนของผู้บริหาร  */}
           <br /><br />
 

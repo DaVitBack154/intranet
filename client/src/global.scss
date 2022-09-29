@@ -128,3 +128,17 @@ button {
     transform: translateY(20px);
   }
 }
+
+.boxup-animation {
+  :hover {
+    animation: up-down 5s;
+    @keyframes up-down {
+      0% {
+        transform: translateY(-20px);
+      }
+      100% {
+        transform: translateY(20px);
+      }
+    }
+  }
+}
