@@ -368,10 +368,18 @@ const Contentportal = styled.div`
       padding: 120px 0;
 
       .content-tower{
-        color: #FFFF;
-        text-align: center;
-        font-size: 20px;
-        font-weight: bold;
+        margin-left: 50px;
+        .head{
+          color: #FEDC00;
+          font-size: 20px;
+          font-weight: bold;
+          margin-bottom: 20px;
+        }
+        .content-body{
+          color: #FFFF;
+          font-weight: bold;
+          padding: 3px;
+        }
       }
 
      }
@@ -715,7 +723,14 @@ export default function HomePage() {
           <div className="towwer-bran">
             <div className="container" data-aos="zoom-in">
               <div className="content-tower">
-                ยังคิด content ไปโดยอัตโนมัติตามเงื่อนไขที่ได้กำหนดไว้ก่อนแล้ว
+              <h3 className="head">ความเป็นมาของบริษัท</h3>
+                <div className="content-body">
+                  <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;บริษัท เชฎฐ์ เอเชีย จำกัด จดทะเบียนก่อตั้งในปี 1998 (และจดทะเบียนเป็น บริษัท เชฎฐ์ เอเชีย จำกัด (มหาชน) ในปี 2022 ) โดยการรวมตัวของผู้บริหาร ที่พร้อมใจทำงานกันเป็นทีมภาย<br></br>
+                    ใต้วัตถุประสงค์หลักที่จะให้บริการที่ดีเลิศในด้านการติดตาม เรียกเก็บ และเร่งรัดหนี้สิน ให้กับลูกค้าในกลุ่มธุรกิจ สินเชื่อบัตรเครดิต การสื่อสารโทรคมนาคม สินเชื่อบ้านและที่ดิน สินเชื่อรถยนต์ <br></br>
+                    การประกันภัย การโรงแรม สินเชื่อเพื่อการบริการ และ สินเชื่อรายย่อยอื่นๆ ตลอดจนการให้บริการเรียกเก็บหนี้ให้กับหน่วยงานของทางราชการ นอกจากนี้บริษัทฯ ยังให้บริการดำเนินคดีแบบครบวงจร <br></br>
+                    ซึ่งรวมถึงมีหน่วยงานสืบจับตัวบุคคล ตามหมายจับของศาล หรือหมายของกรมตำรวจ และงานด้านสืบทรัพย์เพื่อการบังคับคดีด้วย
+                  </p>
+                </div>
               </div>
             </div>
           </div>

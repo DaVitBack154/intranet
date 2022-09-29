@@ -2,7 +2,7 @@ const config = {
   user: "sa",
   password: "tokota55",
   database: "members",
-  server: "IT-NB-03\\SQL2019",
+  server: "WIN-WEB-SERVER-\\SQL2019", 
   pool: {
     max: 10,
     min: 0,

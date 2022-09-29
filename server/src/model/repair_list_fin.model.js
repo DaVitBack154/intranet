@@ -4,7 +4,7 @@ const mssql = require("mssql");
 module.exports.getRepairFinItList = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, fin_approve, fp.TUserName as fin_name, fin_number
   , FORMAT (rt.fin_date, 'yyyy-MM-dd HH:mm:ss') as fin_date, img_fin, rt.type_id, rt.fin_recipient
   FROM repair_list rt
@@ -31,7 +31,7 @@ module.exports.getRepairFinItList = async (id) => {
 module.exports.getRepairFinBuildingList = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, fin_approve, fp.TUserName as fin_name, fin_number
   , FORMAT (rt.fin_date, 'yyyy-MM-dd HH:mm:ss') as fin_date, img_fin, rt.type_id, rt.fin_recipient
   FROM repair_list rt
@@ -58,7 +58,7 @@ module.exports.getRepairFinBuildingList = async (id) => {
 module.exports.getRepairFinDetail = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, fin_approve, fp.TUserName as fin_name, fin_number
   , FORMAT (rt.fin_date, 'yyyy-MM-dd HH:mm:ss') as fin_date, img_fin, rt.type_id, rt.fin_recipient
   FROM repair_list rt

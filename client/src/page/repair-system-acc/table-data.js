@@ -132,24 +132,24 @@ export default function TableData(props) {
               </a>
             )
         },
-        // {
-        //   title: 'Approve',
-        //   dataIndex: 'acc_approve',
-        //   render: (_, record) => {
-        //     let status = null
-        //     if (!record?.acc_approve || record?.acc_approve === 0) status = 'not-approve'
-        //     if (record?.acc_approve && record?.acc_approve === 1) status = 'approve'
-        //     if (record?.acc_approve && record?.acc_approve === 2) status = 'reject'
+        {
+          title: 'Approve',
+          dataIndex: 'acc_approve',
+          render: (_, record) => {
+            let status = null
+            if (!record?.acc_approve || record?.acc_approve === 0) status = 'not-approve'
+            if (record?.acc_approve && record?.acc_approve === 1) status = 'approve'
+            if (record?.acc_approve && record?.acc_approve === 2) status = 'reject'
 
-        //     return (
-        //       <div div className="table-button-group">
-        //         <button className={'button-detail status-' + status} onClick={() => { }}>
-        //           <b>{status}</b>
-        //         </button>
-        //       </div>
-        //     )
-        //   }
-        // },
+            return (
+              <div className="table-button-group">
+                <button className={'button-detail status-' + status} onClick={() => { }}>
+                  <b>{status}</b>
+                </button>
+              </div>
+            )
+          }
+        },
         {
           title: 'ผู้อนุมัติ',
           dataIndex: 'acc_name'
@@ -197,6 +197,109 @@ export default function TableData(props) {
             return a.localeCompare(b)
           }
         },
+        {
+          title: 'วันที่แจ้งซ่อม',
+          dataIndex: 'create_date'
+        },
+        {
+          title: 'ผู้แจ้งซ่อม',
+          width: 140,
+          dataIndex: 'TUserName'
+        },
+        {
+          title: 'เบอร์ต่อ',
+          dataIndex: 'ExtNo'
+        },
+        {
+          title: 'ปัญหาที่เกิดขึ้น',
+          dataIndex: 'description'
+        },
+        {
+          title: 'ผู้ตรวจรับงาน',
+          dataIndex: 'admin_name'
+        },
+        {
+          title: 'Ref/No.1',
+          dataIndex: 'img_repair',
+          render: (_, record) =>
+            record.img_repair && (
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_repair} target="__blank">
+                รูป
+              </a>
+            )
+        },
+        {
+          title: 'หมายเหตุ',
+          dataIndex: 'remark'
+        },
+        {
+          title: 'ผู้อนุมัติ',
+          dataIndex: 'allow_name'
+        },
+        {
+          title: 'Number',
+          dataIndex: 'number'
+        },
+        {
+          title: 'Img',
+          dataIndex: 'image',
+          render: (_, record) =>
+            record.image && (
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.image} target="__blank">
+                รูป
+              </a>
+            )
+        },
+        {
+          title: 'Invoice-Img',
+          dataIndex: 'img_inv',
+          render: (_, record) =>
+            record.img_inv && (
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_inv} target="__blank">
+                รูป
+              </a>
+            )
+        },
+        {
+          title: 'Approve',
+          dataIndex: 'acc_approve',
+          render: (_, record) => {
+            let status = null
+            if (!record?.acc_approve || record?.acc_approve === 0) status = 'not-approve'
+            if (record?.acc_approve && record?.acc_approve === 1) status = 'approve'
+            if (record?.acc_approve && record?.acc_approve === 2) status = 'reject'
+
+            return (
+              <div div className="table-button-group">
+                <button className={'button-detail status-' + status} onClick={() => { }}>
+                  <b>{status}</b>
+                </button>
+              </div>
+            )
+          }
+        },
+        {
+          title: 'ผู้อนุมัติ',
+          dataIndex: 'acc_name'
+        },
+        {
+          title: 'Pv-Account',
+          dataIndex: 'acc_acc'
+        },
+        {
+          title: 'Pv-Date',
+          dataIndex: 'acc_date'
+        },
+        {
+          title: 'Pv-Image',
+          dataIndex: 'img_acc',
+          render: (_, record) =>
+            record.img_acc && (
+              <a href={process.env.REACT_APP_SERVER_ENDPOINT + '/public/image/repair/' + record.img_acc} target="__blank">
+                รูป
+              </a>
+            )
+        }
       ]
 
       if (props.type === 'it') {

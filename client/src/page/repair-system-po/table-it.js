@@ -113,7 +113,7 @@ export default function TableIt(props) {
             if (record?.po_approve && record?.po_approve === 2) status = 'reject'
 
             return (
-              <div div className="table-button-group">
+              <div className="table-button-group">
                 <button className={'button-detail status-' + status} onClick={() => { }}>
                   <b>{status}</b>
                 </button>

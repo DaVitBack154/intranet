@@ -5,7 +5,7 @@ module.exports.getRepairPoItList = async (id) => {
   console.log(id)
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, po_approve, up.TUserName as po_name, po_number
   , FORMAT (rt.po_date, 'yyyy-MM-dd HH:mm:ss') as po_date, img_po, img_inv, inv_number, rt.type_id
   FROM repair_list rt
@@ -32,7 +32,7 @@ module.exports.getRepairPoItList = async (id) => {
 module.exports.getRepairPoBuildingList = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Char, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, po_approve, up.TUserName as po_name, po_number
   , FORMAT (rt.po_date, 'yyyy-MM-dd HH:mm:ss') as po_date, img_po, img_inv, inv_number, rt.type_id
   FROM repair_list rt
@@ -59,7 +59,7 @@ module.exports.getRepairPoBuildingList = async (id) => {
 module.exports.getRepairPoDetail = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, po_approve, up.TUserName as po_name, po_number
   , FORMAT (rt.po_date, 'yyyy-MM-dd HH:mm:ss') as po_date, img_po, img_inv, inv_number, rt.type_id
   FROM repair_list rt

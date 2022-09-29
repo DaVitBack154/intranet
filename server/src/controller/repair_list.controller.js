@@ -98,7 +98,9 @@ module.exports.updateRepairList = async (req, res) => {
   if (update == false) {
     return res.json({ status: false, message: "UPDATE FAILED" });
   } else {
-
+    if ([2, 3, 4].includes(body.expence_id)) {
+      Mailer.sendPo('waruen.css@gmail.com', body)
+    }
     // เชคการส่ง อีเมล ในค่า value 
     // if ([2, 3, 4].includes(body.expence_id)) {
     //   Mailer.sendAfterCreateProfile('waruen.css@gmail.com', body)
@@ -129,7 +131,8 @@ module.exports.createRepairIt = async (req, res) => {
     userid,
     body.ip,
     body.branch,
-    body.description
+    body.description,
+    body.ExtNo
   );
   if (insert == false) {
     return res.json({ status: false, message: "INSERT Not found" });
@@ -157,7 +160,8 @@ module.exports.createRepairBuilding = async (req, res) => {
     body.ticket_no,
     userid,
     body.branch,
-    body.description
+    body.description,
+    body.ExtNo
   );
   if (insert == false) {
     return res.json({ status: false, message: "INSERT NOT FOUND" });

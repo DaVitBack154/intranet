@@ -19,7 +19,7 @@ module.exports.getRepairItList = async (userid, roleId, id) => {
   ];
 
   let sql = `
-    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
     , d.name as depart_name,rt.description,ua.TUserName as admin_name,rt.remark,s.name as status, rt.expence_id, rt.status_id, rt.comment
     , rt.topic_id,  FORMAT (rt.close_date, 'yyyy-MM-dd HH:mm:ss') as close_date, img_repair
     , b.name as branch, rt.rating
@@ -59,7 +59,7 @@ module.exports.getRepairItListLogs = async (userid, roleId, id) => {
   ];
 
   let sql = `
-    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
     , d.name as depart_name,rt.description,ua.TUserName as admin_name,rt.remark,s.name as status, ex.name expence_id, rt.status_id, rt.comment
     , tp.name topic_id,  FORMAT (rt.close_date, 'yyyy-MM-dd HH:mm:ss') as close_date, img_repair
     , b.name as branch
@@ -97,7 +97,7 @@ module.exports.getRepairBuiList = async (userid, roleId, id) => {
     { name: "id", sqltype: mssql.Int, value: id },
   ];
   let sql = `
-        SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo
+        SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo
         , d.name as depart_name,rt.description,ua.TUserName as admin_name,rt.remark,s.name as status, rt.expence_id, rt.status_id, rt.comment
         , rt.topic_id,  FORMAT (rt.close_date, 'yyyy-MM-dd HH:mm:ss') as close_date, img_repair
         , b.name as branch, rt.rating
@@ -131,7 +131,7 @@ module.exports.getRepairBuildingListLogs = async (userid, roleId, id) => {
   ];
 
   let sql = `
-    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo
+    SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo
     , d.name as depart_name,rt.description,ua.TUserName as admin_name,rt.remark,s.name as status, rt.expence_id, rt.status_id, rt.comment
     , rt.topic_id,  FORMAT (rt.close_date, 'yyyy-MM-dd HH:mm:ss') as close_date, img_repair
     , b.name as branch
@@ -199,11 +199,13 @@ module.exports.createRepairIT = async (
   user_id,
   ip,
   branch_id,
-  description
+  description,
+  ExtNo
 ) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: ticket_no },
     { name: "user_id", sqltype: mssql.Char, value: user_id },
+    { name: "ExtNo", sqltype: mssql.Char, value: ExtNo },
     { name: "ip", sqltype: mssql.VarChar, value: ip },
     { name: "branch_id", sqltype: mssql.Int, value: branch_id },
     { name: "description", sqltype: mssql.VarChar, value: description },
@@ -212,9 +214,9 @@ module.exports.createRepairIT = async (
   let insert = await query(
     `
     INSERT INTO repair_list 
-    (ticket_no,user_id,ip,branch_id,description,type_id,create_date) 
+    (ticket_no,user_id,ExtNo,ip,branch_id,description,type_id,create_date) 
     OUTPUT Inserted.*
-    VALUES (@ticket_no,@user_id,@ip,@branch_id,@description,1,GETDATE())
+    VALUES (@ticket_no,@user_id,@ExtNo,@ip,@branch_id,@description,1,GETDATE())
     `,
     parameters
   );
@@ -226,6 +228,7 @@ module.exports.createRepairLogs = async (body) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: body.ticket_no },
     { name: "user_id", sqltype: mssql.Char, value: body.user_id },
+    { name: "ExtNo", sqltype: mssql.Char, value: body.ExtNo },
     { name: "ip", sqltype: mssql.VarChar, value: body.ip },
     { name: "branch_id", sqltype: mssql.Int, value: body.branch_id },
     { name: "description", sqltype: mssql.VarChar, value: body.description },
@@ -242,9 +245,9 @@ module.exports.createRepairLogs = async (body) => {
   let insert = await query(
     `
     INSERT INTO repair_list_logs 
-    (ticket_no,user_id,ip,branch_id,description,type_id,create_date, topic_id, status_id, comment, remark, expence_id, close_date, admin_id) 
+    (ticket_no,user_id,ExtNo,ip,branch_id,description,type_id,create_date, topic_id, status_id, comment, remark, expence_id, close_date, admin_id) 
     OUTPUT Inserted.id
-    VALUES (@ticket_no,@user_id,@ip,@branch_id,@description, @type_id, GETDATE(), @topic_id, @status_id, @comment, @remark, @expence_id, @close_date, @admin_id)
+    VALUES (@ticket_no,@user_id,@ExtNo,@ip,@branch_id,@description, @type_id, GETDATE(), @topic_id, @status_id, @comment, @remark, @expence_id, @close_date, @admin_id)
     `,
     parameters
   );
@@ -269,19 +272,21 @@ module.exports.createRepairBuilding = async (
   ticket_no,
   user_id,
   branch_id,
-  description
+  description,
+  ExtNo
 ) => {
   let parameters = [
     { name: "ticket_no", sqltype: mssql.VarChar, value: ticket_no },
     { name: "user_id", sqltype: mssql.Char, value: user_id },
+    { name: "ExtNo", sqltype: mssql.Char, value: ExtNo },
     { name: "branch_id", sqltype: mssql.Int, value: branch_id },
     { name: "description", sqltype: mssql.VarChar, value: description },
   ];
   let insert = await query(
     `INSERT INTO repair_list 
-    (ticket_no,user_id,branch_id,description,type_id,create_date) 
+    (ticket_no,user_id,ExtNo,branch_id,description,type_id,create_date) 
     OUTPUT Inserted.id
-    VALUES (@ticket_no,@user_id,@branch_id,@description,2,GETDATE())
+    VALUES (@ticket_no,@user_id,@ExtNo,@branch_id,@description,2,GETDATE())
     `,
     parameters
   );

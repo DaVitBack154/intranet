@@ -4,7 +4,7 @@ const mssql = require("mssql");
 module.exports.getRepairAccItList = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark
   , case when expence_id in (2,3,4) then upo.TUserName when expence_id in (6) then ufin.TUserName end as allow_name
   , case when expence_id in (2,3,4) then rt.po_number when expence_id in (6) then rt.fin_number end as number
@@ -37,7 +37,7 @@ module.exports.getRepairAccItList = async (id) => {
 module.exports.getRepairAccBuildingList = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark
   , case when expence_id in (2,3,4) then upo.TUserName when expence_id in (6) then ufin.TUserName end as allow_name
   , case when expence_id in (2,3,4) then rt.po_number when expence_id in (6) then rt.fin_number end as number
@@ -70,7 +70,7 @@ module.exports.getRepairAccBuildingList = async (id) => {
 module.exports.getRepairAccDetail = async (id) => {
   let parameters = [{ name: "id", sqltype: mssql.Int, value: id }];
   let sql = `
-  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, u.ExtNo, rt.ip
+  SELECT rt.id, rt.ticket_no, FORMAT (rt.create_date, 'yyyy-MM-dd HH:mm:ss') as create_date, u.TUserName, rt.ExtNo, rt.ip
   ,rt.description,ua.TUserName as admin_name, remark, img_repair, fin_approve, fp.TUserName as fin_name, fin_number
   , FORMAT (rt.fin_date, 'yyyy-MM-dd HH:mm:ss') as fin_date, img_fin, rt.type_id, rt.fin_recipient
   FROM repair_list rt

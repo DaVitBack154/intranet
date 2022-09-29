@@ -42,7 +42,7 @@ module.exports.CreateProfile = async (create_user_name, body) => {
     `
 
     let result = await query(sql, parameters)
-    console.log('result => ', result)
+    // console.log('result => ', result)
     return result
 }
 

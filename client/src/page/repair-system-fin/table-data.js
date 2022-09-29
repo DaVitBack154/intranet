@@ -105,7 +105,7 @@ export default function TableData(props) {
             if (record?.fin_approve && record?.fin_approve === 2) status = 'reject'
 
             return (
-              <div div className="table-button-group">
+              <div className="table-button-group">
                 <button className={'button-detail status-' + status} onClick={() => {}}>
                   <b>{status}</b>
                 </button>
