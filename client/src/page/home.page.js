@@ -45,7 +45,8 @@ const Contentportal = styled.div`
       
       @media only screen and (min-width: 1900px) {
         .text{
-          left: 650px;
+          left: 550px;
+          top: 250px;
         }
       }
 
@@ -271,6 +272,7 @@ const Contentportal = styled.div`
               background-color: #015352;
               color:#FFFF;
               font-size: 17px;
+              flex: 1;
               .lag{
                 font-size: 20px;
                 text-align: center;
@@ -431,7 +433,7 @@ const HeadCard = styled.div`
 
                 .img-card{
                   width:80%;
-                  height: 180px;
+                  height: 220px;
                   border-radius: 50%;
               
                   /* &:hover{
@@ -463,6 +465,13 @@ const HeadCard = styled.div`
                 position: relative;
                 left: -130px;
                 top: -40;
+              }
+
+              @media only screen and (min-width: 1900px) {
+                .card-agent{
+                  left: -180px;
+                  top: -40;
+                }
               }
               .email{
                 display: flex;
@@ -764,8 +773,8 @@ export default function HomePage() {
               </div>
 
               <div className="body-agent">
-                <div className="box1-agent-flex boxup-animation">
-                  <div className="box1">
+                <div className="box1-agent-flex">
+                  <div className="box1 ">
                     <div className="img">
                       <img alt="example" src="/4.jpg" className="img-card" />
                     </div>
@@ -802,7 +811,7 @@ export default function HomePage() {
                   </div>
                 </div>
 
-                <div className="box2-agent-flex boxup-animation">
+                <div className="box2-agent-flex">
                   <div className="box3">
                     <div className="img">
                       <img alt="example" src="/6.jpg" className="img-card" />
@@ -847,14 +856,8 @@ export default function HomePage() {
           <br /><br />
 
 
-
-
-
-
-
-
           {/* ข้อมูลฝ่ายไอที */}
-          {/* <div className="back-group-team">
+          <div className="back-group-team">
             <div className="head-member">
               <div>CONTRACT WITH EMPLOYEE</div>
               <hr />
@@ -872,7 +875,7 @@ export default function HomePage() {
             <div className="department-team">
               <Table className="table-team" id={'table-team'} columns={columns} dataSource={userData} />
             </div>
-          </div> */}
+          </div>
           {/* ข้อมูลฝ่ายไอที */}
 
 

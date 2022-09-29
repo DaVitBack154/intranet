@@ -7,10 +7,15 @@ const userModel = require("../model/user.model");
 module.exports.login = async (req, res) => {
   let { EUserName, UserPassword } = req.body;
 
-  const userFromSQL2008 = await axios.post('http://localhost:5000/auth/login', { EUserName, UserPassword })
-  console.log('userFromSQL2008 => ', userFromSQL2008.data)
+  let userFromSQL2008
 
-  if (!userFromSQL2008.data.status) {
+  try {
+    userFromSQL2008 = await axios.post('http://localhost:5000/auth/login', { EUserName, UserPassword })
+  } catch (error) {
+    console.log(error)
+  }
+
+  if (!userFromSQL2008 || !userFromSQL2008.data || !userFromSQL2008.data.status) {
     return res.json({ status: false, message: "user or password is invalid" });
   }
   const user = userFromSQL2008.data.data;
