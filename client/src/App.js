@@ -24,6 +24,7 @@ import RepairSystemFin from './page/repair-system-fin'
 import FormFin from './page/form-fin'
 import RepairSystemAcc from './page/repair-system-acc'
 import FormAcc from './page/form-acc'
+import HotLine1 from './page/hotline/hotline'
 
 const App = () => {
   let routes = useRoutes([
@@ -35,6 +36,7 @@ const App = () => {
     { path: '/form-building', element: <FromBuilding /> },
     { path: '/form-building/:id', element: <FromBuildingAdmin /> },
     { path: '/report-process/:type', element: <ReportProcess /> },
+    { path: '/hotline1', element: <HotLine1 /> },
 
 
     { path: '/hr', element: <Hr /> },

@@ -1,5 +1,5 @@
 
-import { Layout, Menu, Popover } from 'antd';
+import { Layout, Menu } from 'antd';
 import { useEffect, useState } from "react";
 import axios from 'axios'
 import styled from 'styled-components';
@@ -8,6 +8,12 @@ import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 import { BsFillPeopleFill } from 'react-icons/bs'
+import { RiMoneyDollarBoxLine } from 'react-icons/ri'
+import { FaShoppingCart } from 'react-icons/fa'
+import { HiDocumentText } from 'react-icons/hi'
+import { FaUsers } from 'react-icons/fa'
+
+
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from 'react-redux'
@@ -118,38 +124,104 @@ export default function SideBar(props) {
     const [collapsed, setCollapsed] = useState(false);
     const history = useNavigate()
     const { pathname } = useLocation();
-    const [data, setData] = useState(null);
+    // const [data, setData] = useState(null);
     const [menus, setMenus] = useState([])
 
 
     useEffect(() => {
         const init = async () => {
 
-            let menusItem = [{
-                key: '',
-                icon: <FaHome className='icon-sli' />,
-                label: 'Home',
-                // children: [
-                //     { key: '#table-team', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#table-team'>ข้อมูลพนักงาน</NavLink> },
-                //     { key: '#wisaitas', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#wisaitas'>วิสัยทัศน์ขององค์กร</NavLink> },
-                //     { key: '#executive', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/#executive'>แนะนำผู้บริหารองค์กร</NavLink> }
-                // ]
-            },
-            {
-                key: 'repair',
-                icon: <GoTools className='icon-sli' />,
-                label: 'Help-Desk',
+            let menusItem = [
+                {
+                    key: '',
+                    icon: <FaHome className='icon-sli' />,
+                    label: 'Eportal',
+                },
 
-            },
-            {
-                key: 'hr_m',
-                icon: <BsFillPeopleFill className='icon-sli' />,
-                label: 'Hr-Management',
-                children: [
-                    { key: 'hr', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
-                ]
+                {
+                    key: 'IT',
+                    icon: <GoTools className='icon-sli' />,
+                    label: 'IT',
+                    children: [
+                        { key: 'repair', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/repair'>Help-Desk</NavLink> },
+                        { key: 'form', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_it'>Form-IT</NavLink> },
+                        {
+                            key: 'hotline',
+                            icon: <MdAddCircle className='icon-sli' />,
+                            // label: <NavLink to='/hotline'>Hotline</NavLink>,
+                            label: 'Hotline',
+                            children: [
+                                {
+                                    label: <NavLink to='/hotline1'>Hotline-1</NavLink>,
+                                    key: 'hotline1',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                                {
+                                    label: <NavLink to='/hotline'>Hotline-2</NavLink>,
+                                    key: 'hotline-2',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                            ],
+                        }
+                    ]
+                },
 
-            },]
+                {
+                    key: 'hr_m',
+                    icon: <BsFillPeopleFill className='icon-sli' />,
+                    label: 'People',
+                    children: [
+                        { key: 'hr', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
+                        { key: '#1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>Form-People</NavLink> },
+                    ]
+
+                },
+
+                {
+                    key: 'acc_fin',
+                    icon: <RiMoneyDollarBoxLine className='icon-sli' />,
+                    label: 'Account&Finance',
+                    children: [
+                        { key: 'acc', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>แบบฟอร์ม-เบิกเงิน</NavLink> },
+                    ]
+
+                },
+
+                {
+                    key: 'po',
+                    icon: <FaShoppingCart className='icon-sli' />,
+                    label: 'Purchase',
+                    children: [
+                        { key: '#1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>แบบฟอร์ม-PR,PO</NavLink> },
+                    ]
+
+                },
+
+                {
+                    key: 'policy',
+                    icon: <HiDocumentText className='icon-sli' />,
+                    label: 'Policy',
+                    children: [
+                        { key: '##1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>นโยบาย</NavLink> },
+                        { key: '##2', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>คู่มือปฏิบัติงาน</NavLink> },
+                    ]
+
+                },
+
+                {
+                    key: 'directory',
+                    icon: <FaUsers className='icon-sli' />,
+                    label: 'Directory',
+                    children: [
+                        { key: '##1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>ข้อมูลพนักงาน</NavLink> },
+                    ]
+
+                },
+
+
+
+
+            ]
 
             if (!props.disableUserProfile) {
                 try {
@@ -164,22 +236,15 @@ export default function SideBar(props) {
                             history('/')
                         }
 
-                        if (resp.data.data.role == 5 || resp.data.data.role == 4 || resp.data.data.role == 6) {
+                        if (resp.data.data.role === 5 || resp.data.data.role === 4 || resp.data.data.role === 6) {
                             menusItem = []
                         }
 
                     }
                 } catch (error) {
-                    if (error.response.status == 401) {
-                        if (error.response.status == 401) {
-                            // Swal.fire({
-                            //     title: 'กรุณาเข้าสู่ระบบก่อนเข้าใข้งาน',
-                            //     confirmButtonText: 'OK',
-                            // }).then((result) => {
-                            //     if (result.isConfirmed) {
+                    if (error.response.status === 401) {
+                        if (error.response.status === 401) {
                             window.location.href = "/login"
-                            //     }
-                            // })
                         }
                     }
                 }
@@ -194,7 +259,7 @@ export default function SideBar(props) {
     function renderMenuDefaultValue() {
         let url = window.location.href
 
-        if (pathname == '/hr')
+        if (pathname === '/hr')
             return ['hr_m', 'hr']
         else if (url.indexOf('#') > 0) {
             let splitUrl = url.split('#')
@@ -203,8 +268,6 @@ export default function SideBar(props) {
             console.log(pathname.replace('/', ''))
             return [pathname.replace('/', '')]
         }
-
-
     }
 
     return (
@@ -222,7 +285,7 @@ export default function SideBar(props) {
                         {/* <GiHamburgerMenu className="sidebar-trigger-button" /> */}
                     </div>
                     <div className="title">
-                        <img src="/logo-chase.png" className="logo-w" width={140} height={25}></img>
+                        <img src="/logo-chase.png" className="logo-w" width={140} height={25} alt="logo"></img>
                     </div>
                     <hr />
                     <div className="icon" ><ImUserTie className='icon-slider'></ImUserTie></div>

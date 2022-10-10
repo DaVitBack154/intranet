@@ -135,9 +135,11 @@ button {
     @keyframes up-down {
       0% {
         transform: translateY(-20px);
+        transition: transform 0.25s;
       }
       100% {
         transform: translateY(20px);
+        transition: transform 0.25s;
       }
     }
   }
