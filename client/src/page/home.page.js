@@ -1,6 +1,9 @@
 import styled from "styled-components"
 import SideBarComponent from "../components/sidebar.components";
 import { BiWorld } from 'react-icons/bi'
+import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
+import { Carousel } from 'react-responsive-carousel';
+
 
 
 const HomepageComponent = styled.div`
@@ -18,13 +21,11 @@ const HomepageComponent = styled.div`
   .chase-voc{
       background-color: #015352;
       width: 100%;
-
+      
         .group-voc{
-          /* background-color: red; */
           display: flex;
           .box1-voc{
             width: 40%;
-            /* background-color: red; */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -32,12 +33,14 @@ const HomepageComponent = styled.div`
             .group-box1{
               .flex-box1{
                 display: flex ;
+                position: relative;
+                top: -35px;
 
                   .red-img{
-                    width: 60px;
+                    width: 45px;
                     max-width: fit-content;
                     position: absolute;
-                    left: 70px;
+                    left: 115px;
                   }
                   @media only screen and (min-width: 1900px) {
                     .red-img{
@@ -57,7 +60,7 @@ const HomepageComponent = styled.div`
                   border-radius: 20px;
                   position: relative;
                   left: 29px;
-                  top: 25px;
+                  top: 12px;
                   box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 
 
@@ -75,7 +78,7 @@ const HomepageComponent = styled.div`
                 } 
               }
               .text-content{
-              font-size: 60px;
+              font-size: 45px;
               font-weight: bold;
               color: #FFFF;
               margin-left: 145px;
@@ -152,7 +155,6 @@ const HomepageComponent = styled.div`
         font-weight:bold;
         font-size: 30px;
         padding: 5px;
-        
       }
       .red-head{
         width: 25px;
@@ -230,9 +232,77 @@ const HomepageComponent = styled.div`
 
   .information-company{
     width: 100%;
-    background-color: #F2F2F2;
-    height: 200px;
-    border: 1px solid gray;
+    /* background-color: red; */
+    /* height: 200px; */
+   
+
+    .group-infor{
+      display: flex !important;
+      justify-content: center;
+      padding: 25px;
+      width: 100%;
+      background-color: #001529;
+      color: #015352;
+     
+      .box1-img{
+        width: 35%;
+    
+        .img-infor{
+          width: 100%;
+          max-height: fit-content;
+        }
+      }
+
+      .box2-body{
+        width: 35%;
+        background-color: #FFFF;
+        padding-top: 60px;
+        
+          .head-body{
+            font-size: 20px;
+            font-weight: bold;
+            padding: 5px 10px;
+            text-align: start;
+            margin: 0 auto;
+            /* padding: 3px 10px; */
+          }
+          .content-body-info{
+            font-size: 14px;
+            padding: 0px 10px;
+            text-align: start;
+          }
+          .btn-way{
+            width: 100%;
+            display: flex;
+            justify-content: start;
+            padding: 0px 10px;
+
+            .btn-infor{
+              background-color: orange;
+              color: #fff;
+              padding: 7px;
+              border-radius: 20px;
+              border: none;
+              font-size: 12px;
+            }
+          }
+      }
+     
+      /* .box1-infor,.box2-infor{
+        width: 45%;
+        background-color: yellow;
+      }
+      .box2-infor{
+        background-color: red
+      } */
+    }
+
+    .carousel.carousel-slider .control-arrow{
+      padding: 50px;
+    }
+    .carousel-status{
+      display: none;
+    }
   }
 `;
 // const Contentportal = styled.div`
@@ -663,77 +733,18 @@ const HomepageComponent = styled.div`
 //   }
 
 // `
+// const SliderBar = styled(Carousel)`
+
+// `
+// const SliderBar = styled(Carousel)`
+//       width: 100%;
+//       height: auto;
+
+
+// `;
+
 
 export default function HomePage() {
-
-  // const [userData, setUserData] = useState([]);
-  // const [dep_id, setdep_id] = useState(1)
-  // const [isBannerReady, setIsBannerReady] = useState(false)
-
-  // const columns = [
-  //   {
-  //     title: 'Profile',
-  //     dataIndex: 'image',
-  //     width: 150,
-  //     align: 'center',
-  //     render: (_, record) => (
-  //       <Profileim>
-  //         {/* <div className="img-pro"></div> */}
-  //         <img className="img-pro" alt="example" src={process.env.REACT_APP_SERVER_ENDPOINT + "/public/image/employee/" + record.image} />
-  //       </Profileim>
-  //     )
-  //   },
-  //   {
-  //     title: 'Name-Surname',
-  //     dataIndex: 'TUserName',
-  //   },
-  //   {
-  //     title: 'Nick-Name',
-  //     dataIndex: 'nickname',
-  //     align: 'center',
-  //   },
-  //   {
-  //     title: 'Position',
-  //     dataIndex: 'Position',
-  //   },
-  //   {
-  //     title: 'Telephone',
-  //     dataIndex: 'ExtNo',
-  //     width: 200,
-  //     align: 'center',
-  //   },
-  // ]
-
-  // useEffect(() => {
-  //   setTimeout(() => {
-  //     setIsBannerReady(true)
-  //   }, 1250);
-
-  //   if (window.location.href.split('#').length > 1) {
-  //     window.scrollTo(0, document.getElementById(window.location.href.split('#')[1]).offsetTop);
-  //   }
-
-
-  //   const init = async () => {
-  //     let params = {
-  //       type_dep: dep_id,
-  //     }
-
-  //     let employeeResp = await axios.get(
-  //       process.env.REACT_APP_SERVER_ENDPOINT + "/api/user/employee",
-  //       {
-  //         params: params,
-  //         withCredentials: true,
-  //       }
-  //     );
-  //     if (employeeResp?.data?.status) {
-  //       setUserData(employeeResp.data.data);
-  //     }
-  //   }
-
-  //   init()
-  // }, [dep_id, window.location.href])
-
 
   return (
     <>
@@ -747,7 +758,7 @@ export default function HomePage() {
               <div className="box1-voc">
                 <div className="group-box1">
                   <div className="flex-box1">
-                    <h1 className="text-content">EPORTAL</h1>
+                    <h1 className="text-content">E-PORTAL</h1>
                     <img src="red.png" alt="" className="red-img" />
                     <div className="webchase">
                       <a href={"https://www.chase.co.th/"} target="_blank/">
@@ -762,21 +773,13 @@ export default function HomePage() {
                   <div className="btn-link-voc">
                     <div className="btn-link">
                       <div className="head-noti">
-                        Notify
+                        New & Announcement
                       </div>
                       <div className="body-noti">
                         <p>ทดสอบประกาศ</p>
                       </div>
                     </div>
                   </div>
-                  {/* <div className="webchase">
-                    <button className="btn-chase">
-                      <a href={"https://www.chase.co.th/"} target="_blank">
-                        <BiWorld className="icon-web" />
-                        <img src="logo-chase.png" alt="" className="logo-chase-while" width={100} />
-                      </a>
-                    </button>
-                  </div> */}
                 </div>
               </div>
               <div className="box2-voc">
@@ -812,9 +815,64 @@ export default function HomePage() {
 
 
           <div className="information-company">
-            <div>
-              <h1>รอใส่ข่าวสารองค์กร</h1>
-            </div>
+            <Carousel showArrows={true}>
+              <div className="group-infor">
+                รอใส่สีพื้นหลังและเปลี่ยนสีตัวอักษร
+                <div className="box1-img">
+                  <img src="test3.png" alt="" className="img-infor" />
+                </div>
+                <div className="box2-body">
+                  <p className="head-body">
+                    RS GROUP จับมือ CHASE แต่ง ปรึกษา ทางการเงิน มุ่งหน้าสู่ตลาดหลักทรัพย์
+                    ตามเป้าหมาย
+                  </p>
+                  <p className="content-body-info">
+                    บริษัท อาร์เอส จำกัด (มหาชน) หรือ อาร์เอส กรุ๊ป ร่วมพิธี ลงนามแต่งตั้งบริษัทหลักทรัพย์ กสิกรไทย จำกัด (มหาชน)
+                    เป็นที่ปรึกษาทางการเงิน ให้แก่บริษัท เชฎฐ์ เอเชีย จำกัด....
+                  </p>
+                  <div className="btn-way">
+                    <button className="btn-infor">Read-More</button>
+                  </div>
+
+                </div>
+              </div>
+              <div className="group-infor">
+                <div className="box1-img">
+                  <img src="test3.png" alt="" className="img-infor" />
+                </div>
+                <div className="box2-body">
+                  <p className="head-body">RS GROUP จับมือ CHASE แต่ง ปรึกษา ทางการเงิน มุ่งหน้าสู่ตลาดหลักทรัพย์
+                    ตามเป้าหมาย
+                  </p>
+                  <p className="content-body-info">
+                    บริษัท อาร์เอส จำกัด (มหาชน) หรือ อาร์เอส กรุ๊ป ร่วมพิธี ลงนามแต่งตั้งบริษัทหลักทรัพย์ กสิกรไทย จำกัด (มหาชน)
+                    เป็นที่ปรึกษาทางการเงิน ให้แก่บริษัท เชฎฐ์ เอเชีย จำกัด....
+                  </p>
+                  <div className="btn-way">
+                    <button className="btn-infor">Read-More</button>
+                  </div>
+
+                </div>
+              </div>
+              <div className="group-infor">
+                <div className="box1-img">
+                  <img src="test3.png" alt="" className="img-infor" />
+                </div>
+                <div className="box2-body">
+                  <p className="head-body">RS GROUP จับมือ CHASE แต่ง ปรึกษา ทางการเงิน มุ่งหน้าสู่ตลาดหลักทรัพย์
+                    ตามเป้าหมาย
+                  </p>
+                  <p className="content-body-info">
+                    บริษัท อาร์เอส จำกัด (มหาชน) หรือ อาร์เอส กรุ๊ป ร่วมพิธี ลงนามแต่งตั้งบริษัทหลักทรัพย์ กสิกรไทย จำกัด (มหาชน)
+                    เป็นที่ปรึกษาทางการเงิน ให้แก่บริษัท เชฎฐ์ เอเชีย จำกัด....
+                  </p>
+                  <div className="btn-way">
+                    <button className="btn-infor">Read-More</button>
+                  </div>
+
+                </div>
+              </div>
+            </Carousel>
           </div>
 
 

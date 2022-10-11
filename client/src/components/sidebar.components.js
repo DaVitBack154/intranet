@@ -8,10 +8,10 @@ import { GoTools } from 'react-icons/go'
 import { FaHome } from 'react-icons/fa'
 import { MdAddCircle } from 'react-icons/md'
 import { BsFillPeopleFill } from 'react-icons/bs'
-import { RiMoneyDollarBoxLine } from 'react-icons/ri'
+import { FaWallet } from 'react-icons/fa'
 import { FaShoppingCart } from 'react-icons/fa'
 import { HiDocumentText } from 'react-icons/hi'
-import { FaUsers } from 'react-icons/fa'
+import { BsPersonCheckFill } from 'react-icons/bs'
 
 
 import { useNavigate, useLocation, NavLink } from 'react-router-dom';
@@ -24,6 +24,8 @@ const { Sider } = Layout;
 const SideBarComponent = styled(Sider)`
     height: 100vh;
     position: fixed;
+    
+    /* overflow: scroll; */
 
     .sidebar-trigger{
         /* display: none; */
@@ -107,12 +109,20 @@ const SideBarComponent = styled(Sider)`
         margin-top: 5px;
         text-align: center;
     }
-    .ant-menu-item {
-        padding-left: 25px!important;
+
+    .ant-menu-submenu-title{
+        padding-left: 15px!important;
     }
+    .ant-menu-item {
+        padding-left: 15px!important;
+    }
+    /* .kqkqLn .ant-menu-submenu-title{
+        padding-left: 15px!important;
+    } */
     /* .ant-menu-title-content{
         margin-top: 15px;
     } */
+   
     
 `
 
@@ -135,7 +145,7 @@ export default function SideBar(props) {
                 {
                     key: '',
                     icon: <FaHome className='icon-sli' />,
-                    label: 'Eportal',
+                    label: 'E-portal',
                 },
 
                 {
@@ -148,7 +158,6 @@ export default function SideBar(props) {
                         {
                             key: 'hotline',
                             icon: <MdAddCircle className='icon-sli' />,
-                            // label: <NavLink to='/hotline'>Hotline</NavLink>,
                             label: 'Hotline',
                             children: [
                                 {
@@ -172,17 +181,20 @@ export default function SideBar(props) {
                     label: 'People',
                     children: [
                         { key: 'hr', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>พนักงานเริ่มงานใหม่</NavLink> },
-                        { key: '#1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>Form-People</NavLink> },
+                        { key: 'hr_from', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>Form-People</NavLink> },
+                        { key: 'hr_infor', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>งานด้านข้อมูล</NavLink> },
+                        { key: 'hr_50', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>ทวิ.50</NavLink> },
+                        { key: 'hr_slip', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>Payrollslip</NavLink> },
                     ]
 
                 },
 
                 {
                     key: 'acc_fin',
-                    icon: <RiMoneyDollarBoxLine className='icon-sli' />,
-                    label: 'Account&Finance',
+                    icon: <FaWallet className='icon-sli' />,
+                    label: 'Account & Finance',
                     children: [
-                        { key: 'acc', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/hr'>แบบฟอร์ม-เบิกเงิน</NavLink> },
+                        { key: 'acc', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/acc'>แบบฟอร์ม-เบิกเงิน</NavLink> },
                     ]
 
                 },
@@ -190,9 +202,9 @@ export default function SideBar(props) {
                 {
                     key: 'po',
                     icon: <FaShoppingCart className='icon-sli' />,
-                    label: 'Purchase',
+                    label: 'Procurement',
                     children: [
-                        { key: '#1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_doc_hr'>แบบฟอร์ม-PR,PO</NavLink> },
+                        { key: 'po_ning', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/from_po'>แบบฟอร์ม-PR,PO</NavLink> },
                     ]
 
                 },
@@ -200,20 +212,55 @@ export default function SideBar(props) {
                 {
                     key: 'policy',
                     icon: <HiDocumentText className='icon-sli' />,
-                    label: 'Policy',
+                    label: 'Policy & Regulation',
                     children: [
-                        { key: '##1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>นโยบาย</NavLink> },
-                        { key: '##2', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>คู่มือปฏิบัติงาน</NavLink> },
+                        {
+                            key: 'policy',
+                            icon: <MdAddCircle className='icon-sli' />,
+                            // label: <NavLink to='/hotline'>Hotline</NavLink>,
+                            label: 'Policy',
+                            children: [
+                                {
+                                    label: <NavLink to='/policy-doc'>Policy</NavLink>,
+                                    key: 'policy-doc',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                                {
+                                    label: <NavLink to='/regulation-doc'>ขั้นตอนการดำเนินงาน</NavLink>,
+                                    key: 'regulation-doc',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                            ],
+                        },
+                        {
+                            key: 'regulation',
+                            icon: <MdAddCircle className='icon-sli' />,
+                            // label: <NavLink to='/hotline'>Hotline</NavLink>,
+                            label: 'Regulation',
+                            children: [
+                                {
+                                    label: <NavLink to='/hotline1'>Regulation</NavLink>,
+                                    key: 'regulation-doc',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                                {
+                                    label: <NavLink to='/hotline'>บอร์ด-ประกาศ</NavLink>,
+                                    key: 'regulation-noti',
+                                    icon: <MdAddCircle className='icon-sli' />,
+                                },
+                            ],
+                        },
+                        // { key: '##2', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>Regulation</NavLink> },
                     ]
 
                 },
 
                 {
                     key: 'directory',
-                    icon: <FaUsers className='icon-sli' />,
+                    icon: <BsPersonCheckFill className='icon-sli' />,
                     label: 'Directory',
                     children: [
-                        { key: '##1', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/'>ข้อมูลพนักงาน</NavLink> },
+                        { key: 'directory-doc', icon: <MdAddCircle className='icon-sli' />, label: <NavLink to='/direc'>ข้อมูลพนักงาน</NavLink> },
                     ]
 
                 },
