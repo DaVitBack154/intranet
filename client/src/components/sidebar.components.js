@@ -215,16 +215,16 @@ export default function SideBar(props) {
                     label: 'Policy & Regulation',
                     children: [
                         {
-                            key: 'policy',
+                            key: 'policy1',
                             icon: <MdAddCircle className='icon-sli' />,
                             // label: <NavLink to='/hotline'>Hotline</NavLink>,
                             label: 'Policy',
                             children: [
-                                {
-                                    label: <NavLink to='/policy-doc'>Policy</NavLink>,
-                                    key: 'policy-doc',
-                                    icon: <MdAddCircle className='icon-sli' />,
-                                },
+                                // {
+                                //     label: <NavLink to='/policy-doc'>Policy-Document</NavLink>,
+                                //     key: 'policy-doc',
+                                //     icon: <MdAddCircle className='icon-sli' />,
+                                // },
                                 {
                                     label: <NavLink to='/regulation-doc'>ขั้นตอนการดำเนินงาน</NavLink>,
                                     key: 'regulation-doc',
@@ -238,11 +238,11 @@ export default function SideBar(props) {
                             // label: <NavLink to='/hotline'>Hotline</NavLink>,
                             label: 'Regulation',
                             children: [
-                                {
-                                    label: <NavLink to='/hotline1'>Regulation</NavLink>,
-                                    key: 'regulation-doc',
-                                    icon: <MdAddCircle className='icon-sli' />,
-                                },
+                                // {
+                                //     label: <NavLink to='/hotline1'>Regulation-Document</NavLink>,
+                                //     key: 'regulation-doc',
+                                //     icon: <MdAddCircle className='icon-sli' />,
+                                // },
                                 {
                                     label: <NavLink to='/hotline'>บอร์ด-ประกาศ</NavLink>,
                                     key: 'regulation-noti',

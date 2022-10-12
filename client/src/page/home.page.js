@@ -229,20 +229,16 @@ const HomepageComponent = styled.div`
   }
   //ส่วนคอนเท้นข่าวสารบริษัท
 
-
+  //ส่วนข้อมูลข่าวสาร แบบสไลค์
   .information-company{
     width: 100%;
-    /* background-color: red; */
-    /* height: 200px; */
-   
-
     .group-infor{
       display: flex !important;
       justify-content: center;
-      padding: 25px;
+      padding: 30px;
       width: 100%;
-      background-color: #001529;
-      color: #015352;
+      background-color: #2B5050;
+ 
      
       .box1-img{
         width: 35%;
@@ -256,18 +252,22 @@ const HomepageComponent = styled.div`
       .box2-body{
         width: 35%;
         background-color: #FFFF;
-        padding-top: 60px;
+        padding-top: 30px;
+       
         
           .head-body{
-            font-size: 20px;
-            font-weight: bold;
+            font-size: 24px;
+            font-weight: 500;
+            font-style: normal;
             padding: 5px 10px;
             text-align: start;
             margin: 0 auto;
+            color: #001529;
             /* padding: 3px 10px; */
           }
           .content-body-info{
-            font-size: 14px;
+            font-size: 17px;
+            line-height: 24px;
             padding: 0px 10px;
             text-align: start;
           }
@@ -278,12 +278,12 @@ const HomepageComponent = styled.div`
             padding: 0px 10px;
 
             .btn-infor{
-              background-color: orange;
+              background-color: #015352;
               color: #fff;
-              padding: 7px;
+              padding: 10px;
               border-radius: 20px;
               border: none;
-              font-size: 12px;
+              font-size: 10px;
             }
           }
       }
@@ -303,6 +303,80 @@ const HomepageComponent = styled.div`
     .carousel-status{
       display: none;
     }
+    .control-dots{
+      margin-bottom: 5px;
+    }
+    .carousel .thumbs-wrapper{
+      display: none;
+    }
+  }
+  //ส่วนข้อมูลข่าวสาร แบบสไลค์
+
+  .activity-employee{
+    width: 100%;
+    background-color: #FDFDFD;
+      .group-head{
+        display: flex;
+     
+
+        .acthead{    
+          margin-top: 20px;           
+          font-size: 15px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #aaaaaa;
+          padding-left: 25px;
+          letter-spacing: 2px;
+        }
+
+        .line-head{
+          width: 70px;
+          height: 1px;
+          background-color: #ffde9e;
+          position: relative;
+          top: 30px;
+          left: 5px;
+          display: inline-block;
+        }
+      }
+
+      .act-ch{
+        width: 100%;
+        padding-left: 25px;
+        text-transform: uppercase;
+        .h-act{
+          color: #015352;
+        }
+      }
+
+      .group-activity{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        
+        .box1-act,.box2-act,.box3-act,.box4-act{
+          width: 23%;
+          background-color: yellowgreen;
+
+          .text-act{
+            background-color: #FDFDFD;
+            padding: 7px;
+            font-size: 18px;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          }
+
+        }
+        .act-img{
+          width: 100%;
+          max-width: fit-content;
+          height: fit-content;
+          height: 200px;
+          border-radius: 5px;
+        }
+      }
+    
   }
 `;
 // const Contentportal = styled.div`
@@ -813,11 +887,10 @@ export default function HomePage() {
           </div>
           {/* หัวข้อมูลข่าวสาร */}
 
-
+          {/* ส่วนข้อมูลข่าวสารแบบ สไลค์ */}
           <div className="information-company">
             <Carousel showArrows={true}>
               <div className="group-infor">
-                รอใส่สีพื้นหลังและเปลี่ยนสีตัวอักษร
                 <div className="box1-img">
                   <img src="test3.png" alt="" className="img-infor" />
                 </div>
@@ -831,7 +904,7 @@ export default function HomePage() {
                     เป็นที่ปรึกษาทางการเงิน ให้แก่บริษัท เชฎฐ์ เอเชีย จำกัด....
                   </p>
                   <div className="btn-way">
-                    <button className="btn-infor">Read-More</button>
+                    <button className="btn-infor">อ่านเพิ่มเติม</button>
                   </div>
 
                 </div>
@@ -874,13 +947,51 @@ export default function HomePage() {
               </div>
             </Carousel>
           </div>
+          {/* ส่วนข้อมูลข่าวสารแบบ สไลค์ */}
 
 
-          <div className="information-company">
-            <div>
-              <h1>รอใส่กิจกรรมองค์กร</h1>
+          {/* ส่วนข้อมูลกิจกรรม บริษัท */}
+          <div className="activity-employee">
+            <div className="group-head">
+              <h5 className="acthead">Activity</h5>
+              <div className="line-head"></div>
             </div>
+
+            <div className="act-ch">
+              <h1 className="h-act">Activity-Company</h1>
+            </div>
+
+            <div className="group-activity">
+              <div className="box1-act">
+                <img src="act1.png" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>Happy-Newyear</h5>
+                </div>
+              </div>
+              <div className="box2-act">
+                <img src="act2.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>Eat-Meetting</h5>
+                </div>
+              </div>
+              <div className="box3-act">
+                <img src="act3.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>Dinner-Room</h5>
+                </div>
+              </div>
+              <div className="box4-act">
+                <img src="act4.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>Chirstmas</h5>
+                </div>
+              </div>
+            </div>
+            <br /><br />
           </div>
+          {/* ส่วนข้อมูลกิจกรรม บริษัท */}
+
+
 
           <div className="information-company">
             <div>
