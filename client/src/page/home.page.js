@@ -44,7 +44,8 @@ const HomepageComponent = styled.div`
                   }
                   @media only screen and (min-width: 1900px) {
                     .red-img{
-                      left: 215px;
+                      left: 120px;
+                      top: -10px;
                     }
                   }
 
@@ -140,7 +141,7 @@ const HomepageComponent = styled.div`
   //ส่วนคอนเท้นข่าวสารบริษัท
   .service-company{
     width: 100%;
-    background-color: #fff;
+    background-color: #FDFDFD;
     box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
     
 
@@ -155,6 +156,9 @@ const HomepageComponent = styled.div`
         font-weight:bold;
         font-size: 30px;
         padding: 5px;
+        color: #015352;
+        text-transform: uppercase;
+        letter-spacing: 3px;
       }
       .red-head{
         width: 25px;
@@ -235,10 +239,12 @@ const HomepageComponent = styled.div`
     .group-infor{
       display: flex !important;
       justify-content: center;
-      padding: 30px;
+      padding: 35px;
       width: 100%;
-      background-color: #2B5050;
- 
+      background-image: url("banner.jpg");
+      /* background-position: center center; */
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
      
       .box1-img{
         width: 35%;
@@ -312,13 +318,13 @@ const HomepageComponent = styled.div`
   }
   //ส่วนข้อมูลข่าวสาร แบบสไลค์
 
+  //ส่วยของกิจกรรมพนักงาน
   .activity-employee{
     width: 100%;
     background-color: #FDFDFD;
       .group-head{
         display: flex;
      
-
         .acthead{    
           margin-top: 20px;           
           font-size: 15px;
@@ -332,7 +338,7 @@ const HomepageComponent = styled.div`
         .line-head{
           width: 70px;
           height: 1px;
-          background-color: #ffde9e;
+          background-color: #FD9D00;
           position: relative;
           top: 30px;
           left: 5px;
@@ -344,8 +350,11 @@ const HomepageComponent = styled.div`
         width: 100%;
         padding-left: 25px;
         text-transform: uppercase;
+   
         .h-act{
           color: #015352;
+          font-weight: bold;
+          letter-spacing: 3px;
         }
       }
 
@@ -378,6 +387,7 @@ const HomepageComponent = styled.div`
       }
     
   }
+  //ส่วยของกิจกรรมพนักงาน
 `;
 // const Contentportal = styled.div`
 //   background-color: transparent;
@@ -870,7 +880,7 @@ export default function HomePage() {
           <div className="service-company">
             <div className="head-service">
               <img src="red.png" alt="" className="red-head" />
-              <h2 className="head-act">ข่าวสาร & กิจกรรม</h2>
+              <h2 className="head-act">New&Activity</h2>
             </div>
             <div className="group-box">
               <div className="box1">
@@ -886,6 +896,7 @@ export default function HomePage() {
             <br />
           </div>
           {/* หัวข้อมูลข่าวสาร */}
+
 
           {/* ส่วนข้อมูลข่าวสารแบบ สไลค์ */}
           <div className="information-company">
@@ -958,6 +969,7 @@ export default function HomePage() {
             </div>
 
             <div className="act-ch">
+              {/* <img src="red.png" alt="" className="red-act" /> */}
               <h1 className="h-act">Activity-Company</h1>
             </div>
 
@@ -992,15 +1004,11 @@ export default function HomePage() {
           {/* ส่วนข้อมูลกิจกรรม บริษัท */}
 
 
-
-          <div className="information-company">
+          {/* <div className="information-company">
             <div>
               <h1>รอใส่กิจกรรมสังคม</h1>
             </div>
-          </div>
-
-
-
+          </div> */}
 
         </div>
       </HomepageComponent>
