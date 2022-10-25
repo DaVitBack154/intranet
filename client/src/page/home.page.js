@@ -8,7 +8,7 @@ import { Carousel } from 'react-responsive-carousel';
 
 const HomepageComponent = styled.div`
   display: flex;
-  background-color: transparent;
+  background-color: #FFFF;
 
   .content {
     width: 100%;
@@ -318,10 +318,11 @@ const HomepageComponent = styled.div`
   }
   //ส่วนข้อมูลข่าวสาร แบบสไลค์
 
-  //ส่วยของกิจกรรมพนักงาน
+  //ส่วนของกิจกรรมพนักงาน
   .activity-employee{
     width: 100%;
     background-color: #FDFDFD;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
       .group-head{
         display: flex;
      
@@ -387,7 +388,79 @@ const HomepageComponent = styled.div`
       }
     
   }
-  //ส่วยของกิจกรรมพนักงาน
+  //ส่วนของกิจกรรมพนักงาน
+
+  //ส่วนของกิจกรรมเพื่อสังคม
+  .activity-social{
+    width: 100%;
+    background-color: #FDFDFD;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+      .group-head{
+        display: flex;
+     
+        .acthead{    
+          margin-top: 20px;           
+          font-size: 15px;
+          font-weight: bold;
+          text-transform: uppercase;
+          color: #aaaaaa;
+          padding-left: 25px;
+          letter-spacing: 2px;
+        }
+
+        .line-head{
+          width: 70px;
+          height: 1px;
+          background-color: #FD9D00;
+          position: relative;
+          top: 30px;
+          left: 5px;
+          display: inline-block;
+        }
+      }
+
+      .act-ch{
+        width: 100%;
+        padding-left: 25px;
+        text-transform: uppercase;
+   
+        .h-act{
+          color: #015352;
+          font-weight: bold;
+          letter-spacing: 3px;
+        }
+      }
+
+      .group-activity{
+        display: flex;
+        justify-content: space-around;
+        padding: 10px;
+        
+        .box1-act,.box2-act,.box3-act,.box4-act{
+          width: 23%;
+          background-color: yellowgreen;
+
+          .text-act{
+            background-color: #FDFDFD;
+            padding: 10px;
+            font-size: 13px;
+            text-align: center;
+            font-weight: 500;
+            box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+          }
+
+        }
+        .act-img{
+          width: 100%;
+          max-width: fit-content;
+          height: fit-content;
+          height: 200px;
+          border-radius: 5px;
+        }
+      }
+    
+  }
+  //ส่วนของกิจกรรมเพื่อสังคม
 `;
 // const Contentportal = styled.div`
 //   background-color: transparent;
@@ -1004,11 +1077,48 @@ export default function HomePage() {
           {/* ส่วนข้อมูลกิจกรรม บริษัท */}
 
 
-          {/* <div className="information-company">
-            <div>
-              <h1>รอใส่กิจกรรมสังคม</h1>
+          {/* ส่วนข้อมูลกิจกรรม บริษัทเพื่อสังคม */}
+          <div className="activity-social">
+            <div className="group-head">
+              <h5 className="acthead">Activity</h5>
+              <div className="line-head"></div>
             </div>
-          </div> */}
+
+            <div className="act-ch">
+              {/* <img src="red.png" alt="" className="red-act" /> */}
+              <h1 className="h-act">Activity-Social</h1>
+            </div>
+
+            <div className="group-activity">
+              <div className="box1-act">
+                <img src="act1.png" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>ร่วมบริจาคสมทบทุนสร้าง ศูนย์การแพทย์ภัทรมหาราชานุสรณ์</h5>
+                </div>
+              </div>
+              <div className="box2-act">
+                <img src="act2.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>ร่วมบริจาคสมทบทุนสร้าง ศูนย์การแพทย์ภัทรมหาราชานุสรณ์</h5>
+                </div>
+              </div>
+              <div className="box3-act">
+                <img src="act3.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>ร่วมบริจาคสมทบทุนสร้าง ศูนย์การแพทย์ภัทรมหาราชานุสรณ์</h5>
+                </div>
+              </div>
+              <div className="box4-act">
+                <img src="act4.jpg" alt="" className="act-img" />
+                <div className="text-act">
+                  <h5>ร่วมบริจาคสมทบทุนสร้าง ศูนย์การแพทย์ภัทรมหาราชานุสรณ์</h5>
+                </div>
+              </div>
+            </div>
+            <br /><br />
+          </div>
+          {/* ส่วนข้อมูลกิจกรรม บริษัทเพื่อสังคม */}
+
 
         </div>
       </HomepageComponent>
